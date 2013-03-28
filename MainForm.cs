@@ -14,7 +14,6 @@ namespace RomGeo
     {
         public MainForm()
         {
-            // Here the fun begins
             InitializeComponent();
         }
     }
