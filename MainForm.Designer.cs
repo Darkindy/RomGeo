@@ -161,7 +161,7 @@
             this.welcomeLabel.Text = "Bine ai venit, [Prenume]!";
             this.welcomeLabel.Visible = false;
             // 
-            // chestionarNouButton
+            // newQuizButton
             // 
             this.newQuizButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
             this.newQuizButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
@@ -169,7 +169,7 @@
             this.newQuizButton.ForeColor = System.Drawing.Color.White;
             this.newQuizButton.Location = new System.Drawing.Point(400, 230);
             this.newQuizButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.newQuizButton.Name = "chestionarNouButton";
+            this.newQuizButton.Name = "newQuizButton";
             this.newQuizButton.Size = new System.Drawing.Size(200, 50);
             this.newQuizButton.TabIndex = 10;
             this.newQuizButton.Text = "Chestionar Nou";
@@ -177,7 +177,7 @@
             this.newQuizButton.Visible = false;
             this.newQuizButton.Click += new System.EventHandler(this.QuizButton_Click);
             // 
-            // statisticiButton
+            // statisticsButton
             // 
             this.statisticsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
             this.statisticsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
@@ -185,7 +185,7 @@
             this.statisticsButton.ForeColor = System.Drawing.Color.White;
             this.statisticsButton.Location = new System.Drawing.Point(400, 300);
             this.statisticsButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.statisticsButton.Name = "statisticiButton";
+            this.statisticsButton.Name = "statisticsButton";
             this.statisticsButton.Size = new System.Drawing.Size(200, 50);
             this.statisticsButton.TabIndex = 11;
             this.statisticsButton.Text = "Statistici";
@@ -193,7 +193,7 @@
             this.statisticsButton.Visible = false;
             this.statisticsButton.Click += new System.EventHandler(this.StatisticsButton_Click);
             // 
-            // iesireButton
+            // exitButton
             // 
             this.exitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
             this.exitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
@@ -201,7 +201,7 @@
             this.exitButton.ForeColor = System.Drawing.Color.White;
             this.exitButton.Location = new System.Drawing.Point(400, 370);
             this.exitButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.exitButton.Name = "iesireButton";
+            this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(200, 50);
             this.exitButton.TabIndex = 12;
             this.exitButton.Text = "Iesire";
@@ -209,22 +209,22 @@
             this.exitButton.Visible = false;
             this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // intrebareText
+            // questionText
             // 
             this.questionText.AutoSize = true;
             this.questionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questionText.Location = new System.Drawing.Point(105, 120);
-            this.questionText.Name = "intrebareText";
+            this.questionText.Name = "questionText";
             this.questionText.Size = new System.Drawing.Size(525, 20);
             this.questionText.TabIndex = 16;
             this.questionText.Text = "In imaginea de mai jos este aer. De ce oamenii nu simt greutatea aerului?";
             this.questionText.Visible = false;
             // 
-            // intrebareImagine
+            // questionImage
             // 
             this.questionImage.Image = global::RomGeo.Properties.Resources.cer;
             this.questionImage.Location = new System.Drawing.Point(450, 150);
-            this.questionImage.Name = "intrebareImagine";
+            this.questionImage.Name = "questionImage";
             this.questionImage.Size = new System.Drawing.Size(500, 330);
             this.questionImage.TabIndex = 18;
             this.questionImage.TabStop = false;
@@ -240,22 +240,22 @@
             this.logoSmall.TabStop = false;
             this.logoSmall.Visible = false;
             // 
-            // logo
+            // headerImage
             // 
             this.headerImage.Image = global::RomGeo.Properties.Resources.logo2_150;
             this.headerImage.InitialImage = null;
             this.headerImage.Location = new System.Drawing.Point(410, 0);
-            this.headerImage.Name = "logo";
+            this.headerImage.Name = "headerImage";
             this.headerImage.Size = new System.Drawing.Size(189, 150);
             this.headerImage.TabIndex = 1;
             this.headerImage.TabStop = false;
             this.headerImage.Visible = false;
             // 
-            // bottomPic
+            // footerImage
             // 
             this.footerImage.Image = global::RomGeo.Properties.Resources.bottom;
             this.footerImage.Location = new System.Drawing.Point(0, 510);
-            this.footerImage.Name = "bottomPic";
+            this.footerImage.Name = "footerImage";
             this.footerImage.Size = new System.Drawing.Size(980, 147);
             this.footerImage.TabIndex = 8;
             this.footerImage.TabStop = false;
@@ -309,7 +309,7 @@
             this.answer4.UseVisualStyleBackColor = true;
             this.answer4.Visible = false;
             // 
-            // urmatoareaIntrebare
+            // nextQuestionButton
             // 
             this.nextQuestionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
             this.nextQuestionButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
@@ -317,7 +317,7 @@
             this.nextQuestionButton.ForeColor = System.Drawing.Color.White;
             this.nextQuestionButton.Location = new System.Drawing.Point(750, 510);
             this.nextQuestionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.nextQuestionButton.Name = "urmatoareaIntrebare";
+            this.nextQuestionButton.Name = "nextQuestionButton";
             this.nextQuestionButton.Size = new System.Drawing.Size(200, 50);
             this.nextQuestionButton.TabIndex = 23;
             this.nextQuestionButton.Text = "Urmatoarea Intrebare";
@@ -325,11 +325,11 @@
             this.nextQuestionButton.Visible = false;
             this.nextQuestionButton.Click += new System.EventHandler(this.NextQuestionButton_Click);
             // 
-            // bottomPicSmall
+            // footerImageSmall
             // 
             this.footerImageSmall.Image = global::RomGeo.Properties.Resources.bottom;
             this.footerImageSmall.Location = new System.Drawing.Point(0, 550);
-            this.footerImageSmall.Name = "bottomPicSmall";
+            this.footerImageSmall.Name = "footerImageSmall";
             this.footerImageSmall.Size = new System.Drawing.Size(980, 147);
             this.footerImageSmall.TabIndex = 24;
             this.footerImageSmall.TabStop = false;
@@ -362,7 +362,6 @@
             this.Controls.Add(this.answer1);
             this.Controls.Add(this.questionText);
             this.Controls.Add(this.logoSmall);
-            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.statisticsButton);
             this.Controls.Add(this.newQuizButton);
             this.Controls.Add(this.welcomeLabel);
@@ -376,6 +375,7 @@
             this.Controls.Add(this.createAccountLink);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.questionImage);
+            this.Controls.Add(this.exitButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
