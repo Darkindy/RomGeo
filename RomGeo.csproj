@@ -87,6 +87,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\opensans-light-webfont.ttf" />
     <None Include="Resources\Images\Interface\header.png" />
     <None Include="Resources\Images\Interface\logo.png" />
     <None Include="Resources\Images\Interface\footer.png" />
