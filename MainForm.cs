@@ -22,7 +22,7 @@ namespace RomGeo
     public partial class MainForm : Form
     {
         private AppState currentState = AppState.Start;
-        private AppState previousState = AppState.Empty;
+        private AppState previousState = AppState.Empty;    // may be used in the future, leave here
 
         public MainForm()
         {
@@ -50,40 +50,11 @@ namespace RomGeo
 
         private void GetNextScreen()
         {
-            switch (previousState)
+            foreach (Control c in this.Controls)
             {
-                case AppState.Start:
-                    headerImage.Visible = false;
-                    usernameLabel.Visible = false;
-                    usernameBox.Visible = false;
-                    passLabel.Visible = false;
-                    passBox.Visible = false;
-                    loginButton.Visible = false;
-                    createAccountLink.Visible = false;
-                    forgotPassLink.Visible = false;
-                    footerImage.Visible = false;
-                    break;
-                case AppState.UserPanel:
-                    headerImage.Visible = false;
-                    welcomeLabel.Visible = false;
-                    newQuizButton.Visible = false;
-                    statisticsButton.Visible = false;
-                    exitButton.Visible = false;
-                    footerImage.Visible = false;
-                    break;
-                case AppState.InQuiz:
-                    quizTitle.Visible = false;
-                    logoSmall.Visible = false;
-                    questionText.Visible = false;
-                    questionImage.Visible = false;
-                    raspuns1.Visible = false;
-                    raspuns2.Visible = false;
-                    raspuns3.Visible = false;
-                    raspuns4.Visible = false;
-                    nextQuestionButton.Visible = false;
-                    footerImageSmall.Visible = false;
-                    break;
+                c.Visible = false;
             }
+
             switch (currentState)
             {
                 case AppState.Start:
@@ -110,10 +81,10 @@ namespace RomGeo
                     logoSmall.Visible = true;
                     questionText.Visible = true;
                     questionImage.Visible = true;
-                    raspuns1.Visible = true;
-                    raspuns2.Visible = true;
-                    raspuns3.Visible = true;
-                    raspuns4.Visible = true;
+                    answer1.Visible = true;
+                    answer2.Visible = true;
+                    answer3.Visible = true;
+                    answer4.Visible = true;
                     nextQuestionButton.Visible = true;
                     footerImageSmall.Visible = true;
                     break;

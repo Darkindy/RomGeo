@@ -45,10 +45,10 @@
             this.logoSmall = new System.Windows.Forms.PictureBox();
             this.headerImage = new System.Windows.Forms.PictureBox();
             this.footerImage = new System.Windows.Forms.PictureBox();
-            this.raspuns1 = new System.Windows.Forms.RadioButton();
-            this.raspuns2 = new System.Windows.Forms.RadioButton();
-            this.raspuns3 = new System.Windows.Forms.RadioButton();
-            this.raspuns4 = new System.Windows.Forms.RadioButton();
+            this.answer1 = new System.Windows.Forms.RadioButton();
+            this.answer2 = new System.Windows.Forms.RadioButton();
+            this.answer3 = new System.Windows.Forms.RadioButton();
+            this.answer4 = new System.Windows.Forms.RadioButton();
             this.nextQuestionButton = new System.Windows.Forms.Button();
             this.footerImageSmall = new System.Windows.Forms.PictureBox();
             this.quizTitle = new System.Windows.Forms.Label();
@@ -261,53 +261,53 @@
             this.footerImage.TabStop = false;
             this.footerImage.Visible = false;
             // 
-            // raspuns1
+            // answer1
             // 
-            this.raspuns1.AutoSize = true;
-            this.raspuns1.Location = new System.Drawing.Point(110, 200);
-            this.raspuns1.Name = "raspuns1";
-            this.raspuns1.Size = new System.Drawing.Size(168, 21);
-            this.raspuns1.TabIndex = 19;
-            this.raspuns1.TabStop = true;
-            this.raspuns1.Text = "Pentru ca sunt ocupati";
-            this.raspuns1.UseVisualStyleBackColor = true;
-            this.raspuns1.Visible = false;
+            this.answer1.AutoSize = true;
+            this.answer1.Location = new System.Drawing.Point(110, 200);
+            this.answer1.Name = "answer1";
+            this.answer1.Size = new System.Drawing.Size(168, 21);
+            this.answer1.TabIndex = 19;
+            this.answer1.TabStop = true;
+            this.answer1.Text = "Pentru ca sunt ocupati";
+            this.answer1.UseVisualStyleBackColor = true;
+            this.answer1.Visible = false;
             // 
-            // raspuns2
+            // answer2
             // 
-            this.raspuns2.AutoSize = true;
-            this.raspuns2.Location = new System.Drawing.Point(110, 250);
-            this.raspuns2.Name = "raspuns2";
-            this.raspuns2.Size = new System.Drawing.Size(168, 21);
-            this.raspuns2.TabIndex = 20;
-            this.raspuns2.TabStop = true;
-            this.raspuns2.Text = "Pentru ca sunt ocupati";
-            this.raspuns2.UseVisualStyleBackColor = true;
-            this.raspuns2.Visible = false;
+            this.answer2.AutoSize = true;
+            this.answer2.Location = new System.Drawing.Point(110, 250);
+            this.answer2.Name = "answer2";
+            this.answer2.Size = new System.Drawing.Size(168, 21);
+            this.answer2.TabIndex = 20;
+            this.answer2.TabStop = true;
+            this.answer2.Text = "Pentru ca sunt ocupati";
+            this.answer2.UseVisualStyleBackColor = true;
+            this.answer2.Visible = false;
             // 
-            // raspuns3
+            // answer3
             // 
-            this.raspuns3.AutoSize = true;
-            this.raspuns3.Location = new System.Drawing.Point(110, 300);
-            this.raspuns3.Name = "raspuns3";
-            this.raspuns3.Size = new System.Drawing.Size(168, 21);
-            this.raspuns3.TabIndex = 21;
-            this.raspuns3.TabStop = true;
-            this.raspuns3.Text = "Pentru ca sunt ocupati";
-            this.raspuns3.UseVisualStyleBackColor = true;
-            this.raspuns3.Visible = false;
+            this.answer3.AutoSize = true;
+            this.answer3.Location = new System.Drawing.Point(110, 300);
+            this.answer3.Name = "answer3";
+            this.answer3.Size = new System.Drawing.Size(168, 21);
+            this.answer3.TabIndex = 21;
+            this.answer3.TabStop = true;
+            this.answer3.Text = "Pentru ca sunt ocupati";
+            this.answer3.UseVisualStyleBackColor = true;
+            this.answer3.Visible = false;
             // 
-            // raspuns4
+            // answer4
             // 
-            this.raspuns4.AutoSize = true;
-            this.raspuns4.Location = new System.Drawing.Point(110, 350);
-            this.raspuns4.Name = "raspuns4";
-            this.raspuns4.Size = new System.Drawing.Size(168, 21);
-            this.raspuns4.TabIndex = 22;
-            this.raspuns4.TabStop = true;
-            this.raspuns4.Text = "Pentru ca sunt ocupati";
-            this.raspuns4.UseVisualStyleBackColor = true;
-            this.raspuns4.Visible = false;
+            this.answer4.AutoSize = true;
+            this.answer4.Location = new System.Drawing.Point(110, 350);
+            this.answer4.Name = "answer4";
+            this.answer4.Size = new System.Drawing.Size(168, 21);
+            this.answer4.TabIndex = 22;
+            this.answer4.TabStop = true;
+            this.answer4.Text = "Pentru ca sunt ocupati";
+            this.answer4.UseVisualStyleBackColor = true;
+            this.answer4.Visible = false;
             // 
             // urmatoareaIntrebare
             // 
@@ -356,10 +356,10 @@
             this.Controls.Add(this.quizTitle);
             this.Controls.Add(this.nextQuestionButton);
             this.Controls.Add(this.footerImageSmall);
-            this.Controls.Add(this.raspuns4);
-            this.Controls.Add(this.raspuns3);
-            this.Controls.Add(this.raspuns2);
-            this.Controls.Add(this.raspuns1);
+            this.Controls.Add(this.answer4);
+            this.Controls.Add(this.answer3);
+            this.Controls.Add(this.answer2);
+            this.Controls.Add(this.answer1);
             this.Controls.Add(this.questionText);
             this.Controls.Add(this.logoSmall);
             this.Controls.Add(this.exitButton);
@@ -412,10 +412,10 @@
         private System.Windows.Forms.PictureBox logoSmall;
         private System.Windows.Forms.Label questionText;
         private System.Windows.Forms.PictureBox questionImage;
-        private System.Windows.Forms.RadioButton raspuns1;
-        private System.Windows.Forms.RadioButton raspuns2;
-        private System.Windows.Forms.RadioButton raspuns3;
-        private System.Windows.Forms.RadioButton raspuns4;
+        private System.Windows.Forms.RadioButton answer1;
+        private System.Windows.Forms.RadioButton answer2;
+        private System.Windows.Forms.RadioButton answer3;
+        private System.Windows.Forms.RadioButton answer4;
         private System.Windows.Forms.Button nextQuestionButton;
         private System.Windows.Forms.PictureBox footerImageSmall;
         private System.Windows.Forms.Label quizTitle;
