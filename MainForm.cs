@@ -10,37 +10,37 @@ using System.Windows.Forms;
 
 namespace RomGeo
 {
-    public enum App_States
+    public enum AppState
     {
         Start,
         CreateAccount,
         UserPanel,
         InQuiz,
-        empty
+        Empty
     }
 
     public partial class MainForm : Form
     {
-        private App_States currentState = App_States.Start;
-        private App_States previousState = App_States.empty;
+        private AppState currentState = AppState.Start;
+        private AppState previousState = AppState.Empty;
 
         public MainForm()
         {
             InitializeComponent();
-            loginButton.MouseEnter += new EventHandler(loginButton_MouseEnter);
-            loginButton.MouseLeave += new EventHandler(loginButton_MouseLeave);
-            chestionarNouButton.MouseEnter += new EventHandler(chestionarNouButton_MouseEnter);
-            chestionarNouButton.MouseLeave += new EventHandler(chestionarNouButton_MouseLeave);
-            statisticiButton.MouseEnter += new EventHandler(statisticiButton_MouseEnter);
-            statisticiButton.MouseLeave += new EventHandler(statisticiButton_MouseLeave);
-            iesireButton.MouseEnter += new EventHandler(iesireButton_MouseEnter);
-            iesireButton.MouseLeave += new EventHandler(iesireButton_MouseLeave);
-            urmatoareaIntrebare.MouseEnter += new EventHandler(urmatoareaIntrebare_MouseEnter);
-            urmatoareaIntrebare.MouseLeave += new EventHandler(urmatoareaIntrebare_MouseLeave);
-            createAccountLink.MouseEnter += new EventHandler(createAccountLink_MouseEnter);
-            createAccountLink.MouseLeave += new EventHandler(createAccountLink_MouseLeave);
-            forgotPassLink.MouseEnter += new EventHandler(forgotPassLink_MouseEnter);
-            forgotPassLink.MouseLeave += new EventHandler(forgotPassLink_MouseLeave);
+            loginButton.MouseEnter += new EventHandler(LoginButton_MouseEnter);
+            loginButton.MouseLeave += new EventHandler(LoginButton_MouseLeave);
+            newQuizButton.MouseEnter += new EventHandler(NewQuizButton_MouseEnter);
+            newQuizButton.MouseLeave += new EventHandler(NewQuizButton_MouseLeave);
+            statisticsButton.MouseEnter += new EventHandler(StatisticsButton_MouseEnter);
+            statisticsButton.MouseLeave += new EventHandler(StatisticsButton_MouseLeave);
+            exitButton.MouseEnter += new EventHandler(ExitButton_MouseEnter);
+            exitButton.MouseLeave += new EventHandler(ExitButton_MouseLeave);
+            nextQuestionButton.MouseEnter += new EventHandler(NextQuestionButton_MouseEnter);
+            nextQuestionButton.MouseLeave += new EventHandler(NextQuestionButton_MouseLeave);
+            createAccountLink.MouseEnter += new EventHandler(CreateAccountLink_MouseEnter);
+            createAccountLink.MouseLeave += new EventHandler(CreateAccountLink_MouseLeave);
+            forgotPassLink.MouseEnter += new EventHandler(ForgotPassLink_MouseEnter);
+            forgotPassLink.MouseLeave += new EventHandler(ForgotPassLink_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -52,8 +52,8 @@ namespace RomGeo
         {
             switch (previousState)
             {
-                case App_States.Start:
-                    logo.Visible = false;
+                case AppState.Start:
+                    headerImage.Visible = false;
                     usernameLabel.Visible = false;
                     usernameBox.Visible = false;
                     passLabel.Visible = false;
@@ -61,33 +61,33 @@ namespace RomGeo
                     loginButton.Visible = false;
                     createAccountLink.Visible = false;
                     forgotPassLink.Visible = false;
-                    bottomPic.Visible = false;
+                    footerImage.Visible = false;
                     break;
-                case App_States.UserPanel:
-                    logo.Visible = false;
+                case AppState.UserPanel:
+                    headerImage.Visible = false;
                     welcomeLabel.Visible = false;
-                    chestionarNouButton.Visible = false;
-                    statisticiButton.Visible = false;
-                    iesireButton.Visible = false;
-                    bottomPic.Visible = false;
+                    newQuizButton.Visible = false;
+                    statisticsButton.Visible = false;
+                    exitButton.Visible = false;
+                    footerImage.Visible = false;
                     break;
-                case App_States.InQuiz:
+                case AppState.InQuiz:
                     quizTitle.Visible = false;
                     logoSmall.Visible = false;
-                    intrebareText.Visible = false;
-                    intrebareImagine.Visible = false;
+                    questionText.Visible = false;
+                    questionImage.Visible = false;
                     raspuns1.Visible = false;
                     raspuns2.Visible = false;
                     raspuns3.Visible = false;
                     raspuns4.Visible = false;
-                    urmatoareaIntrebare.Visible = false;
-                    bottomPicSmall.Visible = false;
+                    nextQuestionButton.Visible = false;
+                    footerImageSmall.Visible = false;
                     break;
             }
             switch (currentState)
             {
-                case App_States.Start:
-                    logo.Visible = true;
+                case AppState.Start:
+                    headerImage.Visible = true;
                     usernameLabel.Visible = true;
                     usernameBox.Visible = true;
                     passLabel.Visible = true;
@@ -95,129 +95,129 @@ namespace RomGeo
                     loginButton.Visible = true;
                     createAccountLink.Visible = true;
                     forgotPassLink.Visible = true;
-                    bottomPic.Visible = true;
+                    footerImage.Visible = true;
                     break;
-                case App_States.UserPanel:
-                    logo.Visible = true;
+                case AppState.UserPanel:
+                    headerImage.Visible = true;
                     welcomeLabel.Visible = true;
-                    chestionarNouButton.Visible = true;
-                    statisticiButton.Visible = true;
-                    iesireButton.Visible = true;
-                    bottomPic.Visible = true;
+                    newQuizButton.Visible = true;
+                    statisticsButton.Visible = true;
+                    exitButton.Visible = true;
+                    footerImage.Visible = true;
                     break;
-                case App_States.InQuiz:
+                case AppState.InQuiz:
                     quizTitle.Visible = true;
                     logoSmall.Visible = true;
-                    intrebareText.Visible = true;
-                    intrebareImagine.Visible = true;
+                    questionText.Visible = true;
+                    questionImage.Visible = true;
                     raspuns1.Visible = true;
                     raspuns2.Visible = true;
                     raspuns3.Visible = true;
                     raspuns4.Visible = true;
-                    urmatoareaIntrebare.Visible = true;
-                    bottomPicSmall.Visible = true;
+                    nextQuestionButton.Visible = true;
+                    footerImageSmall.Visible = true;
                     break;
             }
         }
 
-        private void login_Click(object sender, EventArgs e)
+        private void LoginButon_Click(object sender, EventArgs e)
         {
             previousState = currentState;
-            currentState = App_States.UserPanel;
+            currentState = AppState.UserPanel;
             GetNextScreen();
         }
 
-        private void iesireButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void statisticiButton_Click(object sender, EventArgs e)
+        private void StatisticsButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Unu din 4 romani...");
+            System.Windows.Forms.MessageBox.Show("NYI");
         }
 
-        private void chestionarNouButton_Click(object sender, EventArgs e)
+        private void QuizButton_Click(object sender, EventArgs e)
         {
             previousState = currentState;
-            currentState = App_States.InQuiz;
+            currentState = AppState.InQuiz;
             GetNextScreen();
         }
 
-        private void createAccountLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void CreateAccountLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Ich bin der neue gott!");
+            System.Windows.Forms.MessageBox.Show("NYI");
         }
 
-        private void forgotPassLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ForgotPassLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Karl Pilkington!");
+            System.Windows.Forms.MessageBox.Show("NYI");
         }
 
-        private void urmatoareaIntrebare_Click(object sender, EventArgs e)
+        private void NextQuestionButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("10");
+            System.Windows.Forms.MessageBox.Show("NYI");
         }
 
-        private void loginButton_MouseEnter(object sender, EventArgs e)
+        private void LoginButton_MouseEnter(object sender, EventArgs e)
         {
             this.loginButton.BackColor = Color.FromArgb(161, 27, 60);
         }
-        private void loginButton_MouseLeave(object sender, EventArgs e)
+        private void LoginButton_MouseLeave(object sender, EventArgs e)
         {
             this.loginButton.BackColor = Color.FromArgb(5, 142, 158);
         }
 
-        private void chestionarNouButton_MouseEnter(object sender, EventArgs e)
+        private void NewQuizButton_MouseEnter(object sender, EventArgs e)
         {
-            this.chestionarNouButton.BackColor = Color.FromArgb(161, 27, 60);
+            this.newQuizButton.BackColor = Color.FromArgb(161, 27, 60);
         }
-        private void chestionarNouButton_MouseLeave(object sender, EventArgs e)
+        private void NewQuizButton_MouseLeave(object sender, EventArgs e)
         {
-            this.chestionarNouButton.BackColor = Color.FromArgb(5, 142, 158);
-        }
-
-        private void statisticiButton_MouseEnter(object sender, EventArgs e)
-        {
-            this.statisticiButton.BackColor = Color.FromArgb(161,27,60);
-        }
-        private void statisticiButton_MouseLeave(object sender, EventArgs e)
-        {
-            this.statisticiButton.BackColor = Color.FromArgb(5, 142, 158);
+            this.newQuizButton.BackColor = Color.FromArgb(5, 142, 158);
         }
 
-        private void iesireButton_MouseEnter(object sender, EventArgs e)
+        private void StatisticsButton_MouseEnter(object sender, EventArgs e)
         {
-            this.iesireButton.BackColor = Color.FromArgb(161, 27, 60);
+            this.statisticsButton.BackColor = Color.FromArgb(161,27,60);
         }
-        private void iesireButton_MouseLeave(object sender, EventArgs e)
+        private void StatisticsButton_MouseLeave(object sender, EventArgs e)
         {
-            this.iesireButton.BackColor = Color.FromArgb(5, 142, 158);
-        }
-
-        private void urmatoareaIntrebare_MouseEnter(object sender, EventArgs e)
-        {
-            this.urmatoareaIntrebare.BackColor = Color.FromArgb(161, 27, 60);
-        }
-        private void urmatoareaIntrebare_MouseLeave(object sender, EventArgs e)
-        {
-            this.urmatoareaIntrebare.BackColor = Color.FromArgb(5, 142, 158);
+            this.statisticsButton.BackColor = Color.FromArgb(5, 142, 158);
         }
 
-        private void createAccountLink_MouseEnter(object sender, EventArgs e)
+        private void ExitButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.exitButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void ExitButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.exitButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void NextQuestionButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.nextQuestionButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void NextQuestionButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.nextQuestionButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void CreateAccountLink_MouseEnter(object sender, EventArgs e)
         {
             this.createAccountLink.LinkColor = Color.FromArgb(161, 27, 60);
         }
-        private void createAccountLink_MouseLeave(object sender, EventArgs e)
+        private void CreateAccountLink_MouseLeave(object sender, EventArgs e)
         {
             this.createAccountLink.LinkColor = Color.FromArgb(5, 142, 158);
         }
 
-        private void forgotPassLink_MouseEnter(object sender, EventArgs e)
+        private void ForgotPassLink_MouseEnter(object sender, EventArgs e)
         {
             this.forgotPassLink.LinkColor = Color.FromArgb(161, 27, 60);
         }
-        private void forgotPassLink_MouseLeave(object sender, EventArgs e)
+        private void ForgotPassLink_MouseLeave(object sender, EventArgs e)
         {
             this.forgotPassLink.LinkColor = Color.FromArgb(5, 142, 158);
         }

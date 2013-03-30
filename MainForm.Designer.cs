@@ -37,33 +37,33 @@
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
-            this.chestionarNouButton = new System.Windows.Forms.Button();
-            this.statisticiButton = new System.Windows.Forms.Button();
-            this.iesireButton = new System.Windows.Forms.Button();
-            this.intrebareText = new System.Windows.Forms.Label();
-            this.intrebareImagine = new System.Windows.Forms.PictureBox();
+            this.newQuizButton = new System.Windows.Forms.Button();
+            this.statisticsButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.questionText = new System.Windows.Forms.Label();
+            this.questionImage = new System.Windows.Forms.PictureBox();
             this.logoSmall = new System.Windows.Forms.PictureBox();
-            this.logo = new System.Windows.Forms.PictureBox();
-            this.bottomPic = new System.Windows.Forms.PictureBox();
+            this.headerImage = new System.Windows.Forms.PictureBox();
+            this.footerImage = new System.Windows.Forms.PictureBox();
             this.raspuns1 = new System.Windows.Forms.RadioButton();
             this.raspuns2 = new System.Windows.Forms.RadioButton();
             this.raspuns3 = new System.Windows.Forms.RadioButton();
             this.raspuns4 = new System.Windows.Forms.RadioButton();
-            this.urmatoareaIntrebare = new System.Windows.Forms.Button();
-            this.bottomPicSmall = new System.Windows.Forms.PictureBox();
+            this.nextQuestionButton = new System.Windows.Forms.Button();
+            this.footerImageSmall = new System.Windows.Forms.PictureBox();
             this.quizTitle = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.intrebareImagine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottomPic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottomPicSmall)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.headerImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).BeginInit();
             this.SuspendLayout();
             // 
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
             this.loginButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
-            this.loginButton.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginButton.ForeColor = System.Drawing.Color.White;
             this.loginButton.Location = new System.Drawing.Point(415, 370);
             this.loginButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -73,40 +73,40 @@
             this.loginButton.Text = "Autentificare";
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Visible = false;
-            this.loginButton.Click += new System.EventHandler(this.login_Click);
+            this.loginButton.Click += new System.EventHandler(this.LoginButon_Click);
             // 
             // createAccountLink
             // 
             this.createAccountLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
             this.createAccountLink.AutoSize = true;
-            this.createAccountLink.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createAccountLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createAccountLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.createAccountLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
             this.createAccountLink.Location = new System.Drawing.Point(453, 440);
             this.createAccountLink.Name = "createAccountLink";
-            this.createAccountLink.Size = new System.Drawing.Size(94, 19);
+            this.createAccountLink.Size = new System.Drawing.Size(93, 17);
             this.createAccountLink.TabIndex = 2;
             this.createAccountLink.TabStop = true;
             this.createAccountLink.Text = "Creare cont";
             this.createAccountLink.Visible = false;
-            this.createAccountLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.createAccountLink_LinkClicked);
+            this.createAccountLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CreateAccountLink_LinkClicked);
             // 
             // usernameBox
             // 
-            this.usernameBox.Font = new System.Drawing.Font("Open Sans Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameBox.Location = new System.Drawing.Point(380, 230);
             this.usernameBox.Name = "usernameBox";
             this.usernameBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.usernameBox.Size = new System.Drawing.Size(240, 29);
+            this.usernameBox.Size = new System.Drawing.Size(240, 26);
             this.usernameBox.TabIndex = 3;
             this.usernameBox.Visible = false;
             // 
             // passBox
             // 
-            this.passBox.Font = new System.Drawing.Font("Open Sans Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passBox.Location = new System.Drawing.Point(380, 310);
             this.passBox.Name = "passBox";
-            this.passBox.Size = new System.Drawing.Size(240, 29);
+            this.passBox.Size = new System.Drawing.Size(240, 26);
             this.passBox.TabIndex = 4;
             this.passBox.UseSystemPasswordChar = true;
             this.passBox.Visible = false;
@@ -115,26 +115,26 @@
             // 
             this.forgotPassLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
             this.forgotPassLink.AutoSize = true;
-            this.forgotPassLink.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forgotPassLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forgotPassLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.forgotPassLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
             this.forgotPassLink.Location = new System.Drawing.Point(442, 470);
             this.forgotPassLink.Name = "forgotPassLink";
-            this.forgotPassLink.Size = new System.Drawing.Size(116, 19);
+            this.forgotPassLink.Size = new System.Drawing.Size(119, 17);
             this.forgotPassLink.TabIndex = 5;
             this.forgotPassLink.TabStop = true;
             this.forgotPassLink.Text = "Ai uitat parola?";
             this.forgotPassLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.forgotPassLink.Visible = false;
-            this.forgotPassLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.forgotPassLink_LinkClicked);
+            this.forgotPassLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForgotPassLink_LinkClicked);
             // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Font = new System.Drawing.Font("Open Sans Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameLabel.Location = new System.Drawing.Point(463, 200);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(74, 22);
+            this.usernameLabel.Size = new System.Drawing.Size(71, 20);
             this.usernameLabel.TabIndex = 6;
             this.usernameLabel.Text = "Utilizator";
             this.usernameLabel.Visible = false;
@@ -142,10 +142,10 @@
             // passLabel
             // 
             this.passLabel.AutoSize = true;
-            this.passLabel.Font = new System.Drawing.Font("Open Sans Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passLabel.Location = new System.Drawing.Point(473, 280);
             this.passLabel.Name = "passLabel";
-            this.passLabel.Size = new System.Drawing.Size(54, 22);
+            this.passLabel.Size = new System.Drawing.Size(54, 20);
             this.passLabel.TabIndex = 7;
             this.passLabel.Text = "Parola";
             this.passLabel.Visible = false;
@@ -153,82 +153,82 @@
             // welcomeLabel
             // 
             this.welcomeLabel.AutoSize = true;
-            this.welcomeLabel.Font = new System.Drawing.Font("Open Sans Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.welcomeLabel.Location = new System.Drawing.Point(420, 170);
             this.welcomeLabel.Name = "welcomeLabel";
-            this.welcomeLabel.Size = new System.Drawing.Size(182, 22);
+            this.welcomeLabel.Size = new System.Drawing.Size(178, 20);
             this.welcomeLabel.TabIndex = 9;
             this.welcomeLabel.Text = "Bine ai venit, [Prenume]!";
             this.welcomeLabel.Visible = false;
             // 
             // chestionarNouButton
             // 
-            this.chestionarNouButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
-            this.chestionarNouButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
-            this.chestionarNouButton.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chestionarNouButton.ForeColor = System.Drawing.Color.White;
-            this.chestionarNouButton.Location = new System.Drawing.Point(400, 230);
-            this.chestionarNouButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.chestionarNouButton.Name = "chestionarNouButton";
-            this.chestionarNouButton.Size = new System.Drawing.Size(200, 50);
-            this.chestionarNouButton.TabIndex = 10;
-            this.chestionarNouButton.Text = "Chestionar Nou";
-            this.chestionarNouButton.UseVisualStyleBackColor = false;
-            this.chestionarNouButton.Visible = false;
-            this.chestionarNouButton.Click += new System.EventHandler(this.chestionarNouButton_Click);
+            this.newQuizButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.newQuizButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.newQuizButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newQuizButton.ForeColor = System.Drawing.Color.White;
+            this.newQuizButton.Location = new System.Drawing.Point(400, 230);
+            this.newQuizButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.newQuizButton.Name = "chestionarNouButton";
+            this.newQuizButton.Size = new System.Drawing.Size(200, 50);
+            this.newQuizButton.TabIndex = 10;
+            this.newQuizButton.Text = "Chestionar Nou";
+            this.newQuizButton.UseVisualStyleBackColor = false;
+            this.newQuizButton.Visible = false;
+            this.newQuizButton.Click += new System.EventHandler(this.QuizButton_Click);
             // 
             // statisticiButton
             // 
-            this.statisticiButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
-            this.statisticiButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
-            this.statisticiButton.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statisticiButton.ForeColor = System.Drawing.Color.White;
-            this.statisticiButton.Location = new System.Drawing.Point(400, 300);
-            this.statisticiButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.statisticiButton.Name = "statisticiButton";
-            this.statisticiButton.Size = new System.Drawing.Size(200, 50);
-            this.statisticiButton.TabIndex = 11;
-            this.statisticiButton.Text = "Statistici";
-            this.statisticiButton.UseVisualStyleBackColor = false;
-            this.statisticiButton.Visible = false;
-            this.statisticiButton.Click += new System.EventHandler(this.statisticiButton_Click);
+            this.statisticsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.statisticsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsButton.ForeColor = System.Drawing.Color.White;
+            this.statisticsButton.Location = new System.Drawing.Point(400, 300);
+            this.statisticsButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.statisticsButton.Name = "statisticiButton";
+            this.statisticsButton.Size = new System.Drawing.Size(200, 50);
+            this.statisticsButton.TabIndex = 11;
+            this.statisticsButton.Text = "Statistici";
+            this.statisticsButton.UseVisualStyleBackColor = false;
+            this.statisticsButton.Visible = false;
+            this.statisticsButton.Click += new System.EventHandler(this.StatisticsButton_Click);
             // 
             // iesireButton
             // 
-            this.iesireButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
-            this.iesireButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
-            this.iesireButton.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iesireButton.ForeColor = System.Drawing.Color.White;
-            this.iesireButton.Location = new System.Drawing.Point(400, 370);
-            this.iesireButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.iesireButton.Name = "iesireButton";
-            this.iesireButton.Size = new System.Drawing.Size(200, 50);
-            this.iesireButton.TabIndex = 12;
-            this.iesireButton.Text = "Iesire";
-            this.iesireButton.UseVisualStyleBackColor = false;
-            this.iesireButton.Visible = false;
-            this.iesireButton.Click += new System.EventHandler(this.iesireButton_Click);
+            this.exitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.exitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.ForeColor = System.Drawing.Color.White;
+            this.exitButton.Location = new System.Drawing.Point(400, 370);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.exitButton.Name = "iesireButton";
+            this.exitButton.Size = new System.Drawing.Size(200, 50);
+            this.exitButton.TabIndex = 12;
+            this.exitButton.Text = "Iesire";
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Visible = false;
+            this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // intrebareText
             // 
-            this.intrebareText.AutoSize = true;
-            this.intrebareText.Font = new System.Drawing.Font("Open Sans Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.intrebareText.Location = new System.Drawing.Point(105, 120);
-            this.intrebareText.Name = "intrebareText";
-            this.intrebareText.Size = new System.Drawing.Size(526, 22);
-            this.intrebareText.TabIndex = 16;
-            this.intrebareText.Text = "In imaginea de mai jos este aer. De ce oamenii nu simt greutatea aerului?";
-            this.intrebareText.Visible = false;
+            this.questionText.AutoSize = true;
+            this.questionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.questionText.Location = new System.Drawing.Point(105, 120);
+            this.questionText.Name = "intrebareText";
+            this.questionText.Size = new System.Drawing.Size(525, 20);
+            this.questionText.TabIndex = 16;
+            this.questionText.Text = "In imaginea de mai jos este aer. De ce oamenii nu simt greutatea aerului?";
+            this.questionText.Visible = false;
             // 
             // intrebareImagine
             // 
-            this.intrebareImagine.Image = global::RomGeo.Properties.Resources.cer;
-            this.intrebareImagine.Location = new System.Drawing.Point(450, 150);
-            this.intrebareImagine.Name = "intrebareImagine";
-            this.intrebareImagine.Size = new System.Drawing.Size(500, 330);
-            this.intrebareImagine.TabIndex = 18;
-            this.intrebareImagine.TabStop = false;
-            this.intrebareImagine.Visible = false;
+            this.questionImage.Image = global::RomGeo.Properties.Resources.cer;
+            this.questionImage.Location = new System.Drawing.Point(450, 150);
+            this.questionImage.Name = "intrebareImagine";
+            this.questionImage.Size = new System.Drawing.Size(500, 330);
+            this.questionImage.TabIndex = 18;
+            this.questionImage.TabStop = false;
+            this.questionImage.Visible = false;
             // 
             // logoSmall
             // 
@@ -242,31 +242,31 @@
             // 
             // logo
             // 
-            this.logo.Image = global::RomGeo.Properties.Resources.logo2_150;
-            this.logo.InitialImage = null;
-            this.logo.Location = new System.Drawing.Point(410, 0);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(189, 150);
-            this.logo.TabIndex = 1;
-            this.logo.TabStop = false;
-            this.logo.Visible = false;
+            this.headerImage.Image = global::RomGeo.Properties.Resources.logo2_150;
+            this.headerImage.InitialImage = null;
+            this.headerImage.Location = new System.Drawing.Point(410, 0);
+            this.headerImage.Name = "logo";
+            this.headerImage.Size = new System.Drawing.Size(189, 150);
+            this.headerImage.TabIndex = 1;
+            this.headerImage.TabStop = false;
+            this.headerImage.Visible = false;
             // 
             // bottomPic
             // 
-            this.bottomPic.Image = global::RomGeo.Properties.Resources.bottom;
-            this.bottomPic.Location = new System.Drawing.Point(0, 510);
-            this.bottomPic.Name = "bottomPic";
-            this.bottomPic.Size = new System.Drawing.Size(980, 147);
-            this.bottomPic.TabIndex = 8;
-            this.bottomPic.TabStop = false;
-            this.bottomPic.Visible = false;
+            this.footerImage.Image = global::RomGeo.Properties.Resources.bottom;
+            this.footerImage.Location = new System.Drawing.Point(0, 510);
+            this.footerImage.Name = "bottomPic";
+            this.footerImage.Size = new System.Drawing.Size(980, 147);
+            this.footerImage.TabIndex = 8;
+            this.footerImage.TabStop = false;
+            this.footerImage.Visible = false;
             // 
             // raspuns1
             // 
             this.raspuns1.AutoSize = true;
             this.raspuns1.Location = new System.Drawing.Point(110, 200);
             this.raspuns1.Name = "raspuns1";
-            this.raspuns1.Size = new System.Drawing.Size(169, 23);
+            this.raspuns1.Size = new System.Drawing.Size(168, 21);
             this.raspuns1.TabIndex = 19;
             this.raspuns1.TabStop = true;
             this.raspuns1.Text = "Pentru ca sunt ocupati";
@@ -278,7 +278,7 @@
             this.raspuns2.AutoSize = true;
             this.raspuns2.Location = new System.Drawing.Point(110, 250);
             this.raspuns2.Name = "raspuns2";
-            this.raspuns2.Size = new System.Drawing.Size(169, 23);
+            this.raspuns2.Size = new System.Drawing.Size(168, 21);
             this.raspuns2.TabIndex = 20;
             this.raspuns2.TabStop = true;
             this.raspuns2.Text = "Pentru ca sunt ocupati";
@@ -290,7 +290,7 @@
             this.raspuns3.AutoSize = true;
             this.raspuns3.Location = new System.Drawing.Point(110, 300);
             this.raspuns3.Name = "raspuns3";
-            this.raspuns3.Size = new System.Drawing.Size(169, 23);
+            this.raspuns3.Size = new System.Drawing.Size(168, 21);
             this.raspuns3.TabIndex = 21;
             this.raspuns3.TabStop = true;
             this.raspuns3.Text = "Pentru ca sunt ocupati";
@@ -302,7 +302,7 @@
             this.raspuns4.AutoSize = true;
             this.raspuns4.Location = new System.Drawing.Point(110, 350);
             this.raspuns4.Name = "raspuns4";
-            this.raspuns4.Size = new System.Drawing.Size(169, 23);
+            this.raspuns4.Size = new System.Drawing.Size(168, 21);
             this.raspuns4.TabIndex = 22;
             this.raspuns4.TabStop = true;
             this.raspuns4.Text = "Pentru ca sunt ocupati";
@@ -311,37 +311,37 @@
             // 
             // urmatoareaIntrebare
             // 
-            this.urmatoareaIntrebare.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
-            this.urmatoareaIntrebare.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
-            this.urmatoareaIntrebare.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.urmatoareaIntrebare.ForeColor = System.Drawing.Color.White;
-            this.urmatoareaIntrebare.Location = new System.Drawing.Point(750, 510);
-            this.urmatoareaIntrebare.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.urmatoareaIntrebare.Name = "urmatoareaIntrebare";
-            this.urmatoareaIntrebare.Size = new System.Drawing.Size(200, 50);
-            this.urmatoareaIntrebare.TabIndex = 23;
-            this.urmatoareaIntrebare.Text = "Urmatoarea Intrebare";
-            this.urmatoareaIntrebare.UseVisualStyleBackColor = false;
-            this.urmatoareaIntrebare.Visible = false;
-            this.urmatoareaIntrebare.Click += new System.EventHandler(this.urmatoareaIntrebare_Click);
+            this.nextQuestionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.nextQuestionButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.nextQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextQuestionButton.ForeColor = System.Drawing.Color.White;
+            this.nextQuestionButton.Location = new System.Drawing.Point(750, 510);
+            this.nextQuestionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.nextQuestionButton.Name = "urmatoareaIntrebare";
+            this.nextQuestionButton.Size = new System.Drawing.Size(200, 50);
+            this.nextQuestionButton.TabIndex = 23;
+            this.nextQuestionButton.Text = "Urmatoarea Intrebare";
+            this.nextQuestionButton.UseVisualStyleBackColor = false;
+            this.nextQuestionButton.Visible = false;
+            this.nextQuestionButton.Click += new System.EventHandler(this.NextQuestionButton_Click);
             // 
             // bottomPicSmall
             // 
-            this.bottomPicSmall.Image = global::RomGeo.Properties.Resources.bottom;
-            this.bottomPicSmall.Location = new System.Drawing.Point(0, 550);
-            this.bottomPicSmall.Name = "bottomPicSmall";
-            this.bottomPicSmall.Size = new System.Drawing.Size(980, 147);
-            this.bottomPicSmall.TabIndex = 24;
-            this.bottomPicSmall.TabStop = false;
-            this.bottomPicSmall.Visible = false;
+            this.footerImageSmall.Image = global::RomGeo.Properties.Resources.bottom;
+            this.footerImageSmall.Location = new System.Drawing.Point(0, 550);
+            this.footerImageSmall.Name = "bottomPicSmall";
+            this.footerImageSmall.Size = new System.Drawing.Size(980, 147);
+            this.footerImageSmall.TabIndex = 24;
+            this.footerImageSmall.TabStop = false;
+            this.footerImageSmall.Visible = false;
             // 
             // quizTitle
             // 
             this.quizTitle.AutoSize = true;
-            this.quizTitle.Font = new System.Drawing.Font("Open Sans Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quizTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quizTitle.Location = new System.Drawing.Point(200, 15);
             this.quizTitle.Name = "quizTitle";
-            this.quizTitle.Size = new System.Drawing.Size(225, 36);
+            this.quizTitle.Size = new System.Drawing.Size(219, 31);
             this.quizTitle.TabIndex = 26;
             this.quizTitle.Text = "Intrebarea  5 / 30";
             this.quizTitle.Visible = false;
@@ -349,25 +349,25 @@
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 657);
             this.Controls.Add(this.quizTitle);
-            this.Controls.Add(this.urmatoareaIntrebare);
-            this.Controls.Add(this.bottomPicSmall);
+            this.Controls.Add(this.nextQuestionButton);
+            this.Controls.Add(this.footerImageSmall);
             this.Controls.Add(this.raspuns4);
             this.Controls.Add(this.raspuns3);
             this.Controls.Add(this.raspuns2);
             this.Controls.Add(this.raspuns1);
-            this.Controls.Add(this.intrebareText);
+            this.Controls.Add(this.questionText);
             this.Controls.Add(this.logoSmall);
-            this.Controls.Add(this.iesireButton);
-            this.Controls.Add(this.statisticiButton);
-            this.Controls.Add(this.chestionarNouButton);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.statisticsButton);
+            this.Controls.Add(this.newQuizButton);
             this.Controls.Add(this.welcomeLabel);
-            this.Controls.Add(this.logo);
-            this.Controls.Add(this.bottomPic);
+            this.Controls.Add(this.headerImage);
+            this.Controls.Add(this.footerImage);
             this.Controls.Add(this.passLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.forgotPassLink);
@@ -375,8 +375,8 @@
             this.Controls.Add(this.usernameBox);
             this.Controls.Add(this.createAccountLink);
             this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.intrebareImagine);
-            this.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Controls.Add(this.questionImage);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -384,11 +384,11 @@
             this.Name = "MainForm";
             this.Text = "RomGeo";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.intrebareImagine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottomPic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottomPicSmall)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.headerImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,27 +397,27 @@
         #endregion
 
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.PictureBox headerImage;
         private System.Windows.Forms.LinkLabel createAccountLink;
         private System.Windows.Forms.TextBox usernameBox;
         private System.Windows.Forms.TextBox passBox;
         private System.Windows.Forms.LinkLabel forgotPassLink;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label passLabel;
-        private System.Windows.Forms.PictureBox bottomPic;
+        private System.Windows.Forms.PictureBox footerImage;
         private System.Windows.Forms.Label welcomeLabel;
-        private System.Windows.Forms.Button chestionarNouButton;
-        private System.Windows.Forms.Button statisticiButton;
-        private System.Windows.Forms.Button iesireButton;
+        private System.Windows.Forms.Button newQuizButton;
+        private System.Windows.Forms.Button statisticsButton;
+        private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.PictureBox logoSmall;
-        private System.Windows.Forms.Label intrebareText;
-        private System.Windows.Forms.PictureBox intrebareImagine;
+        private System.Windows.Forms.Label questionText;
+        private System.Windows.Forms.PictureBox questionImage;
         private System.Windows.Forms.RadioButton raspuns1;
         private System.Windows.Forms.RadioButton raspuns2;
         private System.Windows.Forms.RadioButton raspuns3;
         private System.Windows.Forms.RadioButton raspuns4;
-        private System.Windows.Forms.Button urmatoareaIntrebare;
-        private System.Windows.Forms.PictureBox bottomPicSmall;
+        private System.Windows.Forms.Button nextQuestionButton;
+        private System.Windows.Forms.PictureBox footerImageSmall;
         private System.Windows.Forms.Label quizTitle;
 
     }
