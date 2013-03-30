@@ -83,6 +83,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\logo6.png" />
+    <None Include="Resources\logo2_150.png" />
+    <None Include="Resources\bottom.png" />
+    <None Include="Resources\cer.jpg" />
     <Content Include="Resources\Icons\icon.ico" />
   </ItemGroup>
   <ItemGroup>
