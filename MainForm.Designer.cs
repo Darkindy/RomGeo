@@ -41,7 +41,6 @@
             this.statisticiButton = new System.Windows.Forms.Button();
             this.iesireButton = new System.Windows.Forms.Button();
             this.intrebareText = new System.Windows.Forms.Label();
-            this.quizTitle = new System.Windows.Forms.Label();
             this.intrebareImagine = new System.Windows.Forms.PictureBox();
             this.logoSmall = new System.Windows.Forms.PictureBox();
             this.logo = new System.Windows.Forms.PictureBox();
@@ -52,6 +51,7 @@
             this.raspuns4 = new System.Windows.Forms.RadioButton();
             this.urmatoareaIntrebare = new System.Windows.Forms.Button();
             this.bottomPicSmall = new System.Windows.Forms.PictureBox();
+            this.quizTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.intrebareImagine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -154,7 +154,7 @@
             // 
             this.welcomeLabel.AutoSize = true;
             this.welcomeLabel.Font = new System.Drawing.Font("Open Sans Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcomeLabel.Location = new System.Drawing.Point(423, 170);
+            this.welcomeLabel.Location = new System.Drawing.Point(420, 170);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(182, 22);
             this.welcomeLabel.TabIndex = 9;
@@ -219,17 +219,6 @@
             this.intrebareText.TabIndex = 16;
             this.intrebareText.Text = "In imaginea de mai jos este aer. De ce oamenii nu simt greutatea aerului?";
             this.intrebareText.Visible = false;
-            // 
-            // quizTitle
-            // 
-            this.quizTitle.AutoSize = true;
-            this.quizTitle.Font = new System.Drawing.Font("Open Sans Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quizTitle.Location = new System.Drawing.Point(200, 15);
-            this.quizTitle.Name = "quizTitle";
-            this.quizTitle.Size = new System.Drawing.Size(225, 36);
-            this.quizTitle.TabIndex = 17;
-            this.quizTitle.Text = "Intrebarea  5 / 25";
-            this.quizTitle.Visible = false;
             // 
             // intrebareImagine
             // 
@@ -346,6 +335,17 @@
             this.bottomPicSmall.TabStop = false;
             this.bottomPicSmall.Visible = false;
             // 
+            // quizTitle
+            // 
+            this.quizTitle.AutoSize = true;
+            this.quizTitle.Font = new System.Drawing.Font("Open Sans Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quizTitle.Location = new System.Drawing.Point(200, 15);
+            this.quizTitle.Name = "quizTitle";
+            this.quizTitle.Size = new System.Drawing.Size(225, 36);
+            this.quizTitle.TabIndex = 26;
+            this.quizTitle.Text = "Intrebarea  5 / 30";
+            this.quizTitle.Visible = false;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -353,14 +353,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 657);
+            this.Controls.Add(this.quizTitle);
             this.Controls.Add(this.urmatoareaIntrebare);
             this.Controls.Add(this.bottomPicSmall);
             this.Controls.Add(this.raspuns4);
             this.Controls.Add(this.raspuns3);
             this.Controls.Add(this.raspuns2);
             this.Controls.Add(this.raspuns1);
-            this.Controls.Add(this.intrebareImagine);
-            this.Controls.Add(this.quizTitle);
             this.Controls.Add(this.intrebareText);
             this.Controls.Add(this.logoSmall);
             this.Controls.Add(this.iesireButton);
@@ -376,10 +375,12 @@
             this.Controls.Add(this.usernameBox);
             this.Controls.Add(this.createAccountLink);
             this.Controls.Add(this.loginButton);
+            this.Controls.Add(this.intrebareImagine);
             this.Font = new System.Drawing.Font("Open Sans Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "RomGeo";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -410,7 +411,6 @@
         private System.Windows.Forms.Button iesireButton;
         private System.Windows.Forms.PictureBox logoSmall;
         private System.Windows.Forms.Label intrebareText;
-        private System.Windows.Forms.Label quizTitle;
         private System.Windows.Forms.PictureBox intrebareImagine;
         private System.Windows.Forms.RadioButton raspuns1;
         private System.Windows.Forms.RadioButton raspuns2;
@@ -418,6 +418,7 @@
         private System.Windows.Forms.RadioButton raspuns4;
         private System.Windows.Forms.Button urmatoareaIntrebare;
         private System.Windows.Forms.PictureBox bottomPicSmall;
+        private System.Windows.Forms.Label quizTitle;
 
     }
 }

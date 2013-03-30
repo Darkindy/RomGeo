@@ -27,6 +27,20 @@ namespace RomGeo
         public MainForm()
         {
             InitializeComponent();
+            loginButton.MouseEnter += new EventHandler(loginButton_MouseEnter);
+            loginButton.MouseLeave += new EventHandler(loginButton_MouseLeave);
+            chestionarNouButton.MouseEnter += new EventHandler(chestionarNouButton_MouseEnter);
+            chestionarNouButton.MouseLeave += new EventHandler(chestionarNouButton_MouseLeave);
+            statisticiButton.MouseEnter += new EventHandler(statisticiButton_MouseEnter);
+            statisticiButton.MouseLeave += new EventHandler(statisticiButton_MouseLeave);
+            iesireButton.MouseEnter += new EventHandler(iesireButton_MouseEnter);
+            iesireButton.MouseLeave += new EventHandler(iesireButton_MouseLeave);
+            urmatoareaIntrebare.MouseEnter += new EventHandler(urmatoareaIntrebare_MouseEnter);
+            urmatoareaIntrebare.MouseLeave += new EventHandler(urmatoareaIntrebare_MouseLeave);
+            createAccountLink.MouseEnter += new EventHandler(createAccountLink_MouseEnter);
+            createAccountLink.MouseLeave += new EventHandler(createAccountLink_MouseLeave);
+            forgotPassLink.MouseEnter += new EventHandler(forgotPassLink_MouseEnter);
+            forgotPassLink.MouseLeave += new EventHandler(forgotPassLink_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -58,8 +72,8 @@ namespace RomGeo
                     bottomPic.Visible = false;
                     break;
                 case App_States.InQuiz:
-                    logoSmall.Visible = false;
                     quizTitle.Visible = false;
+                    logoSmall.Visible = false;
                     intrebareText.Visible = false;
                     intrebareImagine.Visible = false;
                     raspuns1.Visible = false;
@@ -92,8 +106,8 @@ namespace RomGeo
                     bottomPic.Visible = true;
                     break;
                 case App_States.InQuiz:
-                    logoSmall.Visible = true;
                     quizTitle.Visible = true;
+                    logoSmall.Visible = true;
                     intrebareText.Visible = true;
                     intrebareImagine.Visible = true;
                     raspuns1.Visible = true;
@@ -145,6 +159,67 @@ namespace RomGeo
             System.Windows.Forms.MessageBox.Show("10");
         }
 
+        private void loginButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.loginButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void loginButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.loginButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
 
+        private void chestionarNouButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.chestionarNouButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void chestionarNouButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.chestionarNouButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void statisticiButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.statisticiButton.BackColor = Color.FromArgb(161,27,60);
+        }
+        private void statisticiButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.statisticiButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void iesireButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.iesireButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void iesireButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.iesireButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void urmatoareaIntrebare_MouseEnter(object sender, EventArgs e)
+        {
+            this.urmatoareaIntrebare.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void urmatoareaIntrebare_MouseLeave(object sender, EventArgs e)
+        {
+            this.urmatoareaIntrebare.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void createAccountLink_MouseEnter(object sender, EventArgs e)
+        {
+            this.createAccountLink.LinkColor = Color.FromArgb(161, 27, 60);
+        }
+        private void createAccountLink_MouseLeave(object sender, EventArgs e)
+        {
+            this.createAccountLink.LinkColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void forgotPassLink_MouseEnter(object sender, EventArgs e)
+        {
+            this.forgotPassLink.LinkColor = Color.FromArgb(161, 27, 60);
+        }
+        private void forgotPassLink_MouseLeave(object sender, EventArgs e)
+        {
+            this.forgotPassLink.LinkColor = Color.FromArgb(5, 142, 158);
+        }
     }
 }
