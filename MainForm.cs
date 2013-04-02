@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing.Text;
 
+using RomGeo.DatabaseAbstractionLayer;
+
 namespace RomGeo
 {
     public enum AppState
@@ -167,7 +169,11 @@ namespace RomGeo
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DAL dal = new DAL();
+            string q, a1, a2, a3, a4, c;
+
+            dal.getQuestion(out q, out a1, out a2, out a3, out a4, out c);
+            //Application.Exit();
         }
 
         private void StatisticsButton_Click(object sender, EventArgs e)
