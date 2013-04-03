@@ -12,28 +12,35 @@ using System.Runtime.InteropServices;
 using System.Drawing.Text;
 
 using RomGeo.DatabaseAbstractionLayer;
+using RomGeo.QuizObjects;
 
 namespace RomGeo
 {
     public enum AppState
     {
+        None,
         Start,
         CreateAccount,
         UserPanel,
         InQuiz,
-        Empty
+        EndingScreen,
+        Statistics,
     }
 
     public partial class MainForm : Form
     {
-        private AppState currentState = AppState.Start;
-        private AppState previousState = AppState.Empty;    // may be used in the future, leave here
+        #region DEVELOPER-DEFINED-LOGIC
 
-        [DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
+        private AppState currentState = AppState.Start;
+        private AppState previousState;    // may be used in the future, leave here
+
+        Utils.OneBasedArray<RadioButton> answerPickers;
 
         FontFamily ff;
         Font openSansLight;
+
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
         private void LoadPrivateFontCollection()
         {
@@ -46,7 +53,6 @@ namespace RomGeo
             // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
             IntPtr ptrData = Marshal.AllocCoTaskMem(dataLength);
             Marshal.Copy(fontArray, 0, ptrData, dataLength);
-
 
             uint cFonts = 0;
             AddFontMemResourceEx(ptrData, (uint)fontArray.Length, IntPtr.Zero, ref cFonts);
@@ -61,7 +67,7 @@ namespace RomGeo
             ff = pfc.Families[0];
             openSansLight = new Font(ff, 15f, FontStyle.Regular);
         }
-
+        
         private void ApplyFont(Font font)
         {
             FontStyle fontStyle_regular = FontStyle.Regular;
@@ -81,16 +87,53 @@ namespace RomGeo
             this.nextQuestionButton.Font = new Font(ff, 10, fontStyle_regular);
             this.quizTitle.Font = new Font(ff, 20, fontStyle_regular);
             this.questionText.Font = new Font(ff, 12, fontStyle_regular);
-            this.answer1.Font = new Font(ff, 10, fontStyle_regular);
-            this.answer2.Font = new Font(ff, 10, fontStyle_regular);
-            this.answer3.Font = new Font(ff, 10, fontStyle_regular);
-            this.answer4.Font = new Font(ff, 10, fontStyle_regular);          
 
+            foreach (var ap in answerPickers)
+                ap.Font = new Font(ff, 10, fontStyle_regular);
         }
 
-        public MainForm()
+        public void ShowQuestion(Question question){
+                questionText.Text = question.Text;
+                for (int i = 1; i <= answerPickers.Count; i++)
+                    answerPickers[i].Text = question.Answers[i];
+
+                if (question is GraphicQuestion)
+                {
+                    // do some image data handling. NYI
+                }
+                else
+                {
+                    questionImage.Visible = false;
+                }
+        }
+        #endregion
+
+        #region SINGLETON-PATTERN
+        private static MainForm instance;
+
+        public static MainForm Instance
+         {
+             get 
+             {
+                if (instance == null)
+                {
+                   instance = new MainForm();
+                }
+                return instance;
+             }
+        }
+        #endregion
+
+        private MainForm()
         {
             InitializeComponent();
+
+            // Using OneBasedArray to have our answers numbered from 1
+            answerPickers = new Utils.OneBasedArray<RadioButton>(PersistentData.MAX_ANSWERS);
+            answerPickers[1] = answerPicker1;
+            answerPickers[2] = answerPicker2;
+            answerPickers[3] = answerPicker3;
+            answerPickers[4] = answerPicker4;
 
             loginButton.MouseEnter += new EventHandler(LoginButton_MouseEnter);
             loginButton.MouseLeave += new EventHandler(LoginButton_MouseLeave);
@@ -106,8 +149,6 @@ namespace RomGeo
             createAccountLink.MouseLeave += new EventHandler(CreateAccountLink_MouseLeave);
             forgotPassLink.MouseEnter += new EventHandler(ForgotPassLink_MouseEnter);
             forgotPassLink.MouseLeave += new EventHandler(ForgotPassLink_MouseLeave);
-
-            
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -119,43 +160,57 @@ namespace RomGeo
 
         private void GetNextScreen()
         {
-            foreach (Control c in this.Controls)
+            if (previousState != currentState)
+                foreach (Control c in this.Controls)
+                {
+                    c.Visible = false;
+                }
+            else
             {
-                c.Visible = false;
+                foreach (Control c in this.Controls)
+                    if (c is RadioButton) ((RadioButton)c).Checked = false;
             }
 
             switch (currentState)
             {
                 case AppState.Start:
-                    headerImage.Visible = true;
-                    usernameLabel.Visible = true;
-                    usernameBox.Visible = true;
-                    passLabel.Visible = true;
-                    passBox.Visible = true;
-                    loginButton.Visible = true;
-                    createAccountLink.Visible = true;
-                    forgotPassLink.Visible = true;
-                    footerImage.Visible = true;
+                    if (previousState != currentState)
+                    {
+                        headerImage.Visible = true;
+                        usernameLabel.Visible = true;
+                        usernameBox.Visible = true;
+                        passLabel.Visible = true;
+                        passBox.Visible = true;
+                        loginButton.Visible = true;
+                        createAccountLink.Visible = true;
+                        forgotPassLink.Visible = true;
+                        footerImage.Visible = true;
+                    }
                     break;
                 case AppState.UserPanel:
+                    if(previousState != currentState)
+                    {
                     headerImage.Visible = true;
                     welcomeLabel.Visible = true;
                     newQuizButton.Visible = true;
                     statisticsButton.Visible = true;
                     exitButton.Visible = true;
                     footerImage.Visible = true;
+                    }
                     break;
                 case AppState.InQuiz:
-                    quizTitle.Visible = true;
-                    logoSmall.Visible = true;
-                    questionText.Visible = true;
-                    questionImage.Visible = true;
-                    answer1.Visible = true;
-                    answer2.Visible = true;
-                    answer3.Visible = true;
-                    answer4.Visible = true;
-                    nextQuestionButton.Visible = true;
-                    footerImageSmall.Visible = true;
+                    if (previousState != currentState)
+                    {
+                        quizTitle.Visible = true;
+                        logoSmall.Visible = true;
+                        questionText.Visible = true;
+                        questionImage.Visible = true;
+                        foreach (var ap in answerPickers) ap.Visible = true;
+                        nextQuestionButton.Visible = true;
+                        footerImageSmall.Visible = true;
+                    }
+                    PersistentData.currentQuestion = DAL.getQuestion();
+                    ShowQuestion(PersistentData.currentQuestion);
                     break;
             }
         }
@@ -169,11 +224,7 @@ namespace RomGeo
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            DAL dal = new DAL();
-            string q, a1, a2, a3, a4, c;
-
-            dal.getQuestion(out q, out a1, out a2, out a3, out a4, out c);
-            //Application.Exit();
+            Application.Exit();
         }
 
         private void StatisticsButton_Click(object sender, EventArgs e)
@@ -200,7 +251,38 @@ namespace RomGeo
 
         private void NextQuestionButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("NYI");
+            // Check if answer is ready for submission
+            bool ready = false;
+            foreach (var ap in answerPickers) if (ap.Checked == true) { ready = true; break; }
+            if (!ready)
+            {
+                MessageBox.Show("Trebuie sa alegi un raspuns pentru a continua.");
+                return;
+            }
+
+            // Manage form states
+            previousState = AppState.InQuiz;
+            if (PersistentData.currentQuestionIndex < 30)
+            {
+                PersistentData.currentQuestionIndex++;
+                quizTitle.Text = "Intrebarea  " + PersistentData.currentQuestionIndex + " / 30";
+            }
+            else
+            {
+                // PersistentData.correctAnswerCount = 0; // Maybe go to ending screen instead
+                PersistentData.currentQuestionIndex = 1;
+                currentState = AppState.Start;
+            }
+
+            // Verify if answer was correct
+            var checkedButton = this.Controls.OfType<RadioButton>()
+                                      .FirstOrDefault(r => r.Checked);
+            if (checkedButton.Text.Equals(PersistentData.currentQuestion.CorrectAnswer))
+                PersistentData.correctAnswerCount++;
+
+            // Proceed to next screen
+            GetNextScreen();
+            Console.WriteLine("Correct: "+PersistentData.correctAnswerCount);
         }
 
         private void LoginButton_MouseEnter(object sender, EventArgs e)

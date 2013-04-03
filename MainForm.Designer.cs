@@ -45,10 +45,10 @@
             this.logoSmall = new System.Windows.Forms.PictureBox();
             this.headerImage = new System.Windows.Forms.PictureBox();
             this.footerImage = new System.Windows.Forms.PictureBox();
-            this.answer1 = new System.Windows.Forms.RadioButton();
-            this.answer2 = new System.Windows.Forms.RadioButton();
-            this.answer3 = new System.Windows.Forms.RadioButton();
-            this.answer4 = new System.Windows.Forms.RadioButton();
+            this.answerPicker1 = new System.Windows.Forms.RadioButton();
+            this.answerPicker2 = new System.Windows.Forms.RadioButton();
+            this.answerPicker3 = new System.Windows.Forms.RadioButton();
+            this.answerPicker4 = new System.Windows.Forms.RadioButton();
             this.nextQuestionButton = new System.Windows.Forms.Button();
             this.footerImageSmall = new System.Windows.Forms.PictureBox();
             this.quizTitle = new System.Windows.Forms.Label();
@@ -261,53 +261,53 @@
             this.footerImage.TabStop = false;
             this.footerImage.Visible = false;
             // 
-            // answer1
+            // answerPicker1
             // 
-            this.answer1.AutoSize = true;
-            this.answer1.Location = new System.Drawing.Point(110, 200);
-            this.answer1.Name = "answer1";
-            this.answer1.Size = new System.Drawing.Size(168, 21);
-            this.answer1.TabIndex = 19;
-            this.answer1.TabStop = true;
-            this.answer1.Text = "Pentru ca sunt ocupati";
-            this.answer1.UseVisualStyleBackColor = true;
-            this.answer1.Visible = false;
+            this.answerPicker1.AutoSize = true;
+            this.answerPicker1.Location = new System.Drawing.Point(110, 200);
+            this.answerPicker1.Name = "answer1";
+            this.answerPicker1.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker1.TabIndex = 19;
+            this.answerPicker1.TabStop = true;
+            this.answerPicker1.Text = "Pentru ca sunt ocupati";
+            this.answerPicker1.UseVisualStyleBackColor = true;
+            this.answerPicker1.Visible = false;
             // 
-            // answer2
+            // answerPicker2
             // 
-            this.answer2.AutoSize = true;
-            this.answer2.Location = new System.Drawing.Point(110, 250);
-            this.answer2.Name = "answer2";
-            this.answer2.Size = new System.Drawing.Size(168, 21);
-            this.answer2.TabIndex = 20;
-            this.answer2.TabStop = true;
-            this.answer2.Text = "Pentru ca sunt ocupati";
-            this.answer2.UseVisualStyleBackColor = true;
-            this.answer2.Visible = false;
+            this.answerPicker2.AutoSize = true;
+            this.answerPicker2.Location = new System.Drawing.Point(110, 250);
+            this.answerPicker2.Name = "answer2";
+            this.answerPicker2.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker2.TabIndex = 20;
+            this.answerPicker2.TabStop = true;
+            this.answerPicker2.Text = "Pentru ca sunt ocupati";
+            this.answerPicker2.UseVisualStyleBackColor = true;
+            this.answerPicker2.Visible = false;
             // 
-            // answer3
+            // answerPicker3
             // 
-            this.answer3.AutoSize = true;
-            this.answer3.Location = new System.Drawing.Point(110, 300);
-            this.answer3.Name = "answer3";
-            this.answer3.Size = new System.Drawing.Size(168, 21);
-            this.answer3.TabIndex = 21;
-            this.answer3.TabStop = true;
-            this.answer3.Text = "Pentru ca sunt ocupati";
-            this.answer3.UseVisualStyleBackColor = true;
-            this.answer3.Visible = false;
+            this.answerPicker3.AutoSize = true;
+            this.answerPicker3.Location = new System.Drawing.Point(110, 300);
+            this.answerPicker3.Name = "answer3";
+            this.answerPicker3.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker3.TabIndex = 21;
+            this.answerPicker3.TabStop = true;
+            this.answerPicker3.Text = "Pentru ca sunt ocupati";
+            this.answerPicker3.UseVisualStyleBackColor = true;
+            this.answerPicker3.Visible = false;
             // 
-            // answer4
+            // answerPicker4
             // 
-            this.answer4.AutoSize = true;
-            this.answer4.Location = new System.Drawing.Point(110, 350);
-            this.answer4.Name = "answer4";
-            this.answer4.Size = new System.Drawing.Size(168, 21);
-            this.answer4.TabIndex = 22;
-            this.answer4.TabStop = true;
-            this.answer4.Text = "Pentru ca sunt ocupati";
-            this.answer4.UseVisualStyleBackColor = true;
-            this.answer4.Visible = false;
+            this.answerPicker4.AutoSize = true;
+            this.answerPicker4.Location = new System.Drawing.Point(110, 350);
+            this.answerPicker4.Name = "answer4";
+            this.answerPicker4.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker4.TabIndex = 22;
+            this.answerPicker4.TabStop = true;
+            this.answerPicker4.Text = "Pentru ca sunt ocupati";
+            this.answerPicker4.UseVisualStyleBackColor = true;
+            this.answerPicker4.Visible = false;
             // 
             // nextQuestionButton
             // 
@@ -343,7 +343,7 @@
             this.quizTitle.Name = "quizTitle";
             this.quizTitle.Size = new System.Drawing.Size(219, 31);
             this.quizTitle.TabIndex = 26;
-            this.quizTitle.Text = "Intrebarea  5 / 30";
+            this.quizTitle.Text = "Intrebarea  1 / 30";
             this.quizTitle.Visible = false;
             // 
             // MainForm
@@ -356,10 +356,10 @@
             this.Controls.Add(this.quizTitle);
             this.Controls.Add(this.nextQuestionButton);
             this.Controls.Add(this.footerImageSmall);
-            this.Controls.Add(this.answer4);
-            this.Controls.Add(this.answer3);
-            this.Controls.Add(this.answer2);
-            this.Controls.Add(this.answer1);
+            this.Controls.Add(this.answerPicker4);
+            this.Controls.Add(this.answerPicker3);
+            this.Controls.Add(this.answerPicker2);
+            this.Controls.Add(this.answerPicker1);
             this.Controls.Add(this.questionText);
             this.Controls.Add(this.logoSmall);
             this.Controls.Add(this.statisticsButton);
@@ -412,10 +412,10 @@
         private System.Windows.Forms.PictureBox logoSmall;
         private System.Windows.Forms.Label questionText;
         private System.Windows.Forms.PictureBox questionImage;
-        private System.Windows.Forms.RadioButton answer1;
-        private System.Windows.Forms.RadioButton answer2;
-        private System.Windows.Forms.RadioButton answer3;
-        private System.Windows.Forms.RadioButton answer4;
+        private System.Windows.Forms.RadioButton answerPicker1;
+        private System.Windows.Forms.RadioButton answerPicker2;
+        private System.Windows.Forms.RadioButton answerPicker3;
+        private System.Windows.Forms.RadioButton answerPicker4;
         private System.Windows.Forms.Button nextQuestionButton;
         private System.Windows.Forms.PictureBox footerImageSmall;
         private System.Windows.Forms.Label quizTitle;

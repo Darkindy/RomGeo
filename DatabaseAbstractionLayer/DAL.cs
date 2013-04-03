@@ -7,38 +7,33 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 using System.Data;
+using RomGeo.QuizObjects;
 
 namespace RomGeo.DatabaseAbstractionLayer
 {
-    class DAL
+    static class DAL
     {
-        private MySqlConnection connection;
-        private string server;
-        private string database;
-        private string uid;
-        private string password;
+        private static MySqlConnection connection;
+        private static string server;
+        private static string database;
+        private static string uid;
+        private static string password;
 
-        // Constructor
-	    public DAL()
+        // Constructor (static)
+	    static DAL()
 	    {
-    		Initialize();
-	    }
-
-	    // Initialize values
-	    private void Initialize()
-	    {
-		    server = "86.120.252.100";
-		    database = "erg_db";
-		    uid = "romgeo";
-		    password = "romgeo";
-		    string connectionString;
-		    connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
-		    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-		    connection = new MySqlConnection(connectionString);
+            server = "86.120.252.100";
+            database = "erg_db";
+            uid = "romgeo";
+            password = "romgeo";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connection = new MySqlConnection(connectionString);
 	    }
 
         // Open Connection
-        private bool OpenConnection()
+        private static bool OpenConnection()
         {
             try
             {
@@ -62,7 +57,7 @@ namespace RomGeo.DatabaseAbstractionLayer
         }
 
         //Close connection
-        private bool CloseConnection()
+        private static bool CloseConnection()
         {
             try
             {
@@ -76,38 +71,33 @@ namespace RomGeo.DatabaseAbstractionLayer
             }
         }
 
-        public void getQuestion(out string question, out string answer1, out string answer2, out string answer3, out string answer4, out string correct)
+        public static Question getQuestion()
         {
-            //open connection
-            if (this.OpenConnection() == true)
+            string text = string.Empty;
+            Answers answers = new Answers();
+
+            // Open connection
+            if (OpenConnection() == true)
             {
-                //create command and assign the query and connection from the constructor
-                using (var command = new MySqlCommand("getQuestion", connection)
-                {CommandType = CommandType.StoredProcedure})
+                // Create command and assign the query and connection from the constructor
+                using (var command = new MySqlCommand("getQuestion", connection) { CommandType = CommandType.StoredProcedure })
                 {
                     MySqlDataReader myReader = command.ExecuteReader();
                     while (myReader.Read())
                     {
-                        Console.WriteLine(myReader.GetString(0));
-                        Console.WriteLine(myReader.GetString(1));
-                        Console.WriteLine(myReader.GetString(2));
-                        Console.WriteLine(myReader.GetString(3));
-                        Console.WriteLine(myReader.GetString(4));
-                        Console.WriteLine("Correct: "+myReader.GetString(5));
+                        text = myReader.GetString(0);
+                        answers[1] = myReader.GetString(1);
+                        answers[2] = myReader.GetString(2);
+                        answers[3] = myReader.GetString(3);
+                        answers[4] = myReader.GetString(4);
+                        answers.CorrectAnswer = myReader.GetString(5);
                     }
                 }
-
-                //close connection
-                this.CloseConnection();
+                // Close connection
+                CloseConnection();
             }
             else Console.WriteLine("Connection failed to open using DAL method.");
-
-            question = "lol";
-            answer1 = "lmfao";
-            answer2 = "lolita";
-            answer3 = "rofl";
-            answer4 = "roflmfao";
-            correct = "correct";
+            return new Question(text, answers);
         }
     }
 }

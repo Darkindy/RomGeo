@@ -54,14 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseAbstractionLayer\DAL.cs" />
+    <Compile Include="QuizObjects\Answers.cs" />
+    <Compile Include="QuizObjects\GraphicQuestion.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PersistentData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\OneBasedArray.cs" />
+    <Compile Include="QuizObjects\Question.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
