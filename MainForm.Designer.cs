@@ -215,9 +215,9 @@
             this.questionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questionText.Location = new System.Drawing.Point(105, 120);
             this.questionText.Name = "questionText";
-            this.questionText.Size = new System.Drawing.Size(525, 20);
+            this.questionText.Size = new System.Drawing.Size(14, 20);
             this.questionText.TabIndex = 16;
-            this.questionText.Text = "In imaginea de mai jos este aer. De ce oamenii nu simt greutatea aerului?";
+            this.questionText.Text = "-";
             this.questionText.Visible = false;
             // 
             // questionImage
@@ -265,11 +265,11 @@
             // 
             this.answerPicker1.AutoSize = true;
             this.answerPicker1.Location = new System.Drawing.Point(110, 200);
-            this.answerPicker1.Name = "answer1";
-            this.answerPicker1.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker1.Name = "answerPicker1";
+            this.answerPicker1.Size = new System.Drawing.Size(31, 21);
             this.answerPicker1.TabIndex = 19;
             this.answerPicker1.TabStop = true;
-            this.answerPicker1.Text = "Pentru ca sunt ocupati";
+            this.answerPicker1.Text = "-";
             this.answerPicker1.UseVisualStyleBackColor = true;
             this.answerPicker1.Visible = false;
             // 
@@ -277,11 +277,11 @@
             // 
             this.answerPicker2.AutoSize = true;
             this.answerPicker2.Location = new System.Drawing.Point(110, 250);
-            this.answerPicker2.Name = "answer2";
-            this.answerPicker2.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker2.Name = "answerPicker2";
+            this.answerPicker2.Size = new System.Drawing.Size(31, 21);
             this.answerPicker2.TabIndex = 20;
             this.answerPicker2.TabStop = true;
-            this.answerPicker2.Text = "Pentru ca sunt ocupati";
+            this.answerPicker2.Text = "-";
             this.answerPicker2.UseVisualStyleBackColor = true;
             this.answerPicker2.Visible = false;
             // 
@@ -289,11 +289,11 @@
             // 
             this.answerPicker3.AutoSize = true;
             this.answerPicker3.Location = new System.Drawing.Point(110, 300);
-            this.answerPicker3.Name = "answer3";
-            this.answerPicker3.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker3.Name = "answerPicker3";
+            this.answerPicker3.Size = new System.Drawing.Size(31, 21);
             this.answerPicker3.TabIndex = 21;
             this.answerPicker3.TabStop = true;
-            this.answerPicker3.Text = "Pentru ca sunt ocupati";
+            this.answerPicker3.Text = "-";
             this.answerPicker3.UseVisualStyleBackColor = true;
             this.answerPicker3.Visible = false;
             // 
@@ -301,11 +301,11 @@
             // 
             this.answerPicker4.AutoSize = true;
             this.answerPicker4.Location = new System.Drawing.Point(110, 350);
-            this.answerPicker4.Name = "answer4";
-            this.answerPicker4.Size = new System.Drawing.Size(168, 21);
+            this.answerPicker4.Name = "answerPicker4";
+            this.answerPicker4.Size = new System.Drawing.Size(31, 21);
             this.answerPicker4.TabIndex = 22;
             this.answerPicker4.TabStop = true;
-            this.answerPicker4.Text = "Pentru ca sunt ocupati";
+            this.answerPicker4.Text = "-";
             this.answerPicker4.UseVisualStyleBackColor = true;
             this.answerPicker4.Visible = false;
             // 
