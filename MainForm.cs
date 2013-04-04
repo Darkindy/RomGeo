@@ -94,7 +94,7 @@ namespace RomGeo
 
         public void ShowQuestion(Question question){
                 questionText.Text = question.Text;
-                for (int i = 1; i <= answerPickers.Count; i++)
+                for (int i = 1; i <= answerPickers.Count(); i++)
                     answerPickers[i].Text = question.Answers[i];
 
                 if (question is GraphicQuestion)
