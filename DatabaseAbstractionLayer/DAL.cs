@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 using System.Data;
 using RomGeo.QuizObjects;
+using RomGeo.Utils;
 
 namespace RomGeo.DatabaseAbstractionLayer
 {
@@ -73,31 +74,42 @@ namespace RomGeo.DatabaseAbstractionLayer
 
         public static Question getQuestion()
         {
+            int id = 0;
+            int difficultyPercent = 0;
+            bool isGraphic = false;
             string text = string.Empty;
+            Domain domain = Domain.None;
             Answers answers = new Answers();
 
             // Open connection
             if (OpenConnection() == true)
             {
                 // Create command and assign the query and connection from the constructor
-                using (var command = new MySqlCommand("getQuestion", connection) { CommandType = CommandType.StoredProcedure })
+                using (var command = new MySqlCommand("GetQuestion", connection) { CommandType = CommandType.StoredProcedure })
                 {
                     MySqlDataReader myReader = command.ExecuteReader();
-                    while (myReader.Read())
+                    if (myReader.Read())
                     {
-                        text = myReader.GetString(0);
-                        answers[1] = myReader.GetString(1);
-                        answers[2] = myReader.GetString(2);
-                        answers[3] = myReader.GetString(3);
-                        answers[4] = myReader.GetString(4);
+                        id = myReader.GetInt32(0);
+                        text = myReader.GetString(1);
+                        domain = myReader.GetDomain(2);
+                        difficultyPercent = myReader.GetInt32(3);
+                        isGraphic = myReader.GetBoolean(4);
                         answers.CorrectAnswer = myReader.GetString(5);
+
+                        int i = 1;
+                        while (i <= PersistentData.MAX_ANSWERS)
+                        {
+                            answers[i] = myReader.GetString(5 + i);
+                            i++;
+                        }
                     }
                 }
                 // Close connection
                 CloseConnection();
             }
             else Console.WriteLine("Connection failed to open using DAL method.");
-            return new Question(text, answers);
+            return new Question(id, text, domain, difficultyPercent, isGraphic, answers);
         }
     }
 }

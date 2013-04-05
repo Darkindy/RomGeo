@@ -9,31 +9,29 @@ namespace RomGeo.QuizObjects
 {
     public enum Domain
     {
-        Relief = 0,
+        None,
+        Relief,
         Hidrografie,
         Administrativ,
         Resurse
     }
 
-    public enum Difficulty
-    {
-        Easy = 0,
-        Medium,
-        Hard
-    }
-
     public class Question
     {
+        private int id;
+        private int difficulty;
+        private bool graphic;
         private string text;
-        private Answers answers;
         private Domain domain;
-        private Difficulty difficulty;
+        private Answers answers;
 
-        public Question(string text = null, Answers answers = null, Domain domain = 0, Difficulty difficulty = 0)
+        public Question(int id = 0, string text = null, Domain domain = 0, int difficulty = 0, bool graphic = false, Answers answers = null)
         {
+            this.id = id;
             this.text = text;
-            this.answers = answers;
             this.domain = domain;
+            this.graphic = graphic;
+            this.answers = answers;
             this.difficulty = difficulty;
         }
 
@@ -62,7 +60,7 @@ namespace RomGeo.QuizObjects
             set { domain = value; }
         }
 
-        public Difficulty Difficulty
+        public int Difficulty
         {
             get { return difficulty; }
             set { difficulty = value; }
