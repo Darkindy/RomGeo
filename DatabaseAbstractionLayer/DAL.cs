@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 using System.Data;
+using System.Security.Cryptography;
+
 using RomGeo.QuizObjects;
 using RomGeo.Utils;
 
@@ -21,8 +23,8 @@ namespace RomGeo.DatabaseAbstractionLayer
         private static string password;
 
         // Constructor (static)
-	    static DAL()
-	    {
+        static DAL()
+        {
             server = "86.120.252.100";
             database = "erg_db";
             uid = "romgeo";
@@ -31,7 +33,7 @@ namespace RomGeo.DatabaseAbstractionLayer
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
-	    }
+        }
 
         // Open Connection
         private static bool OpenConnection()
@@ -46,18 +48,18 @@ namespace RomGeo.DatabaseAbstractionLayer
                 switch (ex.Number)
                 {
                     case 0:
-                        MessageBox.Show("Cannot connect to server.");
+                        Debug.ExitWithErrorMessage("Cannot connect to server.", ex.Number);
                         break;
 
                     case 1045:
-                        MessageBox.Show("Invalid username/password.");
+                        Debug.ExitWithErrorMessage("Failed to authenticate client.", ex.Number);
                         break;
                 }
                 return false;
             }
         }
 
-        //Close connection
+        // Close connection
         private static bool CloseConnection()
         {
             try
@@ -72,7 +74,7 @@ namespace RomGeo.DatabaseAbstractionLayer
             }
         }
 
-        public static Question getQuestion()
+        public static Question GetQuestion()
         {
             int id = 0;
             int difficultyPercent = 0;
@@ -85,31 +87,100 @@ namespace RomGeo.DatabaseAbstractionLayer
             if (OpenConnection() == true)
             {
                 // Create command and assign the query and connection from the constructor
-                using (var command = new MySqlCommand("GetQuestion", connection) { CommandType = CommandType.StoredProcedure })
+                try
                 {
-                    MySqlDataReader myReader = command.ExecuteReader();
-                    if (myReader.Read())
+                    using (var command = new MySqlCommand("GetQuestion", connection) { CommandType = CommandType.StoredProcedure })
                     {
-                        id = myReader.GetInt32(0);
-                        text = myReader.GetString(1);
-                        domain = myReader.GetDomain(2);
-                        difficultyPercent = myReader.GetInt32(3);
-                        isGraphic = myReader.GetBoolean(4);
-                        answers.CorrectAnswer = myReader.GetString(5);
-
-                        int i = 1;
-                        while (i <= PersistentData.MAX_ANSWERS)
+                        MySqlDataReader myReader = command.ExecuteReader();
+                        if (myReader.Read())
                         {
-                            answers[i] = myReader.GetString(5 + i);
-                            i++;
+                            id = myReader.GetInt32(0);
+                            text = myReader.GetString(1);
+                            domain = myReader.GetDomain(2);
+                            difficultyPercent = myReader.GetInt32(3);
+                            isGraphic = myReader.GetBoolean(4);
+                            answers.CorrectAnswer = myReader.GetString(5);
+
+                            int i = 1;
+                            while (i <= PersistentData.MAX_ANSWERS)
+                            {
+                                answers[i] = myReader.GetString(5 + i);
+                                i++;
+                            }
                         }
                     }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+
+                // Close connection
+                CloseConnection();
+            }
+            else Debug.ExitWithErrorMessage("Connection failed to open using DAL method.");
+            return new Question(id, text, domain, difficultyPercent, isGraphic, answers);
+        }
+
+        public static bool ValidateUser(string user, string password)
+        {
+            bool result = false;
+
+            password = MD5.Create().GetHash(password);
+
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("ValidateUser", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        command.Parameters.AddWithValue("@user", user);
+                        command.Parameters.AddWithValue("@hash", password);
+
+                        
+                        MySqlDataReader myReader = command.ExecuteReader();
+                        if (myReader.Read())
+                        {
+                            result = myReader.GetBoolean(0);
+                        }
+                        
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
                 }
                 // Close connection
                 CloseConnection();
             }
-            else Console.WriteLine("Connection failed to open using DAL method.");
-            return new Question(id, text, domain, difficultyPercent, isGraphic, answers);
+            return result;
+        }
+
+        public static void CreateUser(User user, string password)
+        {
+            password = MD5.Create().GetHash(password);
+
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("CreateUser", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        command.Parameters.AddWithValue("@user", user);
+                        command.Parameters.AddWithValue("@hash", password);
+                        if (command.ExecuteNonQuery() > 0) Debug.Log("User " + user + " created");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+
+                // Close connection
+                CloseConnection();
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Drawing.Text;
 
 using RomGeo.DatabaseAbstractionLayer;
 using RomGeo.QuizObjects;
+using RomGeo.Utils;
 
 namespace RomGeo
 {
@@ -34,7 +35,7 @@ namespace RomGeo
         private AppState currentState = AppState.Start;
         private AppState previousState;    // may be used in the future, leave here
 
-        Utils.OneBasedArray<RadioButton> answerPickers;
+        OneBasedArray<RadioButton> answerPickers;
 
         FontFamily ff;
         Font openSansLight;
@@ -129,7 +130,7 @@ namespace RomGeo
             InitializeComponent();
 
             // Using OneBasedArray to have our answers numbered from 1
-            answerPickers = new Utils.OneBasedArray<RadioButton>(PersistentData.MAX_ANSWERS);
+            answerPickers = new OneBasedArray<RadioButton>(PersistentData.MAX_ANSWERS);
             answerPickers[1] = answerPicker1;
             answerPickers[2] = answerPicker2;
             answerPickers[3] = answerPicker3;
@@ -209,7 +210,7 @@ namespace RomGeo
                         nextQuestionButton.Visible = true;
                         footerImageSmall.Visible = true;
                     }
-                    PersistentData.currentQuestion = DAL.getQuestion();
+                    PersistentData.currentQuestion = DAL.GetQuestion();
                     ShowQuestion(PersistentData.currentQuestion);
                     break;
             }
@@ -219,7 +220,13 @@ namespace RomGeo
         {
             previousState = currentState;
             currentState = AppState.UserPanel;
-            GetNextScreen();
+            if (usernameBox.Text.Length == 0) GetNextScreen();   // default testing
+            else
+            {
+                if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
+                    Debug.Log("Validated user");
+                else Debug.Log("User validation failed");
+            }
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -241,7 +248,12 @@ namespace RomGeo
 
         private void CreateAccountLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("NYI");
+            // To be replaced with real data
+            if (usernameBox.Text.Length >= 4 && passBox.Text.Length >= 4)
+            {
+                User newUser = new User(usernameBox.Text);
+                DAL.CreateUser(newUser, passBox.Text);
+            }
         }
 
         private void ForgotPassLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -275,14 +287,13 @@ namespace RomGeo
             }
 
             // Verify if answer was correct
-            var checkedButton = this.Controls.OfType<RadioButton>()
-                                      .FirstOrDefault(r => r.Checked);
+            var checkedButton = this.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
             if (checkedButton.Text.Equals(PersistentData.currentQuestion.CorrectAnswer))
                 PersistentData.correctAnswerCount++;
 
             // Proceed to next screen
             GetNextScreen();
-            Console.WriteLine("Correct: "+PersistentData.correctAnswerCount);
+            Debug.Log("Correct: "+PersistentData.correctAnswerCount);
         }
 
         private void LoginButton_MouseEnter(object sender, EventArgs e)
