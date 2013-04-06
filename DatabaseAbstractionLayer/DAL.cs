@@ -182,5 +182,53 @@ namespace RomGeo.DatabaseAbstractionLayer
                 CloseConnection();
             }
         }
+
+        public static void MarkQueried(User user, Question question)
+        {
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("MarkQueried", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        command.Parameters.AddWithValue("@user", user);
+                        command.Parameters.AddWithValue("@idQ", question.Id);
+                        if (command.ExecuteNonQuery() > 0) Debug.Log("Question " + question.Id + " marked as queried");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+
+                // Close connection
+                CloseConnection();
+            }
+        }
+
+        public static void MarkCorrect(User user, Question question)
+        {
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("MarkCorrect", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        command.Parameters.AddWithValue("@user", user);
+                        command.Parameters.AddWithValue("@idQ", question.Id);
+                        if (command.ExecuteNonQuery() > 0) Debug.Log("Question " + question.Id + " marked as correct");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+
+                // Close connection
+                CloseConnection();
+            }
+        }
     }
 }

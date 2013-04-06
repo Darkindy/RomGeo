@@ -10,6 +10,7 @@ namespace RomGeo
 {
     public static class PersistentData
     {
+        public static User user;
         public static Question currentQuestion;
         public static int currentQuestionIndex = 1;
         public static int correctAnswerCount = 0;

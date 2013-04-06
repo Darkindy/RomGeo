@@ -212,6 +212,7 @@ namespace RomGeo
                     }
                     PersistentData.currentQuestion = DAL.GetQuestion();
                     ShowQuestion(PersistentData.currentQuestion);
+                    DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
                     break;
             }
         }
@@ -220,7 +221,11 @@ namespace RomGeo
         {
             previousState = currentState;
             currentState = AppState.UserPanel;
-            if (usernameBox.Text.Length == 0) GetNextScreen();   // default testing
+            if (usernameBox.Text.Length == 0) 
+            {
+                PersistentData.user = new User("test", 1);
+                GetNextScreen();   // default testing
+            }
             else
             {
                 if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
@@ -289,8 +294,10 @@ namespace RomGeo
             // Verify if answer was correct
             var checkedButton = this.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
             if (checkedButton.Text.Equals(PersistentData.currentQuestion.CorrectAnswer))
+            {
+                DAL.MarkCorrect(PersistentData.user, PersistentData.currentQuestion);
                 PersistentData.correctAnswerCount++;
-
+            }
             // Proceed to next screen
             GetNextScreen();
             Debug.Log("Correct: "+PersistentData.correctAnswerCount);

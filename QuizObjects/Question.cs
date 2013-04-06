@@ -36,6 +36,13 @@ namespace RomGeo.QuizObjects
         }
 
         #region GETTERS-SETTERS
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
         public string Text
         {
             get { return text; }

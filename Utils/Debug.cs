@@ -20,7 +20,7 @@ namespace RomGeo.Utils
         {
             MessageBox.Show(message + "\nERROR CODE: " + code, "FATAL ERROR",
             MessageBoxButton.OK, MessageBoxImage.Error);
-            Environment.Exit(code);
+            Application.Exit(code);
         }
     }
 }
