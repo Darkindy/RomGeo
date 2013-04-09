@@ -234,18 +234,23 @@ namespace RomGeo
 
         private void LoginButon_Click(object sender, EventArgs e)
         {
-            previousState = currentState;
-            currentState = AppState.UserPanel;
-            if (usernameBox.Text.Length == 0) 
+            if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
             {
-                PersistentData.user = new User("test", 1);
-                GetNextScreen();   // default testing
+                previousState = currentState;
+                currentState = AppState.UserPanel;
+                GetNextScreen();
+                welcomeLabel.Text = "Bine ai venit, " + usernameBox.Text + "!";
+                welcomeLabel.Left = (this.Width - welcomeLabel.Width) / 2;
+                User currentUser = new User(usernameBox.Text, DAL.GetID(usernameBox.Text));
+                PersistentData.user = currentUser;
             }
             else
             {
-                /*if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
-                    Debug.Log("Validated user");
-                else Debug.Log("User validation failed");*/
+                createAccountLabel.Text = "Numele de utilizator si/sau parola au fost introduse gresit.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
             }
         }
 

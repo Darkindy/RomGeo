@@ -146,9 +146,9 @@
             this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.welcomeLabel.Location = new System.Drawing.Point(420, 170);
             this.welcomeLabel.Name = "welcomeLabel";
-            this.welcomeLabel.Size = new System.Drawing.Size(178, 20);
+            this.welcomeLabel.Size = new System.Drawing.Size(94, 20);
             this.welcomeLabel.TabIndex = 9;
-            this.welcomeLabel.Text = "Bine ai venit, [Prenume]!";
+            this.welcomeLabel.Text = "Bine ai venit";
             this.welcomeLabel.Visible = false;
             // 
             // newQuizButton

@@ -189,6 +189,31 @@ namespace RomGeo.DatabaseAbstractionLayer
             return result;
         }
 
+        public static int GetID(string user)
+        {
+            int result = 32;
+
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    String readCommand = "SELECT idUser FROM user WHERE username = @user;";
+                    MySqlCommand command = new MySqlCommand(readCommand, connection);
+                    command.Parameters.AddWithValue("@user", user);
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+                // Close connection
+                CloseConnection();
+            }
+            Debug.Log("GETID" + user + " return: " + result);
+            return result;
+        }
+
         public static void CreateUser(User user, string password)
         {
 
