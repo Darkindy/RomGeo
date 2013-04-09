@@ -154,11 +154,44 @@ namespace RomGeo.DatabaseAbstractionLayer
                 // Close connection
                 CloseConnection();
             }
+            Debug.Log(user + " - " + result);
+            return result;
+        }
+
+        public static bool SearchUser(string user)
+        {
+            bool result = false; //nu exista numele de utilizator user
+
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("SearchUser", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        command.Parameters.AddWithValue("@user", user);
+
+                        MySqlDataReader myReader = command.ExecuteReader();
+                        if (myReader.Read())
+                        {
+                            result = myReader.GetBoolean(0);
+                        }
+
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+                // Close connection
+                CloseConnection();
+            }
             return result;
         }
 
         public static void CreateUser(User user, string password)
         {
+
             password = MD5.Create().GetHash(password);
 
             if (OpenConnection() == true)
@@ -170,7 +203,10 @@ namespace RomGeo.DatabaseAbstractionLayer
                     {
                         command.Parameters.AddWithValue("@user", user);
                         command.Parameters.AddWithValue("@hash", password);
-                        if (command.ExecuteNonQuery() > 0) Debug.Log("User " + user + " created");
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            Debug.Log("User " + user + " created");
+                        }
                     }
                 }
                 catch (MySqlException ex)

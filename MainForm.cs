@@ -80,7 +80,6 @@ namespace RomGeo
             this.passBox.Font = new Font(ff, 12, fontStyle_regular);
             this.loginButton.Font = new Font(ff, 10, fontStyle_regular);
             this.createAccountLink.Font = new Font(ff, 10, fontStyle_bold);
-            this.forgotPassLink.Font = new Font(ff, 10, fontStyle_bold);
             this.welcomeLabel.Font = new Font(ff, 12, fontStyle_regular);
             this.newQuizButton.Font = new Font(ff, 10, fontStyle_regular);
             this.statisticsButton.Font = new Font(ff, 10, fontStyle_regular);
@@ -88,6 +87,9 @@ namespace RomGeo
             this.nextQuestionButton.Font = new Font(ff, 10, fontStyle_regular);
             this.quizTitle.Font = new Font(ff, 20, fontStyle_regular);
             this.questionText.Font = new Font(ff, 12, fontStyle_regular);
+            this.passConfLabel.Font = new Font(ff, 12, fontStyle_regular);
+            this.passConfBox.Font = new Font(ff, 12, fontStyle_regular);
+            this.createAccountLabel.Font = new Font(ff, 12, fontStyle_regular);
 
             foreach (var ap in answerPickers)
                 ap.Font = new Font(ff, 10, fontStyle_regular);
@@ -148,8 +150,8 @@ namespace RomGeo
             nextQuestionButton.MouseLeave += new EventHandler(NextQuestionButton_MouseLeave);
             createAccountLink.MouseEnter += new EventHandler(CreateAccountLink_MouseEnter);
             createAccountLink.MouseLeave += new EventHandler(CreateAccountLink_MouseLeave);
-            forgotPassLink.MouseEnter += new EventHandler(ForgotPassLink_MouseEnter);
-            forgotPassLink.MouseLeave += new EventHandler(ForgotPassLink_MouseLeave);
+            createAccountButton.MouseEnter += new EventHandler(CreateAccountButton_MouseEnter);
+            createAccountButton.MouseLeave += new EventHandler(CreateAccountButton_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -184,7 +186,6 @@ namespace RomGeo
                         passBox.Visible = true;
                         loginButton.Visible = true;
                         createAccountLink.Visible = true;
-                        forgotPassLink.Visible = true;
                         footerImage.Visible = true;
                     }
                     break;
@@ -214,6 +215,20 @@ namespace RomGeo
                     ShowQuestion(PersistentData.currentQuestion);
                     DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
                     break;
+                case AppState.CreateAccount:
+                    if (previousState != currentState)
+                    {
+                        headerImage.Visible = true;                      
+                        usernameLabel.Visible = true;
+                        usernameBox.Visible = true;
+                        passLabel.Visible = true;
+                        passBox.Visible = true;
+                        passConfLabel.Visible = true;
+                        passConfBox.Visible = true;
+                        createAccountButton.Visible = true;
+                        footerImage.Visible = true;
+                    }
+                    break;
             }
         }
 
@@ -228,9 +243,9 @@ namespace RomGeo
             }
             else
             {
-                if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
+                /*if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
                     Debug.Log("Validated user");
-                else Debug.Log("User validation failed");
+                else Debug.Log("User validation failed");*/
             }
         }
 
@@ -253,17 +268,78 @@ namespace RomGeo
 
         private void CreateAccountLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // To be replaced with real data
-            if (usernameBox.Text.Length >= 4 && passBox.Text.Length >= 4)
-            {
-                User newUser = new User(usernameBox.Text);
-                DAL.CreateUser(newUser, passBox.Text);
-            }
+            previousState = currentState;
+            currentState = AppState.CreateAccount;
+            GetNextScreen();
         }
 
-        private void ForgotPassLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void createAccountButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("NYI");
+            createAccountLabel.Visible = false;
+            okPicture.Visible = false;
+            noPicture.Visible = false;
+
+            if (usernameBox.Text.Length < 4)
+            {
+                createAccountLabel.Text = "Numele de utilizator trebuie sa aiba minim 4 caractere.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
+            }
+            else if (passBox.Text.Length < 4)
+            {
+                createAccountLabel.Text = "Parola trebuie sa aiba minim 4 caractere.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
+            }
+            else if (passBox.Text != passConfBox.Text)
+            {
+                createAccountLabel.Text = "Parola nu a fost confirmata.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
+            }
+            else
+            {
+                
+                if (DAL.SearchUser(usernameBox.Text) == false)
+                {
+                    User newUser = new User(usernameBox.Text);
+                    DAL.CreateUser(newUser, passBox.Text);
+                    if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
+                    {
+                        previousState = currentState;
+                        currentState = AppState.Start;
+                        GetNextScreen();
+                        createAccountLabel.Text = "Utilizator creat cu succes!";
+                        createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                        okPicture.Left = createAccountLabel.Left - 36;
+                        createAccountLabel.Visible = true;
+                        okPicture.Visible = true;
+                        passBox.Text = "";
+                    }
+                    else
+                    {
+                        createAccountLabel.Text = "Am intampinat o eroare la crearea utilizatorului.";
+                        createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                        noPicture.Left = createAccountLabel.Left - 36;
+                        createAccountLabel.Visible = true;
+                        noPicture.Visible = true;
+                    }
+                }
+                else
+                {
+                    createAccountLabel.Text = "Numele de utilizator deja exista in baza de date.";
+                    createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                    noPicture.Left = createAccountLabel.Left - 36;
+                    createAccountLabel.Visible = true;
+                    noPicture.Visible = true;
+                }
+            }
         }
 
         private void NextQuestionButton_Click(object sender, EventArgs e)
@@ -357,13 +433,13 @@ namespace RomGeo
             this.createAccountLink.LinkColor = Color.FromArgb(5, 142, 158);
         }
 
-        private void ForgotPassLink_MouseEnter(object sender, EventArgs e)
+        private void CreateAccountButton_MouseEnter(object sender, EventArgs e)
         {
-            this.forgotPassLink.LinkColor = Color.FromArgb(161, 27, 60);
+            this.createAccountButton.BackColor = Color.FromArgb(161, 27, 60);
         }
-        private void ForgotPassLink_MouseLeave(object sender, EventArgs e)
+        private void CreateAccountButton_MouseLeave(object sender, EventArgs e)
         {
-            this.forgotPassLink.LinkColor = Color.FromArgb(5, 142, 158);
+            this.createAccountButton.BackColor = Color.FromArgb(5, 142, 158);
         }
     }
 }
