@@ -35,6 +35,8 @@ namespace RomGeo
         private AppState currentState = AppState.Start;
         private AppState previousState;    // may be used in the future, leave here
 
+        Timer Clock = new Timer();
+
         OneBasedArray<RadioButton> answerPickers;
 
         FontFamily ff;
@@ -43,7 +45,7 @@ namespace RomGeo
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
-        private void LoadPrivateFontCollection()
+        private void LoadOpenSansLight()
         {
             // Create the byte array and get its length
 
@@ -69,7 +71,7 @@ namespace RomGeo
             openSansLight = new Font(ff, 15f, FontStyle.Regular);
         }
         
-        private void ApplyFont(Font font)
+        private void ApplyOpenSansLight(Font font)
         {
             FontStyle fontStyle_regular = FontStyle.Regular;
             FontStyle fontStyle_bold = FontStyle.Bold;
@@ -80,17 +82,27 @@ namespace RomGeo
             this.passBox.Font = new Font(ff, 12, fontStyle_regular);
             this.loginButton.Font = new Font(ff, 10, fontStyle_regular);
             this.createAccountLink.Font = new Font(ff, 10, fontStyle_bold);
-            this.forgotPassLink.Font = new Font(ff, 10, fontStyle_bold);
             this.welcomeLabel.Font = new Font(ff, 12, fontStyle_regular);
             this.newQuizButton.Font = new Font(ff, 10, fontStyle_regular);
             this.statisticsButton.Font = new Font(ff, 10, fontStyle_regular);
             this.exitButton.Font = new Font(ff, 10, fontStyle_regular);
             this.nextQuestionButton.Font = new Font(ff, 10, fontStyle_regular);
-            this.quizTitle.Font = new Font(ff, 20, fontStyle_regular);
-            this.questionText.Font = new Font(ff, 12, fontStyle_regular);
-
-            foreach (var ap in answerPickers)
-                ap.Font = new Font(ff, 10, fontStyle_regular);
+            this.passConfLabel.Font = new Font(ff, 12, fontStyle_regular);
+            this.passConfBox.Font = new Font(ff, 12, fontStyle_regular);
+            this.createAccountLabel.Font = new Font(ff, 12, fontStyle_regular);
+            this.statisticsLabel.Font = new Font(ff, 14, fontStyle_regular);
+            this.statisticsNumber1.Font = new Font(ff, 24, fontStyle_regular);
+            this.statisticsNumber2.Font = new Font(ff, 24, fontStyle_regular);
+            this.statisticsNumber3.Font = new Font(ff, 30, fontStyle_regular);
+            this.statisticsBackButton.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsPercent1.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsPercent2.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsPercent3.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsPercent4.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsType1.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsType2.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsType3.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsType4.Font = new Font(ff, 10, fontStyle_regular);
         }
 
         public void ShowQuestion(Question question){
@@ -107,6 +119,24 @@ namespace RomGeo
                     questionImage.Visible = false;
                 }
         }
+
+        public bool CheckQuestionIdDuplicate(int id)
+        {
+            bool result = false; //intrebarea nu mai exista in chestionarul curent
+
+            foreach (int qid in PersistentData.quizQuestions) {
+                if (qid == 0)
+                    return result;
+                else if (qid == id)
+                {
+                    result = true;
+                    return result;
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region SINGLETON-PATTERN
@@ -148,19 +178,28 @@ namespace RomGeo
             nextQuestionButton.MouseLeave += new EventHandler(NextQuestionButton_MouseLeave);
             createAccountLink.MouseEnter += new EventHandler(CreateAccountLink_MouseEnter);
             createAccountLink.MouseLeave += new EventHandler(CreateAccountLink_MouseLeave);
-            forgotPassLink.MouseEnter += new EventHandler(ForgotPassLink_MouseEnter);
-            forgotPassLink.MouseLeave += new EventHandler(ForgotPassLink_MouseLeave);
+            createAccountButton.MouseEnter += new EventHandler(CreateAccountButton_MouseEnter);
+            createAccountButton.MouseLeave += new EventHandler(CreateAccountButton_MouseLeave);
+            statisticsBackButton.MouseEnter += new EventHandler(StatisticsBackButton_MouseEnter);
+            statisticsBackButton.MouseLeave += new EventHandler(StatisticsBackButton_MouseLeave);
+            endingBackButton.MouseEnter += new EventHandler(EndingBackButton_MouseEnter);
+            endingBackButton.MouseLeave += new EventHandler(EndingBackButton_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LoadPrivateFontCollection();
-            ApplyFont(openSansLight);
+            LoadOpenSansLight();
+            ApplyOpenSansLight(openSansLight);
+            Clock.Interval = 2000; // time untill next question
+            Clock.Tick += new EventHandler(Timer_Tick);
             GetNextScreen();
         }
 
         private void GetNextScreen()
         {
+            foreach (Control c in this.Controls)
+                if (c is RadioButton) ((RadioButton)c).Checked = false;
+
             if (previousState != currentState)
                 foreach (Control c in this.Controls)
                 {
@@ -168,8 +207,10 @@ namespace RomGeo
                 }
             else
             {
-                foreach (Control c in this.Controls)
-                    if (c is RadioButton) ((RadioButton)c).Checked = false;
+                quizMessageLabel.Visible = false;
+                okQuestion.Visible = false;
+                noQuestion.Visible = false;
+                warningQuestion.Visible = false;
             }
 
             switch (currentState)
@@ -184,53 +225,164 @@ namespace RomGeo
                         passBox.Visible = true;
                         loginButton.Visible = true;
                         createAccountLink.Visible = true;
-                        forgotPassLink.Visible = true;
                         footerImage.Visible = true;
                     }
                     break;
                 case AppState.UserPanel:
                     if(previousState != currentState)
                     {
-                    headerImage.Visible = true;
-                    welcomeLabel.Visible = true;
-                    newQuizButton.Visible = true;
-                    statisticsButton.Visible = true;
-                    exitButton.Visible = true;
-                    footerImage.Visible = true;
+                        headerImage.Visible = true;
+                        welcomeLabel.Text = "Bine ai venit, " + PersistentData.user.ToString() + "!";
+                        welcomeLabel.Left = (this.Width - welcomeLabel.Width) / 2;
+                        welcomeLabel.Visible = true;
+
+                        newQuizButton.Visible = true;
+                        statisticsButton.Visible = true;
+                        exitButton.Visible = true;
+                        footerImage.Visible = true;
                     }
                     break;
                 case AppState.InQuiz:
+                    foreach (var ap in answerPickers)
+                        ap.Enabled = true;
                     if (previousState != currentState)
                     {
+                        quizTitle.Text = "Întrebarea  " + PersistentData.currentQuestionIndex + " / 30";
                         quizTitle.Visible = true;
                         logoSmall.Visible = true;
                         questionText.Visible = true;
                         questionImage.Visible = true;
-                        foreach (var ap in answerPickers) ap.Visible = true;
+                        foreach (var ap in answerPickers) 
+                            ap.Visible = true;
                         nextQuestionButton.Visible = true;
                         footerImageSmall.Visible = true;
                     }
+                    if (PersistentData.currentQuestionIndex == 30)
+                        nextQuestionButton.Text = "Finalizare";
+
                     PersistentData.currentQuestion = DAL.GetQuestion();
+                    while (CheckQuestionIdDuplicate(PersistentData.currentQuestion.Id))
+                    {
+                        PersistentData.currentQuestion = DAL.GetQuestion();
+                    }
+                    PersistentData.quizQuestions[PersistentData.currentQuestionIndex-1] = PersistentData.currentQuestion.Id;
                     ShowQuestion(PersistentData.currentQuestion);
                     DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
+                    switch (PersistentData.currentQuestion.Domain)
+                    {
+                        case Domain.Relief:
+                            Debug.Log("relief");
+                            PersistentData.ReliefQuestionCount++;
+                            break;
+                        case Domain.Hidrografie:
+                            Debug.Log("hidro");
+                            PersistentData.HidrografieQuestionCount++;
+                            break;
+                        case Domain.Administrativ:
+                            Debug.Log("admin");
+                            PersistentData.AdministrativQuestionCount++;
+                            break;
+                        case Domain.Resurse:
+                            Debug.Log("resurse");
+                            PersistentData.ResurseQuestionCount++;
+                            break;
+
+                    }
+                    break;
+                case AppState.CreateAccount:
+                    if (previousState != currentState)
+                    {
+                        headerImage.Visible = true;                      
+                        usernameLabel.Visible = true;
+                        usernameBox.Visible = true;
+                        passLabel.Visible = true;
+                        passBox.Visible = true;
+                        passConfLabel.Visible = true;
+                        passConfBox.Visible = true;
+                        createAccountButton.Visible = true;
+                        footerImage.Visible = true;
+                    }
+                    break;
+                case AppState.Statistics:
+                    if (previousState != currentState)
+                    {
+                        headerImage.Visible = true;
+
+                        statisticsLabel.Text = "Statistici utilizator " + PersistentData.user.ToString();
+                        statisticsLabel.Left = (this.Width - statisticsLabel.Width) / 2;
+                        statisticsLabel.Visible = true;                        
+                        
+                        statisticsText1.Visible = true;
+                        statisticsText2.Visible = true;
+                        statisticsText3.Visible = true;
+
+                        statisticsNumber1.Visible = true;
+                        statisticsNumber2.Visible = true;
+                        statisticsNumber3.Visible = true;
+
+                        statisticsType1.Visible = true;
+                        statisticsType2.Visible = true;
+                        statisticsType3.Visible = true;
+                        statisticsType4.Visible = true;
+
+                        statisticsPercent1.Visible = true;
+                        statisticsPercent2.Visible = true;
+                        statisticsPercent3.Visible = true;
+                        statisticsPercent4.Visible = true;
+
+                        statisticsBackButton.Visible = true;
+                        footerStatistics.Visible = true;
+                    }
+                    break;
+                case AppState.EndingScreen:
+                    if (previousState != currentState)
+                    {
+                        quizTitle.Text = "Rezultate Chestionar";
+                        quizTitle.Visible = true;
+                        logoSmall.Visible = true;
+
+                        endingTextLabel1.Visible = true;
+                        endingTextLabel2.Visible = true;
+                        endingTextLabel3.Visible = true;
+                        endingTextLabel4.Visible = true;
+                        endingTextLabel5.Visible = true;
+
+                        endingNumber1.Text = PersistentData.correctAnswerCount + " / 30";
+                        endingNumber2.Text = PersistentData.correctAnswerReliefCount + " / " + PersistentData.ReliefQuestionCount;
+                        endingNumber3.Text = PersistentData.correctAnswerHidrografieCount + " / " + PersistentData.HidrografieQuestionCount;
+                        endingNumber4.Text = PersistentData.correctAnswerAdministrativCount + " / " + PersistentData.AdministrativQuestionCount;
+                        endingNumber5.Text = PersistentData.correctAnswerResurseCount + " / " + PersistentData.ResurseQuestionCount;
+
+                        endingNumber1.Visible = true;
+                        endingNumber2.Visible = true;
+                        endingNumber3.Visible = true;
+                        endingNumber4.Visible = true;
+                        endingNumber5.Visible = true;
+
+                        endingBackButton.Visible = true;
+                        footerImage.Visible = true;
+                    }
                     break;
             }
         }
 
         private void LoginButon_Click(object sender, EventArgs e)
         {
-            previousState = currentState;
-            currentState = AppState.UserPanel;
-            if (usernameBox.Text.Length == 0) 
+            if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
             {
-                PersistentData.user = new User("test", 1);
-                GetNextScreen();   // default testing
+                User currentUser = new User(usernameBox.Text, DAL.GetID(usernameBox.Text));
+                PersistentData.user = currentUser;
+                previousState = currentState;
+                currentState = AppState.UserPanel;
+                GetNextScreen();
             }
             else
             {
-                if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
-                    Debug.Log("Validated user");
-                else Debug.Log("User validation failed");
+                createAccountLabel.Text = "Numele de utilizator si/sau parola au fost introduse gresit.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
             }
         }
 
@@ -241,7 +393,37 @@ namespace RomGeo
 
         private void StatisticsButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("NYI");
+            previousState = currentState;
+            currentState = AppState.Statistics;
+            GetNextScreen();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            previousState = currentState;
+            currentState = AppState.UserPanel;
+            GetNextScreen();
+        }
+
+        private void endingBackButton_Click(object sender, EventArgs e)
+        {
+            PersistentData.correctAnswerCount = 0;
+            PersistentData.correctAnswerReliefCount = 0;
+            PersistentData.correctAnswerHidrografieCount = 0;
+            PersistentData.correctAnswerAdministrativCount = 0;
+            PersistentData.correctAnswerResurseCount = 0;
+            PersistentData.ReliefQuestionCount = 0;
+            PersistentData.HidrografieQuestionCount = 0;
+            PersistentData.AdministrativQuestionCount = 0;
+            PersistentData.ResurseQuestionCount = 0;
+
+            PersistentData.quizQuestions = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+            nextQuestionButton.Text = "Urmatoarea Intrebare";
+
+            previousState = currentState;
+            currentState = AppState.UserPanel;
+            GetNextScreen();
         }
 
         private void QuizButton_Click(object sender, EventArgs e)
@@ -253,17 +435,78 @@ namespace RomGeo
 
         private void CreateAccountLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // To be replaced with real data
-            if (usernameBox.Text.Length >= 4 && passBox.Text.Length >= 4)
-            {
-                User newUser = new User(usernameBox.Text);
-                DAL.CreateUser(newUser, passBox.Text);
-            }
+            previousState = currentState;
+            currentState = AppState.CreateAccount;
+            GetNextScreen();
         }
 
-        private void ForgotPassLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void createAccountButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("NYI");
+            createAccountLabel.Visible = false;
+            okPicture.Visible = false;
+            noPicture.Visible = false;
+
+            if (usernameBox.Text.Length < 4)
+            {
+                createAccountLabel.Text = "Numele de utilizator trebuie sa aiba minim 4 caractere.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
+            }
+            else if (passBox.Text.Length < 4)
+            {
+                createAccountLabel.Text = "Parola trebuie sa aiba minim 4 caractere.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
+            }
+            else if (passBox.Text != passConfBox.Text)
+            {
+                createAccountLabel.Text = "Parola nu a fost confirmata.";
+                createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                noPicture.Left = createAccountLabel.Left - 36;
+                createAccountLabel.Visible = true;
+                noPicture.Visible = true;
+            }
+            else
+            {
+                
+                if (DAL.SearchUser(usernameBox.Text) == false)
+                {
+                    User newUser = new User(usernameBox.Text);
+                    DAL.CreateUser(newUser, passBox.Text);
+                    if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
+                    {
+                        previousState = currentState;
+                        currentState = AppState.Start;
+                        GetNextScreen();
+                        createAccountLabel.Text = "Utilizator creat cu succes!";
+                        createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                        okPicture.Left = createAccountLabel.Left - 36;
+                        createAccountLabel.Visible = true;
+                        okPicture.Visible = true;
+                        passBox.Text = "";
+                    }
+                    else
+                    {
+                        createAccountLabel.Text = "Am intampinat o eroare la crearea utilizatorului.";
+                        createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                        noPicture.Left = createAccountLabel.Left - 36;
+                        createAccountLabel.Visible = true;
+                        noPicture.Visible = true;
+                    }
+                }
+                else
+                {
+                    createAccountLabel.Text = "Numele de utilizator deja exista in baza de date.";
+                    createAccountLabel.Left = (this.Width - createAccountLabel.Width) / 2;
+                    noPicture.Left = createAccountLabel.Left - 36;
+                    createAccountLabel.Visible = true;
+                    noPicture.Visible = true;
+                }
+            }
         }
 
         private void NextQuestionButton_Click(object sender, EventArgs e)
@@ -273,23 +516,13 @@ namespace RomGeo
             foreach (var ap in answerPickers) if (ap.Checked == true) { ready = true; break; }
             if (!ready)
             {
-                MessageBox.Show("Trebuie sa alegi un raspuns pentru a continua.");
+                quizMessageLabel.Text = "Trebuie sa alegi un raspuns pentru a continua.";
+                quizMessageLabel.Visible = true;
+                warningQuestion.Visible = true;
                 return;
             }
-
-            // Manage form states
-            previousState = AppState.InQuiz;
-            if (PersistentData.currentQuestionIndex < 30)
-            {
-                PersistentData.currentQuestionIndex++;
-                quizTitle.Text = "Intrebarea  " + PersistentData.currentQuestionIndex + " / 30";
-            }
-            else
-            {
-                // PersistentData.correctAnswerCount = 0; // Maybe go to ending screen instead
-                PersistentData.currentQuestionIndex = 1;
-                currentState = AppState.Start;
-            }
+            quizMessageLabel.Visible = false;
+            warningQuestion.Visible = false;
 
             // Verify if answer was correct
             var checkedButton = this.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
@@ -297,9 +530,37 @@ namespace RomGeo
             {
                 DAL.MarkCorrect(PersistentData.user, PersistentData.currentQuestion);
                 PersistentData.correctAnswerCount++;
+                switch (PersistentData.currentQuestion.Domain)
+                {
+                    case Domain.Relief:
+                        PersistentData.correctAnswerReliefCount++;
+                        break;
+                    case Domain.Hidrografie:
+                        PersistentData.correctAnswerHidrografieCount++;
+                        break;
+                    case Domain.Administrativ:
+                        PersistentData.correctAnswerAdministrativCount++;
+                        break;
+                    case Domain.Resurse:
+                        PersistentData.correctAnswerResurseCount++;
+                        break;
+
+                }
+                quizMessageLabel.Text = "Corect!";
+                okQuestion.Visible = true;
             }
-            // Proceed to next screen
-            GetNextScreen();
+            else
+            {
+                quizMessageLabel.Text = "Gresit! Raspunsul corect este: " + PersistentData.currentQuestion.CorrectAnswer;
+                noQuestion.Visible = true;
+            }
+
+            quizMessageLabel.Visible = true;
+            foreach (var ap in answerPickers) 
+                ap.Enabled = false;
+
+            Clock.Start();
+
             Debug.Log("Correct: "+PersistentData.correctAnswerCount);
         }
 
@@ -357,13 +618,51 @@ namespace RomGeo
             this.createAccountLink.LinkColor = Color.FromArgb(5, 142, 158);
         }
 
-        private void ForgotPassLink_MouseEnter(object sender, EventArgs e)
+        private void CreateAccountButton_MouseEnter(object sender, EventArgs e)
         {
-            this.forgotPassLink.LinkColor = Color.FromArgb(161, 27, 60);
+            this.createAccountButton.BackColor = Color.FromArgb(161, 27, 60);
         }
-        private void ForgotPassLink_MouseLeave(object sender, EventArgs e)
+        private void CreateAccountButton_MouseLeave(object sender, EventArgs e)
         {
-            this.forgotPassLink.LinkColor = Color.FromArgb(5, 142, 158);
+            this.createAccountButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void StatisticsBackButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.statisticsBackButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void StatisticsBackButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.statisticsBackButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        private void EndingBackButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.endingBackButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void EndingBackButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.endingBackButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        public void Timer_Tick(object sender, EventArgs eArgs)
+        {
+            Clock.Stop();
+
+            // Manage form states
+            previousState = AppState.InQuiz;
+            if (PersistentData.currentQuestionIndex < 30)
+            {
+                PersistentData.currentQuestionIndex++;
+                quizTitle.Text = "Întrebarea  " + PersistentData.currentQuestionIndex + " / 30";
+            }
+            else
+            {
+                PersistentData.currentQuestionIndex = 1;
+                currentState = AppState.EndingScreen;
+            }
+
+            GetNextScreen();
         }
     }
 }
