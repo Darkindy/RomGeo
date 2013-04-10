@@ -119,6 +119,7 @@ namespace RomGeo.DatabaseAbstractionLayer
                 CloseConnection();
             }
             else Debug.ExitWithErrorMessage("Connection failed to open using DAL method.");
+            Debug.Log("GET Q: " + id + text + domain + difficultyPercent + isGraphic + answers);
             return new Question(id, text, domain, difficultyPercent, isGraphic, answers);
         }
 
@@ -154,11 +155,69 @@ namespace RomGeo.DatabaseAbstractionLayer
                 // Close connection
                 CloseConnection();
             }
+            Debug.Log(user + " - " + result);
+            return result;
+        }
+
+        public static bool SearchUser(string user)
+        {
+            bool result = false; //nu exista numele de utilizator user
+
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("SearchUser", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        command.Parameters.AddWithValue("@user", user);
+
+                        MySqlDataReader myReader = command.ExecuteReader();
+                        if (myReader.Read())
+                        {
+                            result = myReader.GetBoolean(0);
+                        }
+
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+                // Close connection
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public static int GetID(string user)
+        {
+            int result = 32;
+
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    String readCommand = "SELECT idUser FROM user WHERE username = @user;";
+                    MySqlCommand command = new MySqlCommand(readCommand, connection);
+                    command.Parameters.AddWithValue("@user", user);
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+                // Close connection
+                CloseConnection();
+            }
+            Debug.Log("GETID" + user + " return: " + result);
             return result;
         }
 
         public static void CreateUser(User user, string password)
         {
+
             password = MD5.Create().GetHash(password);
 
             if (OpenConnection() == true)
@@ -170,7 +229,10 @@ namespace RomGeo.DatabaseAbstractionLayer
                     {
                         command.Parameters.AddWithValue("@user", user);
                         command.Parameters.AddWithValue("@hash", password);
-                        if (command.ExecuteNonQuery() > 0) Debug.Log("User " + user + " created");
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            Debug.Log("User " + user + " created");
+                        }
                     }
                 }
                 catch (MySqlException ex)
@@ -194,7 +256,10 @@ namespace RomGeo.DatabaseAbstractionLayer
                     {
                         command.Parameters.AddWithValue("@user", user);
                         command.Parameters.AddWithValue("@idQ", question.Id);
-                        if (command.ExecuteNonQuery() > 0) Debug.Log("Question " + question.Id + " marked as queried");
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            Debug.Log("Question " + question.Id + " marked as queried");
+                        }
                     }
                 }
                 catch (MySqlException ex)
