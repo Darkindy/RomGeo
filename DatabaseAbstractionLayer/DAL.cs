@@ -119,6 +119,7 @@ namespace RomGeo.DatabaseAbstractionLayer
                 CloseConnection();
             }
             else Debug.ExitWithErrorMessage("Connection failed to open using DAL method.");
+            Debug.Log("GET Q: " + id + text + domain + difficultyPercent + isGraphic + answers);
             return new Question(id, text, domain, difficultyPercent, isGraphic, answers);
         }
 
@@ -255,7 +256,10 @@ namespace RomGeo.DatabaseAbstractionLayer
                     {
                         command.Parameters.AddWithValue("@user", user);
                         command.Parameters.AddWithValue("@idQ", question.Id);
-                        if (command.ExecuteNonQuery() > 0) Debug.Log("Question " + question.Id + " marked as queried");
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            Debug.Log("Question " + question.Id + " marked as queried");
+                        }
                     }
                 }
                 catch (MySqlException ex)

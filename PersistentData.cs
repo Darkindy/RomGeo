@@ -15,6 +15,16 @@ namespace RomGeo
         public static int currentQuestionIndex = 1;
         public static int correctAnswerCount = 0;
 
+        public static int ReliefQuestionCount = 0;
+        public static int HidrografieQuestionCount = 0;
+        public static int AdministrativQuestionCount = 0;
+        public static int ResurseQuestionCount = 0;
+
+        public static int correctAnswerReliefCount = 0;
+        public static int correctAnswerHidrografieCount = 0;
+        public static int correctAnswerAdministrativCount = 0;
+        public static int correctAnswerResurseCount = 0;
+
         #region constants
              public const int MAX_ANSWERS = 4;
         #endregion

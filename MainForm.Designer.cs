@@ -78,6 +78,17 @@
             this.questionImage = new System.Windows.Forms.PictureBox();
             this.footerStatistics = new System.Windows.Forms.PictureBox();
             this.footerImage = new System.Windows.Forms.PictureBox();
+            this.endingBackButton = new System.Windows.Forms.Button();
+            this.endingTextLabel1 = new System.Windows.Forms.Label();
+            this.endingNumber1 = new System.Windows.Forms.Label();
+            this.endingTextLabel2 = new System.Windows.Forms.Label();
+            this.endingTextLabel3 = new System.Windows.Forms.Label();
+            this.endingTextLabel4 = new System.Windows.Forms.Label();
+            this.endingTextLabel5 = new System.Windows.Forms.Label();
+            this.endingNumber2 = new System.Windows.Forms.Label();
+            this.endingNumber3 = new System.Windows.Forms.Label();
+            this.endingNumber4 = new System.Windows.Forms.Label();
+            this.endingNumber5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.warningQuestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.okQuestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noQuestion)).BeginInit();
@@ -309,9 +320,9 @@
             this.quizTitle.Font = new System.Drawing.Font("Verdana", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quizTitle.Location = new System.Drawing.Point(180, 15);
             this.quizTitle.Name = "quizTitle";
-            this.quizTitle.Size = new System.Drawing.Size(262, 32);
+            this.quizTitle.Size = new System.Drawing.Size(142, 32);
             this.quizTitle.TabIndex = 26;
-            this.quizTitle.Text = "Întrebarea  1 / 30";
+            this.quizTitle.Text = "Quiz Title";
             this.quizTitle.Visible = false;
             // 
             // passConfLabel
@@ -489,9 +500,9 @@
             this.statisticsType2.ForeColor = System.Drawing.Color.White;
             this.statisticsType2.Location = new System.Drawing.Point(234, 481);
             this.statisticsType2.Name = "statisticsType2";
-            this.statisticsType2.Size = new System.Drawing.Size(77, 17);
+            this.statisticsType2.Size = new System.Drawing.Size(84, 17);
             this.statisticsType2.TabIndex = 49;
-            this.statisticsType2.Text = "Hidrologie";
+            this.statisticsType2.Text = "Hidrografie";
             this.statisticsType2.Visible = false;
             // 
             // statisticsPercent2
@@ -681,6 +692,132 @@
             this.footerImage.TabStop = false;
             this.footerImage.Visible = false;
             // 
+            // endingBackButton
+            // 
+            this.endingBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.endingBackButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.endingBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingBackButton.ForeColor = System.Drawing.Color.White;
+            this.endingBackButton.Location = new System.Drawing.Point(150, 460);
+            this.endingBackButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.endingBackButton.Name = "endingBackButton";
+            this.endingBackButton.Size = new System.Drawing.Size(170, 50);
+            this.endingBackButton.TabIndex = 60;
+            this.endingBackButton.Text = "Inapoi";
+            this.endingBackButton.UseVisualStyleBackColor = false;
+            this.endingBackButton.Visible = false;
+            this.endingBackButton.Click += new System.EventHandler(this.endingBackButton_Click);
+            // 
+            // endingTextLabel1
+            // 
+            this.endingTextLabel1.AutoSize = true;
+            this.endingTextLabel1.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingTextLabel1.Location = new System.Drawing.Point(150, 130);
+            this.endingTextLabel1.Name = "endingTextLabel1";
+            this.endingTextLabel1.Size = new System.Drawing.Size(260, 23);
+            this.endingTextLabel1.TabIndex = 61;
+            this.endingTextLabel1.Text = "Întrebări răspunse corect:";
+            this.endingTextLabel1.Visible = false;
+            // 
+            // endingNumber1
+            // 
+            this.endingNumber1.AutoSize = true;
+            this.endingNumber1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingNumber1.Location = new System.Drawing.Point(404, 119);
+            this.endingNumber1.Name = "endingNumber1";
+            this.endingNumber1.Size = new System.Drawing.Size(66, 36);
+            this.endingNumber1.TabIndex = 62;
+            this.endingNumber1.Text = "100";
+            this.endingNumber1.Visible = false;
+            // 
+            // endingTextLabel2
+            // 
+            this.endingTextLabel2.AutoSize = true;
+            this.endingTextLabel2.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingTextLabel2.Location = new System.Drawing.Point(150, 200);
+            this.endingTextLabel2.Name = "endingTextLabel2";
+            this.endingTextLabel2.Size = new System.Drawing.Size(163, 23);
+            this.endingTextLabel2.TabIndex = 63;
+            this.endingTextLabel2.Text = "Întrebări Relief:";
+            this.endingTextLabel2.Visible = false;
+            // 
+            // endingTextLabel3
+            // 
+            this.endingTextLabel3.AutoSize = true;
+            this.endingTextLabel3.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingTextLabel3.Location = new System.Drawing.Point(150, 250);
+            this.endingTextLabel3.Name = "endingTextLabel3";
+            this.endingTextLabel3.Size = new System.Drawing.Size(216, 23);
+            this.endingTextLabel3.TabIndex = 64;
+            this.endingTextLabel3.Text = "Întrebări Hidrografie:";
+            this.endingTextLabel3.Visible = false;
+            // 
+            // endingTextLabel4
+            // 
+            this.endingTextLabel4.AutoSize = true;
+            this.endingTextLabel4.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingTextLabel4.Location = new System.Drawing.Point(150, 300);
+            this.endingTextLabel4.Name = "endingTextLabel4";
+            this.endingTextLabel4.Size = new System.Drawing.Size(247, 23);
+            this.endingTextLabel4.TabIndex = 65;
+            this.endingTextLabel4.Text = "Întrebări Administrative:";
+            this.endingTextLabel4.Visible = false;
+            // 
+            // endingTextLabel5
+            // 
+            this.endingTextLabel5.AutoSize = true;
+            this.endingTextLabel5.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingTextLabel5.Location = new System.Drawing.Point(150, 350);
+            this.endingTextLabel5.Name = "endingTextLabel5";
+            this.endingTextLabel5.Size = new System.Drawing.Size(184, 23);
+            this.endingTextLabel5.TabIndex = 66;
+            this.endingTextLabel5.Text = "Întrebări Resurse:";
+            this.endingTextLabel5.Visible = false;
+            // 
+            // endingNumber2
+            // 
+            this.endingNumber2.AutoSize = true;
+            this.endingNumber2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingNumber2.Location = new System.Drawing.Point(307, 190);
+            this.endingNumber2.Name = "endingNumber2";
+            this.endingNumber2.Size = new System.Drawing.Size(66, 36);
+            this.endingNumber2.TabIndex = 67;
+            this.endingNumber2.Text = "100";
+            this.endingNumber2.Visible = false;
+            // 
+            // endingNumber3
+            // 
+            this.endingNumber3.AutoSize = true;
+            this.endingNumber3.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingNumber3.Location = new System.Drawing.Point(360, 240);
+            this.endingNumber3.Name = "endingNumber3";
+            this.endingNumber3.Size = new System.Drawing.Size(66, 36);
+            this.endingNumber3.TabIndex = 68;
+            this.endingNumber3.Text = "100";
+            this.endingNumber3.Visible = false;
+            // 
+            // endingNumber4
+            // 
+            this.endingNumber4.AutoSize = true;
+            this.endingNumber4.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingNumber4.Location = new System.Drawing.Point(391, 290);
+            this.endingNumber4.Name = "endingNumber4";
+            this.endingNumber4.Size = new System.Drawing.Size(66, 36);
+            this.endingNumber4.TabIndex = 69;
+            this.endingNumber4.Text = "100";
+            this.endingNumber4.Visible = false;
+            // 
+            // endingNumber5
+            // 
+            this.endingNumber5.AutoSize = true;
+            this.endingNumber5.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endingNumber5.Location = new System.Drawing.Point(328, 339);
+            this.endingNumber5.Name = "endingNumber5";
+            this.endingNumber5.Size = new System.Drawing.Size(66, 36);
+            this.endingNumber5.TabIndex = 70;
+            this.endingNumber5.Text = "100";
+            this.endingNumber5.Visible = false;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -688,6 +825,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 657);
+            this.Controls.Add(this.endingNumber5);
+            this.Controls.Add(this.endingNumber4);
+            this.Controls.Add(this.endingNumber3);
+            this.Controls.Add(this.endingNumber2);
+            this.Controls.Add(this.endingTextLabel5);
+            this.Controls.Add(this.endingTextLabel4);
+            this.Controls.Add(this.endingTextLabel3);
+            this.Controls.Add(this.endingTextLabel2);
+            this.Controls.Add(this.endingNumber1);
+            this.Controls.Add(this.endingTextLabel1);
+            this.Controls.Add(this.statisticsBackButton);
+            this.Controls.Add(this.nextQuestionButton);
             this.Controls.Add(this.warningQuestion);
             this.Controls.Add(this.okQuestion);
             this.Controls.Add(this.noQuestion);
@@ -730,13 +879,12 @@
             this.Controls.Add(this.passConfBox);
             this.Controls.Add(this.newQuizButton);
             this.Controls.Add(this.usernameBox);
-            this.Controls.Add(this.createAccountButton);
-            this.Controls.Add(this.nextQuestionButton);
             this.Controls.Add(this.footerImageSmall);
             this.Controls.Add(this.questionImage);
-            this.Controls.Add(this.footerStatistics);
             this.Controls.Add(this.footerImage);
-            this.Controls.Add(this.statisticsBackButton);
+            this.Controls.Add(this.createAccountButton);
+            this.Controls.Add(this.footerStatistics);
+            this.Controls.Add(this.endingBackButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -812,6 +960,17 @@
         public System.Windows.Forms.PictureBox noQuestion;
         public System.Windows.Forms.PictureBox okQuestion;
         public System.Windows.Forms.PictureBox warningQuestion;
+        private System.Windows.Forms.Button endingBackButton;
+        private System.Windows.Forms.Label endingTextLabel1;
+        private System.Windows.Forms.Label endingNumber1;
+        private System.Windows.Forms.Label endingTextLabel2;
+        private System.Windows.Forms.Label endingTextLabel3;
+        private System.Windows.Forms.Label endingTextLabel4;
+        private System.Windows.Forms.Label endingTextLabel5;
+        private System.Windows.Forms.Label endingNumber2;
+        private System.Windows.Forms.Label endingNumber3;
+        private System.Windows.Forms.Label endingNumber4;
+        private System.Windows.Forms.Label endingNumber5;
 
     }
 }

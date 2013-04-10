@@ -164,13 +164,15 @@ namespace RomGeo
             createAccountButton.MouseLeave += new EventHandler(CreateAccountButton_MouseLeave);
             statisticsBackButton.MouseEnter += new EventHandler(StatisticsBackButton_MouseEnter);
             statisticsBackButton.MouseLeave += new EventHandler(StatisticsBackButton_MouseLeave);
+            endingBackButton.MouseEnter += new EventHandler(EndingBackButton_MouseEnter);
+            endingBackButton.MouseLeave += new EventHandler(EndingBackButton_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadOpenSansLight();
             ApplyOpenSansLight(openSansLight);
-            Clock.Interval = 1500; // time untill next question
+            Clock.Interval = 100; // time untill next question
             Clock.Tick += new EventHandler(Timer_Tick);
             GetNextScreen();
         }
@@ -222,19 +224,46 @@ namespace RomGeo
                     }
                     break;
                 case AppState.InQuiz:
+                    foreach (var ap in answerPickers)
+                        ap.Enabled = true;
                     if (previousState != currentState)
                     {
+                        quizTitle.Text = "Întrebarea  " + PersistentData.currentQuestionIndex + " / 30";
                         quizTitle.Visible = true;
                         logoSmall.Visible = true;
                         questionText.Visible = true;
                         questionImage.Visible = true;
-                        foreach (var ap in answerPickers) ap.Visible = true;
+                        foreach (var ap in answerPickers) 
+                            ap.Visible = true;
                         nextQuestionButton.Visible = true;
                         footerImageSmall.Visible = true;
                     }
+                    if (PersistentData.currentQuestionIndex == 30)
+                        nextQuestionButton.Text = "Finalizare";
                     PersistentData.currentQuestion = DAL.GetQuestion();
                     ShowQuestion(PersistentData.currentQuestion);
                     DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
+                    Debug.Log("PersistentData.currentQuestion.Domain: " + PersistentData.currentQuestion.Domain);
+                    switch (PersistentData.currentQuestion.Domain)
+                    {
+                        case Domain.Relief:
+                            Debug.Log("relief");
+                            PersistentData.ReliefQuestionCount++;
+                            break;
+                        case Domain.Hidrografie:
+                            Debug.Log("hidro");
+                            PersistentData.HidrografieQuestionCount++;
+                            break;
+                        case Domain.Administrativ:
+                            Debug.Log("admin");
+                            PersistentData.AdministrativQuestionCount++;
+                            break;
+                        case Domain.Resurse:
+                            Debug.Log("resurse");
+                            PersistentData.ResurseQuestionCount++;
+                            break;
+
+                    }
                     break;
                 case AppState.CreateAccount:
                     if (previousState != currentState)
@@ -281,6 +310,35 @@ namespace RomGeo
                         footerStatistics.Visible = true;
                     }
                     break;
+                case AppState.EndingScreen:
+                    if (previousState != currentState)
+                    {
+                        quizTitle.Text = "Rezultate Chestionar";
+                        quizTitle.Visible = true;
+                        logoSmall.Visible = true;
+
+                        endingTextLabel1.Visible = true;
+                        endingTextLabel2.Visible = true;
+                        endingTextLabel3.Visible = true;
+                        endingTextLabel4.Visible = true;
+                        endingTextLabel5.Visible = true;
+
+                        endingNumber1.Text = PersistentData.correctAnswerCount + " / 30";
+                        endingNumber2.Text = PersistentData.correctAnswerReliefCount + " / " + PersistentData.ReliefQuestionCount;
+                        endingNumber3.Text = PersistentData.correctAnswerHidrografieCount + " / " + PersistentData.HidrografieQuestionCount;
+                        endingNumber4.Text = PersistentData.correctAnswerAdministrativCount + " / " + PersistentData.AdministrativQuestionCount;
+                        endingNumber5.Text = PersistentData.correctAnswerResurseCount + " / " + PersistentData.ResurseQuestionCount;
+
+                        endingNumber1.Visible = true;
+                        endingNumber2.Visible = true;
+                        endingNumber3.Visible = true;
+                        endingNumber4.Visible = true;
+                        endingNumber5.Visible = true;
+
+                        endingBackButton.Visible = true;
+                        footerImage.Visible = true;
+                    }
+                    break;
             }
         }
 
@@ -318,6 +376,23 @@ namespace RomGeo
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            previousState = currentState;
+            currentState = AppState.UserPanel;
+            GetNextScreen();
+        }
+
+        private void endingBackButton_Click(object sender, EventArgs e)
+        {
+            PersistentData.correctAnswerCount = 0;
+            PersistentData.correctAnswerReliefCount = 0;
+            PersistentData.correctAnswerHidrografieCount = 0;
+            PersistentData.correctAnswerAdministrativCount = 0;
+            PersistentData.correctAnswerResurseCount = 0;
+            PersistentData.ReliefQuestionCount = 0;
+            PersistentData.HidrografieQuestionCount = 0;
+            PersistentData.AdministrativQuestionCount = 0;
+            PersistentData.ResurseQuestionCount = 0;
+
             previousState = currentState;
             currentState = AppState.UserPanel;
             GetNextScreen();
@@ -427,6 +502,22 @@ namespace RomGeo
             {
                 DAL.MarkCorrect(PersistentData.user, PersistentData.currentQuestion);
                 PersistentData.correctAnswerCount++;
+                switch (PersistentData.currentQuestion.Domain)
+                {
+                    case Domain.Relief:
+                        PersistentData.correctAnswerReliefCount++;
+                        break;
+                    case Domain.Hidrografie:
+                        PersistentData.correctAnswerHidrografieCount++;
+                        break;
+                    case Domain.Administrativ:
+                        PersistentData.correctAnswerAdministrativCount++;
+                        break;
+                    case Domain.Resurse:
+                        PersistentData.correctAnswerResurseCount++;
+                        break;
+
+                }
                 quizMessageLabel.Text = "Corect!";
                 okQuestion.Visible = true;
             }
@@ -437,6 +528,8 @@ namespace RomGeo
             }
 
             quizMessageLabel.Visible = true;
+            foreach (var ap in answerPickers) 
+                ap.Enabled = false;
 
             Clock.Start();
 
@@ -515,11 +608,18 @@ namespace RomGeo
             this.statisticsBackButton.BackColor = Color.FromArgb(5, 142, 158);
         }
 
+        private void EndingBackButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.endingBackButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void EndingBackButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.endingBackButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
         public void Timer_Tick(object sender, EventArgs eArgs)
         {
             Clock.Stop();
-
-            GetNextScreen();
 
             // Manage form states
             previousState = AppState.InQuiz;
@@ -530,11 +630,11 @@ namespace RomGeo
             }
             else
             {
-                // PersistentData.correctAnswerCount = 0; // Maybe go to ending screen instead
                 PersistentData.currentQuestionIndex = 1;
-                currentState = AppState.Start;
+                currentState = AppState.EndingScreen;
             }
-        }
 
+            GetNextScreen();
+        }
     }
 }
