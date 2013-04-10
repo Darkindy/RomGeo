@@ -101,7 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\opensans-light-webfont.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\OpenSans-Regular.ttf" />
     <None Include="Resources\Images\Interface\header.png" />
     <None Include="Resources\Images\Interface\logo.png" />
     <None Include="Resources\Images\Interface\footer.png" />
@@ -119,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Interface\footerstatistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Interface\warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

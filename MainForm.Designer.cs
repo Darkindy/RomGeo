@@ -57,7 +57,7 @@
             this.statisticsNumber2 = new System.Windows.Forms.Label();
             this.statisticsText3 = new System.Windows.Forms.Label();
             this.statisticsNumber3 = new System.Windows.Forms.Label();
-            this.backButton = new System.Windows.Forms.Button();
+            this.statisticsBackButton = new System.Windows.Forms.Button();
             this.statisticsType1 = new System.Windows.Forms.Label();
             this.statisticsPercent1 = new System.Windows.Forms.Label();
             this.statisticsType2 = new System.Windows.Forms.Label();
@@ -66,22 +66,29 @@
             this.statisticsPercent4 = new System.Windows.Forms.Label();
             this.statisticsType3 = new System.Windows.Forms.Label();
             this.statisticsType4 = new System.Windows.Forms.Label();
+            this.quizMessageLabel = new System.Windows.Forms.Label();
+            this.warningQuestion = new System.Windows.Forms.PictureBox();
+            this.okQuestion = new System.Windows.Forms.PictureBox();
+            this.noQuestion = new System.Windows.Forms.PictureBox();
             this.noPicture = new System.Windows.Forms.PictureBox();
             this.okPicture = new System.Windows.Forms.PictureBox();
             this.headerImage = new System.Windows.Forms.PictureBox();
             this.logoSmall = new System.Windows.Forms.PictureBox();
-            this.footerImage = new System.Windows.Forms.PictureBox();
             this.footerImageSmall = new System.Windows.Forms.PictureBox();
             this.questionImage = new System.Windows.Forms.PictureBox();
             this.footerStatistics = new System.Windows.Forms.PictureBox();
+            this.footerImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.warningQuestion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.okQuestion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noQuestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.okPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.headerImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).BeginInit();
             this.SuspendLayout();
             // 
             // loginButton
@@ -432,21 +439,21 @@
             this.statisticsNumber3.Text = "67%";
             this.statisticsNumber3.Visible = false;
             // 
-            // backButton
+            // statisticsBackButton
             // 
-            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
-            this.backButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.ForeColor = System.Drawing.Color.White;
-            this.backButton.Location = new System.Drawing.Point(415, 460);
-            this.backButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(170, 50);
-            this.backButton.TabIndex = 42;
-            this.backButton.Text = "Inapoi";
-            this.backButton.UseVisualStyleBackColor = false;
-            this.backButton.Visible = false;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.statisticsBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsBackButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.statisticsBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsBackButton.ForeColor = System.Drawing.Color.White;
+            this.statisticsBackButton.Location = new System.Drawing.Point(415, 460);
+            this.statisticsBackButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.statisticsBackButton.Name = "statisticsBackButton";
+            this.statisticsBackButton.Size = new System.Drawing.Size(170, 50);
+            this.statisticsBackButton.TabIndex = 42;
+            this.statisticsBackButton.Text = "Inapoi";
+            this.statisticsBackButton.UseVisualStyleBackColor = false;
+            this.statisticsBackButton.Visible = false;
+            this.statisticsBackButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // statisticsType1
             // 
@@ -552,6 +559,47 @@
             this.statisticsType4.Text = "Resurse";
             this.statisticsType4.Visible = false;
             // 
+            // quizMessageLabel
+            // 
+            this.quizMessageLabel.AutoSize = true;
+            this.quizMessageLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quizMessageLabel.Location = new System.Drawing.Point(108, 527);
+            this.quizMessageLabel.Name = "quizMessageLabel";
+            this.quizMessageLabel.Size = new System.Drawing.Size(187, 18);
+            this.quizMessageLabel.TabIndex = 56;
+            this.quizMessageLabel.Text = "InQuiz message label";
+            this.quizMessageLabel.Visible = false;
+            // 
+            // warningQuestion
+            // 
+            this.warningQuestion.Image = global::RomGeo.Properties.Resources.warning;
+            this.warningQuestion.Location = new System.Drawing.Point(70, 520);
+            this.warningQuestion.Name = "warningQuestion";
+            this.warningQuestion.Size = new System.Drawing.Size(32, 32);
+            this.warningQuestion.TabIndex = 59;
+            this.warningQuestion.TabStop = false;
+            this.warningQuestion.Visible = false;
+            // 
+            // okQuestion
+            // 
+            this.okQuestion.Image = global::RomGeo.Properties.Resources.ok;
+            this.okQuestion.Location = new System.Drawing.Point(70, 520);
+            this.okQuestion.Name = "okQuestion";
+            this.okQuestion.Size = new System.Drawing.Size(32, 32);
+            this.okQuestion.TabIndex = 58;
+            this.okQuestion.TabStop = false;
+            this.okQuestion.Visible = false;
+            // 
+            // noQuestion
+            // 
+            this.noQuestion.Image = global::RomGeo.Properties.Resources.no;
+            this.noQuestion.Location = new System.Drawing.Point(70, 520);
+            this.noQuestion.Name = "noQuestion";
+            this.noQuestion.Size = new System.Drawing.Size(32, 32);
+            this.noQuestion.TabIndex = 57;
+            this.noQuestion.TabStop = false;
+            this.noQuestion.Visible = false;
+            // 
             // noPicture
             // 
             this.noPicture.Image = global::RomGeo.Properties.Resources.no;
@@ -593,16 +641,6 @@
             this.logoSmall.TabStop = false;
             this.logoSmall.Visible = false;
             // 
-            // footerImage
-            // 
-            this.footerImage.Image = global::RomGeo.Properties.Resources.bottom;
-            this.footerImage.Location = new System.Drawing.Point(0, 510);
-            this.footerImage.Name = "footerImage";
-            this.footerImage.Size = new System.Drawing.Size(980, 147);
-            this.footerImage.TabIndex = 8;
-            this.footerImage.TabStop = false;
-            this.footerImage.Visible = false;
-            // 
             // footerImageSmall
             // 
             this.footerImageSmall.Image = global::RomGeo.Properties.Resources.bottom;
@@ -633,6 +671,16 @@
             this.footerStatistics.TabStop = false;
             this.footerStatistics.Visible = false;
             // 
+            // footerImage
+            // 
+            this.footerImage.Image = global::RomGeo.Properties.Resources.bottom;
+            this.footerImage.Location = new System.Drawing.Point(0, 510);
+            this.footerImage.Name = "footerImage";
+            this.footerImage.Size = new System.Drawing.Size(980, 147);
+            this.footerImage.TabIndex = 8;
+            this.footerImage.TabStop = false;
+            this.footerImage.Visible = false;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -640,6 +688,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 657);
+            this.Controls.Add(this.warningQuestion);
+            this.Controls.Add(this.okQuestion);
+            this.Controls.Add(this.noQuestion);
+            this.Controls.Add(this.quizMessageLabel);
             this.Controls.Add(this.statisticsLabel);
             this.Controls.Add(this.statisticsType4);
             this.Controls.Add(this.statisticsType3);
@@ -649,7 +701,6 @@
             this.Controls.Add(this.statisticsType2);
             this.Controls.Add(this.statisticsPercent1);
             this.Controls.Add(this.statisticsType1);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.statisticsNumber3);
             this.Controls.Add(this.statisticsText3);
             this.Controls.Add(this.statisticsNumber2);
@@ -685,6 +736,7 @@
             this.Controls.Add(this.questionImage);
             this.Controls.Add(this.footerStatistics);
             this.Controls.Add(this.footerImage);
+            this.Controls.Add(this.statisticsBackButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -693,14 +745,17 @@
             this.Name = "MainForm";
             this.Text = "RomGeo";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.warningQuestion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.okQuestion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noQuestion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.noPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.okPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.headerImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -743,7 +798,7 @@
         private System.Windows.Forms.Label statisticsNumber2;
         private System.Windows.Forms.Label statisticsText3;
         private System.Windows.Forms.Label statisticsNumber3;
-        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button statisticsBackButton;
         private System.Windows.Forms.Label statisticsType1;
         private System.Windows.Forms.Label statisticsPercent1;
         private System.Windows.Forms.Label statisticsType2;
@@ -753,6 +808,10 @@
         private System.Windows.Forms.Label statisticsType3;
         private System.Windows.Forms.Label statisticsType4;
         private System.Windows.Forms.PictureBox footerStatistics;
+        public System.Windows.Forms.Label quizMessageLabel;
+        public System.Windows.Forms.PictureBox noQuestion;
+        public System.Windows.Forms.PictureBox okQuestion;
+        public System.Windows.Forms.PictureBox warningQuestion;
 
     }
 }

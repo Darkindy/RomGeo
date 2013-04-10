@@ -35,10 +35,12 @@ namespace RomGeo
         private AppState currentState = AppState.Start;
         private AppState previousState;    // may be used in the future, leave here
 
+        Timer Clock = new Timer();
+
         OneBasedArray<RadioButton> answerPickers;
 
         FontFamily ff;
-        Font openSansLight, openSansRegular;
+        Font openSansLight;
 
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
@@ -68,32 +70,6 @@ namespace RomGeo
             ff = pfc.Families[0];
             openSansLight = new Font(ff, 15f, FontStyle.Regular);
         }
-        /*
-        private void LoadOpenSansRegular()
-        {
-            // Create the byte array and get its length
-
-            byte[] fontArray = Properties.Resources.OpenSans_Regular;
-            int dataLength = Properties.Resources.OpenSans_Regular.Length;
-
-
-            // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
-            IntPtr ptrData = Marshal.AllocCoTaskMem(dataLength);
-            Marshal.Copy(fontArray, 0, ptrData, dataLength);
-
-            uint cFonts = 0;
-            AddFontMemResourceEx(ptrData, (uint)fontArray.Length, IntPtr.Zero, ref cFonts);
-
-            PrivateFontCollection pfc = new PrivateFontCollection();
-            //PASS THE FONT TO THE  PRIVATEFONTCOLLECTION OBJECT
-            pfc.AddMemoryFont(ptrData, dataLength);
-
-            //FREE THE  "UNSAFE" MEMORY
-            Marshal.FreeCoTaskMem(ptrData);
-
-            ff = pfc.Families[0];
-            openSansRegular = new Font(ff, 15f, FontStyle.Regular);
-        }*/
         
         private void ApplyOpenSansLight(Font font)
         {
@@ -118,7 +94,7 @@ namespace RomGeo
             this.statisticsNumber1.Font = new Font(ff, 24, fontStyle_regular);
             this.statisticsNumber2.Font = new Font(ff, 24, fontStyle_regular);
             this.statisticsNumber3.Font = new Font(ff, 30, fontStyle_regular);
-            this.backButton.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsBackButton.Font = new Font(ff, 10, fontStyle_regular);
             this.statisticsPercent1.Font = new Font(ff, 26, fontStyle_regular);
             this.statisticsPercent2.Font = new Font(ff, 26, fontStyle_regular);
             this.statisticsPercent3.Font = new Font(ff, 26, fontStyle_regular);
@@ -128,18 +104,6 @@ namespace RomGeo
             this.statisticsType3.Font = new Font(ff, 10, fontStyle_regular);
             this.statisticsType4.Font = new Font(ff, 10, fontStyle_regular);
         }
-        /*
-        private void ApplyOpenSansRegular(Font font)
-        {
-            FontStyle fontStyle_regular = FontStyle.Regular;
-
-            this.quizTitle.Font = new Font(ff, 20, fontStyle_regular);
-            this.questionText.Font = new Font(ff, 12, fontStyle_regular);
-            this.statisticsText1.Font = new Font(ff, 12, fontStyle_regular);
-
-            foreach (var ap in answerPickers)
-                ap.Font = new Font(ff, 10, fontStyle_regular);
-        }*/
 
         public void ShowQuestion(Question question){
                 questionText.Text = question.Text;
@@ -198,16 +162,16 @@ namespace RomGeo
             createAccountLink.MouseLeave += new EventHandler(CreateAccountLink_MouseLeave);
             createAccountButton.MouseEnter += new EventHandler(CreateAccountButton_MouseEnter);
             createAccountButton.MouseLeave += new EventHandler(CreateAccountButton_MouseLeave);
-            backButton.MouseEnter += new EventHandler(BackButton_MouseEnter);
-            backButton.MouseLeave += new EventHandler(BackButton_MouseLeave);
+            statisticsBackButton.MouseEnter += new EventHandler(StatisticsBackButton_MouseEnter);
+            statisticsBackButton.MouseLeave += new EventHandler(StatisticsBackButton_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadOpenSansLight();
             ApplyOpenSansLight(openSansLight);
-            //LoadOpenSansRegular();
-            //ApplyOpenSansRegular(openSansRegular);
+            Clock.Interval = 1500; // time untill next question
+            Clock.Tick += new EventHandler(Timer_Tick);
             GetNextScreen();
         }
 
@@ -222,6 +186,10 @@ namespace RomGeo
             {
                 foreach (Control c in this.Controls)
                     if (c is RadioButton) ((RadioButton)c).Checked = false;
+                quizMessageLabel.Visible = false;
+                okQuestion.Visible = false;
+                noQuestion.Visible = false;
+                warningQuestion.Visible = false;
             }
 
             switch (currentState)
@@ -309,7 +277,7 @@ namespace RomGeo
                         statisticsPercent3.Visible = true;
                         statisticsPercent4.Visible = true;
 
-                        backButton.Visible = true;
+                        statisticsBackButton.Visible = true;
                         footerStatistics.Visible = true;
                     }
                     break;
@@ -445,23 +413,13 @@ namespace RomGeo
             foreach (var ap in answerPickers) if (ap.Checked == true) { ready = true; break; }
             if (!ready)
             {
-                MessageBox.Show("Trebuie sa alegi un raspuns pentru a continua.");
+                quizMessageLabel.Text = "Trebuie sa alegi un raspuns pentru a continua.";
+                quizMessageLabel.Visible = true;
+                warningQuestion.Visible = true;
                 return;
             }
-
-            // Manage form states
-            previousState = AppState.InQuiz;
-            if (PersistentData.currentQuestionIndex < 30)
-            {
-                PersistentData.currentQuestionIndex++;
-                quizTitle.Text = "Intrebarea  " + PersistentData.currentQuestionIndex + " / 30";
-            }
-            else
-            {
-                // PersistentData.correctAnswerCount = 0; // Maybe go to ending screen instead
-                PersistentData.currentQuestionIndex = 1;
-                currentState = AppState.Start;
-            }
+            quizMessageLabel.Visible = false;
+            warningQuestion.Visible = false;
 
             // Verify if answer was correct
             var checkedButton = this.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
@@ -469,9 +427,19 @@ namespace RomGeo
             {
                 DAL.MarkCorrect(PersistentData.user, PersistentData.currentQuestion);
                 PersistentData.correctAnswerCount++;
+                quizMessageLabel.Text = "Corect!";
+                okQuestion.Visible = true;
             }
-            // Proceed to next screen
-            GetNextScreen();
+            else
+            {
+                quizMessageLabel.Text = "Gresit! Raspunsul corect este: " + PersistentData.currentQuestion.CorrectAnswer;
+                noQuestion.Visible = true;
+            }
+
+            quizMessageLabel.Visible = true;
+
+            Clock.Start();
+
             Debug.Log("Correct: "+PersistentData.correctAnswerCount);
         }
 
@@ -538,13 +506,34 @@ namespace RomGeo
             this.createAccountButton.BackColor = Color.FromArgb(5, 142, 158);
         }
 
-        private void BackButton_MouseEnter(object sender, EventArgs e)
+        private void StatisticsBackButton_MouseEnter(object sender, EventArgs e)
         {
-            this.backButton.BackColor = Color.FromArgb(161, 27, 60);
+            this.statisticsBackButton.BackColor = Color.FromArgb(161, 27, 60);
         }
-        private void BackButton_MouseLeave(object sender, EventArgs e)
+        private void StatisticsBackButton_MouseLeave(object sender, EventArgs e)
         {
-            this.backButton.BackColor = Color.FromArgb(5, 142, 158);
+            this.statisticsBackButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
+        public void Timer_Tick(object sender, EventArgs eArgs)
+        {
+            Clock.Stop();
+
+            GetNextScreen();
+
+            // Manage form states
+            previousState = AppState.InQuiz;
+            if (PersistentData.currentQuestionIndex < 30)
+            {
+                PersistentData.currentQuestionIndex++;
+                quizTitle.Text = "Întrebarea  " + PersistentData.currentQuestionIndex + " / 30";
+            }
+            else
+            {
+                // PersistentData.correctAnswerCount = 0; // Maybe go to ending screen instead
+                PersistentData.currentQuestionIndex = 1;
+                currentState = AppState.Start;
+            }
         }
 
     }
