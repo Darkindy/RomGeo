@@ -25,6 +25,8 @@ namespace RomGeo
         public static int correctAnswerAdministrativCount = 0;
         public static int correctAnswerResurseCount = 0;
 
+        public static int[] quizQuestions = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
         #region constants
              public const int MAX_ANSWERS = 4;
         #endregion

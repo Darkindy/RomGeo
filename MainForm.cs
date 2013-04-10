@@ -119,6 +119,24 @@ namespace RomGeo
                     questionImage.Visible = false;
                 }
         }
+
+        public bool CheckQuestionIdDuplicate(int id)
+        {
+            bool result = false; //intrebarea nu mai exista in chestionarul curent
+
+            foreach (int qid in PersistentData.quizQuestions) {
+                if (qid == 0)
+                    return result;
+                else if (qid == id)
+                {
+                    result = true;
+                    return result;
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region SINGLETON-PATTERN
@@ -172,13 +190,16 @@ namespace RomGeo
         {
             LoadOpenSansLight();
             ApplyOpenSansLight(openSansLight);
-            Clock.Interval = 100; // time untill next question
+            Clock.Interval = 2000; // time untill next question
             Clock.Tick += new EventHandler(Timer_Tick);
             GetNextScreen();
         }
 
         private void GetNextScreen()
         {
+            foreach (Control c in this.Controls)
+                if (c is RadioButton) ((RadioButton)c).Checked = false;
+
             if (previousState != currentState)
                 foreach (Control c in this.Controls)
                 {
@@ -186,8 +207,6 @@ namespace RomGeo
                 }
             else
             {
-                foreach (Control c in this.Controls)
-                    if (c is RadioButton) ((RadioButton)c).Checked = false;
                 quizMessageLabel.Visible = false;
                 okQuestion.Visible = false;
                 noQuestion.Visible = false;
@@ -240,10 +259,15 @@ namespace RomGeo
                     }
                     if (PersistentData.currentQuestionIndex == 30)
                         nextQuestionButton.Text = "Finalizare";
+
                     PersistentData.currentQuestion = DAL.GetQuestion();
+                    while (CheckQuestionIdDuplicate(PersistentData.currentQuestion.Id))
+                    {
+                        PersistentData.currentQuestion = DAL.GetQuestion();
+                    }
+                    PersistentData.quizQuestions[PersistentData.currentQuestionIndex-1] = PersistentData.currentQuestion.Id;
                     ShowQuestion(PersistentData.currentQuestion);
                     DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
-                    Debug.Log("PersistentData.currentQuestion.Domain: " + PersistentData.currentQuestion.Domain);
                     switch (PersistentData.currentQuestion.Domain)
                     {
                         case Domain.Relief:
@@ -392,6 +416,10 @@ namespace RomGeo
             PersistentData.HidrografieQuestionCount = 0;
             PersistentData.AdministrativQuestionCount = 0;
             PersistentData.ResurseQuestionCount = 0;
+
+            PersistentData.quizQuestions = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+            nextQuestionButton.Text = "Urmatoarea Intrebare";
 
             previousState = currentState;
             currentState = AppState.UserPanel;
