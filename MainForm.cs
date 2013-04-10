@@ -38,12 +38,12 @@ namespace RomGeo
         OneBasedArray<RadioButton> answerPickers;
 
         FontFamily ff;
-        Font openSansLight;
+        Font openSansLight, openSansRegular;
 
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
-        private void LoadPrivateFontCollection()
+        private void LoadOpenSansLight()
         {
             // Create the byte array and get its length
 
@@ -68,8 +68,34 @@ namespace RomGeo
             ff = pfc.Families[0];
             openSansLight = new Font(ff, 15f, FontStyle.Regular);
         }
+        /*
+        private void LoadOpenSansRegular()
+        {
+            // Create the byte array and get its length
+
+            byte[] fontArray = Properties.Resources.OpenSans_Regular;
+            int dataLength = Properties.Resources.OpenSans_Regular.Length;
+
+
+            // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
+            IntPtr ptrData = Marshal.AllocCoTaskMem(dataLength);
+            Marshal.Copy(fontArray, 0, ptrData, dataLength);
+
+            uint cFonts = 0;
+            AddFontMemResourceEx(ptrData, (uint)fontArray.Length, IntPtr.Zero, ref cFonts);
+
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            //PASS THE FONT TO THE  PRIVATEFONTCOLLECTION OBJECT
+            pfc.AddMemoryFont(ptrData, dataLength);
+
+            //FREE THE  "UNSAFE" MEMORY
+            Marshal.FreeCoTaskMem(ptrData);
+
+            ff = pfc.Families[0];
+            openSansRegular = new Font(ff, 15f, FontStyle.Regular);
+        }*/
         
-        private void ApplyFont(Font font)
+        private void ApplyOpenSansLight(Font font)
         {
             FontStyle fontStyle_regular = FontStyle.Regular;
             FontStyle fontStyle_bold = FontStyle.Bold;
@@ -85,15 +111,35 @@ namespace RomGeo
             this.statisticsButton.Font = new Font(ff, 10, fontStyle_regular);
             this.exitButton.Font = new Font(ff, 10, fontStyle_regular);
             this.nextQuestionButton.Font = new Font(ff, 10, fontStyle_regular);
-            this.quizTitle.Font = new Font(ff, 20, fontStyle_regular);
-            this.questionText.Font = new Font(ff, 12, fontStyle_regular);
             this.passConfLabel.Font = new Font(ff, 12, fontStyle_regular);
             this.passConfBox.Font = new Font(ff, 12, fontStyle_regular);
             this.createAccountLabel.Font = new Font(ff, 12, fontStyle_regular);
+            this.statisticsLabel.Font = new Font(ff, 14, fontStyle_regular);
+            this.statisticsNumber1.Font = new Font(ff, 24, fontStyle_regular);
+            this.statisticsNumber2.Font = new Font(ff, 24, fontStyle_regular);
+            this.statisticsNumber3.Font = new Font(ff, 30, fontStyle_regular);
+            this.backButton.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsPercent1.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsPercent2.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsPercent3.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsPercent4.Font = new Font(ff, 26, fontStyle_regular);
+            this.statisticsType1.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsType2.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsType3.Font = new Font(ff, 10, fontStyle_regular);
+            this.statisticsType4.Font = new Font(ff, 10, fontStyle_regular);
+        }
+        /*
+        private void ApplyOpenSansRegular(Font font)
+        {
+            FontStyle fontStyle_regular = FontStyle.Regular;
+
+            this.quizTitle.Font = new Font(ff, 20, fontStyle_regular);
+            this.questionText.Font = new Font(ff, 12, fontStyle_regular);
+            this.statisticsText1.Font = new Font(ff, 12, fontStyle_regular);
 
             foreach (var ap in answerPickers)
                 ap.Font = new Font(ff, 10, fontStyle_regular);
-        }
+        }*/
 
         public void ShowQuestion(Question question){
                 questionText.Text = question.Text;
@@ -152,12 +198,16 @@ namespace RomGeo
             createAccountLink.MouseLeave += new EventHandler(CreateAccountLink_MouseLeave);
             createAccountButton.MouseEnter += new EventHandler(CreateAccountButton_MouseEnter);
             createAccountButton.MouseLeave += new EventHandler(CreateAccountButton_MouseLeave);
+            backButton.MouseEnter += new EventHandler(BackButton_MouseEnter);
+            backButton.MouseLeave += new EventHandler(BackButton_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LoadPrivateFontCollection();
-            ApplyFont(openSansLight);
+            LoadOpenSansLight();
+            ApplyOpenSansLight(openSansLight);
+            //LoadOpenSansRegular();
+            //ApplyOpenSansRegular(openSansRegular);
             GetNextScreen();
         }
 
@@ -192,12 +242,15 @@ namespace RomGeo
                 case AppState.UserPanel:
                     if(previousState != currentState)
                     {
-                    headerImage.Visible = true;
-                    welcomeLabel.Visible = true;
-                    newQuizButton.Visible = true;
-                    statisticsButton.Visible = true;
-                    exitButton.Visible = true;
-                    footerImage.Visible = true;
+                        headerImage.Visible = true;
+                        welcomeLabel.Text = "Bine ai venit, " + PersistentData.user.ToString() + "!";
+                        welcomeLabel.Left = (this.Width - welcomeLabel.Width) / 2;
+                        welcomeLabel.Visible = true;
+
+                        newQuizButton.Visible = true;
+                        statisticsButton.Visible = true;
+                        exitButton.Visible = true;
+                        footerImage.Visible = true;
                     }
                     break;
                 case AppState.InQuiz:
@@ -229,6 +282,37 @@ namespace RomGeo
                         footerImage.Visible = true;
                     }
                     break;
+                case AppState.Statistics:
+                    if (previousState != currentState)
+                    {
+                        headerImage.Visible = true;
+
+                        statisticsLabel.Text = "Statistici utilizator " + PersistentData.user.ToString();
+                        statisticsLabel.Left = (this.Width - statisticsLabel.Width) / 2;
+                        statisticsLabel.Visible = true;                        
+                        
+                        statisticsText1.Visible = true;
+                        statisticsText2.Visible = true;
+                        statisticsText3.Visible = true;
+
+                        statisticsNumber1.Visible = true;
+                        statisticsNumber2.Visible = true;
+                        statisticsNumber3.Visible = true;
+
+                        statisticsType1.Visible = true;
+                        statisticsType2.Visible = true;
+                        statisticsType3.Visible = true;
+                        statisticsType4.Visible = true;
+
+                        statisticsPercent1.Visible = true;
+                        statisticsPercent2.Visible = true;
+                        statisticsPercent3.Visible = true;
+                        statisticsPercent4.Visible = true;
+
+                        backButton.Visible = true;
+                        footerStatistics.Visible = true;
+                    }
+                    break;
             }
         }
 
@@ -236,13 +320,11 @@ namespace RomGeo
         {
             if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
             {
+                User currentUser = new User(usernameBox.Text, DAL.GetID(usernameBox.Text));
+                PersistentData.user = currentUser;
                 previousState = currentState;
                 currentState = AppState.UserPanel;
                 GetNextScreen();
-                welcomeLabel.Text = "Bine ai venit, " + usernameBox.Text + "!";
-                welcomeLabel.Left = (this.Width - welcomeLabel.Width) / 2;
-                User currentUser = new User(usernameBox.Text, DAL.GetID(usernameBox.Text));
-                PersistentData.user = currentUser;
             }
             else
             {
@@ -261,7 +343,16 @@ namespace RomGeo
 
         private void StatisticsButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("NYI");
+            previousState = currentState;
+            currentState = AppState.Statistics;
+            GetNextScreen();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            previousState = currentState;
+            currentState = AppState.UserPanel;
+            GetNextScreen();
         }
 
         private void QuizButton_Click(object sender, EventArgs e)
@@ -446,5 +537,15 @@ namespace RomGeo
         {
             this.createAccountButton.BackColor = Color.FromArgb(5, 142, 158);
         }
+
+        private void BackButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.backButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void BackButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.backButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
     }
 }

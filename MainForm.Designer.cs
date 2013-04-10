@@ -50,20 +50,38 @@
             this.passConfBox = new System.Windows.Forms.TextBox();
             this.createAccountButton = new System.Windows.Forms.Button();
             this.createAccountLabel = new System.Windows.Forms.Label();
+            this.statisticsLabel = new System.Windows.Forms.Label();
+            this.statisticsText1 = new System.Windows.Forms.Label();
+            this.statisticsNumber1 = new System.Windows.Forms.Label();
+            this.statisticsText2 = new System.Windows.Forms.Label();
+            this.statisticsNumber2 = new System.Windows.Forms.Label();
+            this.statisticsText3 = new System.Windows.Forms.Label();
+            this.statisticsNumber3 = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
+            this.statisticsType1 = new System.Windows.Forms.Label();
+            this.statisticsPercent1 = new System.Windows.Forms.Label();
+            this.statisticsType2 = new System.Windows.Forms.Label();
+            this.statisticsPercent2 = new System.Windows.Forms.Label();
+            this.statisticsPercent3 = new System.Windows.Forms.Label();
+            this.statisticsPercent4 = new System.Windows.Forms.Label();
+            this.statisticsType3 = new System.Windows.Forms.Label();
+            this.statisticsType4 = new System.Windows.Forms.Label();
             this.noPicture = new System.Windows.Forms.PictureBox();
             this.okPicture = new System.Windows.Forms.PictureBox();
-            this.footerImageSmall = new System.Windows.Forms.PictureBox();
             this.headerImage = new System.Windows.Forms.PictureBox();
-            this.footerImage = new System.Windows.Forms.PictureBox();
             this.logoSmall = new System.Windows.Forms.PictureBox();
+            this.footerImage = new System.Windows.Forms.PictureBox();
+            this.footerImageSmall = new System.Windows.Forms.PictureBox();
             this.questionImage = new System.Windows.Forms.PictureBox();
+            this.footerStatistics = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.noPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.okPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.headerImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).BeginInit();
             this.SuspendLayout();
             // 
             // loginButton
@@ -202,10 +220,10 @@
             // questionText
             // 
             this.questionText.AutoSize = true;
-            this.questionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.questionText.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questionText.Location = new System.Drawing.Point(105, 120);
             this.questionText.Name = "questionText";
-            this.questionText.Size = new System.Drawing.Size(14, 20);
+            this.questionText.Size = new System.Drawing.Size(15, 18);
             this.questionText.TabIndex = 16;
             this.questionText.Text = "-";
             this.questionText.Visible = false;
@@ -213,9 +231,10 @@
             // answerPicker1
             // 
             this.answerPicker1.AutoSize = true;
+            this.answerPicker1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answerPicker1.Location = new System.Drawing.Point(110, 200);
             this.answerPicker1.Name = "answerPicker1";
-            this.answerPicker1.Size = new System.Drawing.Size(31, 21);
+            this.answerPicker1.Size = new System.Drawing.Size(33, 21);
             this.answerPicker1.TabIndex = 19;
             this.answerPicker1.TabStop = true;
             this.answerPicker1.Text = "-";
@@ -225,9 +244,10 @@
             // answerPicker2
             // 
             this.answerPicker2.AutoSize = true;
+            this.answerPicker2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answerPicker2.Location = new System.Drawing.Point(110, 250);
             this.answerPicker2.Name = "answerPicker2";
-            this.answerPicker2.Size = new System.Drawing.Size(31, 21);
+            this.answerPicker2.Size = new System.Drawing.Size(33, 21);
             this.answerPicker2.TabIndex = 20;
             this.answerPicker2.TabStop = true;
             this.answerPicker2.Text = "-";
@@ -237,9 +257,10 @@
             // answerPicker3
             // 
             this.answerPicker3.AutoSize = true;
+            this.answerPicker3.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answerPicker3.Location = new System.Drawing.Point(110, 300);
             this.answerPicker3.Name = "answerPicker3";
-            this.answerPicker3.Size = new System.Drawing.Size(31, 21);
+            this.answerPicker3.Size = new System.Drawing.Size(33, 21);
             this.answerPicker3.TabIndex = 21;
             this.answerPicker3.TabStop = true;
             this.answerPicker3.Text = "-";
@@ -249,9 +270,10 @@
             // answerPicker4
             // 
             this.answerPicker4.AutoSize = true;
+            this.answerPicker4.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answerPicker4.Location = new System.Drawing.Point(110, 350);
             this.answerPicker4.Name = "answerPicker4";
-            this.answerPicker4.Size = new System.Drawing.Size(31, 21);
+            this.answerPicker4.Size = new System.Drawing.Size(33, 21);
             this.answerPicker4.TabIndex = 22;
             this.answerPicker4.TabStop = true;
             this.answerPicker4.Text = "-";
@@ -277,12 +299,12 @@
             // quizTitle
             // 
             this.quizTitle.AutoSize = true;
-            this.quizTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quizTitle.Location = new System.Drawing.Point(200, 15);
+            this.quizTitle.Font = new System.Drawing.Font("Verdana", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quizTitle.Location = new System.Drawing.Point(180, 15);
             this.quizTitle.Name = "quizTitle";
-            this.quizTitle.Size = new System.Drawing.Size(219, 31);
+            this.quizTitle.Size = new System.Drawing.Size(262, 32);
             this.quizTitle.TabIndex = 26;
-            this.quizTitle.Text = "Intrebarea  1 / 30";
+            this.quizTitle.Text = "Întrebarea  1 / 30";
             this.quizTitle.Visible = false;
             // 
             // passConfLabel
@@ -333,6 +355,203 @@
             this.createAccountLabel.Text = "Create account warning";
             this.createAccountLabel.Visible = false;
             // 
+            // statisticsLabel
+            // 
+            this.statisticsLabel.AutoSize = true;
+            this.statisticsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsLabel.Location = new System.Drawing.Point(500, 150);
+            this.statisticsLabel.Name = "statisticsLabel";
+            this.statisticsLabel.Size = new System.Drawing.Size(22, 24);
+            this.statisticsLabel.TabIndex = 33;
+            this.statisticsLabel.Text = "S";
+            this.statisticsLabel.Visible = false;
+            // 
+            // statisticsText1
+            // 
+            this.statisticsText1.AutoSize = true;
+            this.statisticsText1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsText1.Location = new System.Drawing.Point(412, 220);
+            this.statisticsText1.Name = "statisticsText1";
+            this.statisticsText1.Size = new System.Drawing.Size(174, 17);
+            this.statisticsText1.TabIndex = 36;
+            this.statisticsText1.Text = "Total întrebări răspunse";
+            this.statisticsText1.Visible = false;
+            // 
+            // statisticsNumber1
+            // 
+            this.statisticsNumber1.AutoSize = true;
+            this.statisticsNumber1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsNumber1.Location = new System.Drawing.Point(465, 240);
+            this.statisticsNumber1.Name = "statisticsNumber1";
+            this.statisticsNumber1.Size = new System.Drawing.Size(69, 37);
+            this.statisticsNumber1.TabIndex = 37;
+            this.statisticsNumber1.Text = "100";
+            this.statisticsNumber1.Visible = false;
+            // 
+            // statisticsText2
+            // 
+            this.statisticsText2.AutoSize = true;
+            this.statisticsText2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsText2.Location = new System.Drawing.Point(407, 300);
+            this.statisticsText2.Name = "statisticsText2";
+            this.statisticsText2.Size = new System.Drawing.Size(186, 17);
+            this.statisticsText2.TabIndex = 38;
+            this.statisticsText2.Text = "Întrebări răspunse corect";
+            this.statisticsText2.Visible = false;
+            // 
+            // statisticsNumber2
+            // 
+            this.statisticsNumber2.AutoSize = true;
+            this.statisticsNumber2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsNumber2.Location = new System.Drawing.Point(465, 320);
+            this.statisticsNumber2.Name = "statisticsNumber2";
+            this.statisticsNumber2.Size = new System.Drawing.Size(69, 37);
+            this.statisticsNumber2.TabIndex = 39;
+            this.statisticsNumber2.Text = "100";
+            this.statisticsNumber2.Visible = false;
+            // 
+            // statisticsText3
+            // 
+            this.statisticsText3.AutoSize = true;
+            this.statisticsText3.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsText3.Location = new System.Drawing.Point(444, 380);
+            this.statisticsText3.Name = "statisticsText3";
+            this.statisticsText3.Size = new System.Drawing.Size(111, 17);
+            this.statisticsText3.TabIndex = 40;
+            this.statisticsText3.Text = "Procentaj total";
+            this.statisticsText3.Visible = false;
+            // 
+            // statisticsNumber3
+            // 
+            this.statisticsNumber3.AutoSize = true;
+            this.statisticsNumber3.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsNumber3.Location = new System.Drawing.Point(450, 400);
+            this.statisticsNumber3.Name = "statisticsNumber3";
+            this.statisticsNumber3.Size = new System.Drawing.Size(99, 46);
+            this.statisticsNumber3.TabIndex = 41;
+            this.statisticsNumber3.Text = "67%";
+            this.statisticsNumber3.Visible = false;
+            // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.backButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.ForeColor = System.Drawing.Color.White;
+            this.backButton.Location = new System.Drawing.Point(415, 460);
+            this.backButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(170, 50);
+            this.backButton.TabIndex = 42;
+            this.backButton.Text = "Inapoi";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Visible = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // statisticsType1
+            // 
+            this.statisticsType1.AutoSize = true;
+            this.statisticsType1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsType1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsType1.ForeColor = System.Drawing.Color.White;
+            this.statisticsType1.Location = new System.Drawing.Point(67, 300);
+            this.statisticsType1.Name = "statisticsType1";
+            this.statisticsType1.Size = new System.Drawing.Size(45, 17);
+            this.statisticsType1.TabIndex = 47;
+            this.statisticsType1.Text = "Relief";
+            this.statisticsType1.Visible = false;
+            // 
+            // statisticsPercent1
+            // 
+            this.statisticsPercent1.AutoSize = true;
+            this.statisticsPercent1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsPercent1.Font = new System.Drawing.Font("Verdana", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsPercent1.ForeColor = System.Drawing.Color.White;
+            this.statisticsPercent1.Location = new System.Drawing.Point(48, 330);
+            this.statisticsPercent1.Name = "statisticsPercent1";
+            this.statisticsPercent1.Size = new System.Drawing.Size(100, 42);
+            this.statisticsPercent1.TabIndex = 48;
+            this.statisticsPercent1.Text = "55%";
+            this.statisticsPercent1.Visible = false;
+            // 
+            // statisticsType2
+            // 
+            this.statisticsType2.AutoSize = true;
+            this.statisticsType2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsType2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsType2.ForeColor = System.Drawing.Color.White;
+            this.statisticsType2.Location = new System.Drawing.Point(234, 481);
+            this.statisticsType2.Name = "statisticsType2";
+            this.statisticsType2.Size = new System.Drawing.Size(77, 17);
+            this.statisticsType2.TabIndex = 49;
+            this.statisticsType2.Text = "Hidrologie";
+            this.statisticsType2.Visible = false;
+            // 
+            // statisticsPercent2
+            // 
+            this.statisticsPercent2.AutoSize = true;
+            this.statisticsPercent2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsPercent2.Font = new System.Drawing.Font("Verdana", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsPercent2.ForeColor = System.Drawing.Color.White;
+            this.statisticsPercent2.Location = new System.Drawing.Point(229, 512);
+            this.statisticsPercent2.Name = "statisticsPercent2";
+            this.statisticsPercent2.Size = new System.Drawing.Size(100, 42);
+            this.statisticsPercent2.TabIndex = 50;
+            this.statisticsPercent2.Text = "55%";
+            this.statisticsPercent2.Visible = false;
+            // 
+            // statisticsPercent3
+            // 
+            this.statisticsPercent3.AutoSize = true;
+            this.statisticsPercent3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsPercent3.Font = new System.Drawing.Font("Verdana", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsPercent3.ForeColor = System.Drawing.Color.White;
+            this.statisticsPercent3.Location = new System.Drawing.Point(743, 336);
+            this.statisticsPercent3.Name = "statisticsPercent3";
+            this.statisticsPercent3.Size = new System.Drawing.Size(100, 42);
+            this.statisticsPercent3.TabIndex = 51;
+            this.statisticsPercent3.Text = "55%";
+            this.statisticsPercent3.Visible = false;
+            // 
+            // statisticsPercent4
+            // 
+            this.statisticsPercent4.AutoSize = true;
+            this.statisticsPercent4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsPercent4.Font = new System.Drawing.Font("Verdana", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsPercent4.ForeColor = System.Drawing.Color.White;
+            this.statisticsPercent4.Location = new System.Drawing.Point(785, 505);
+            this.statisticsPercent4.Name = "statisticsPercent4";
+            this.statisticsPercent4.Size = new System.Drawing.Size(100, 42);
+            this.statisticsPercent4.TabIndex = 52;
+            this.statisticsPercent4.Text = "55%";
+            this.statisticsPercent4.Visible = false;
+            // 
+            // statisticsType3
+            // 
+            this.statisticsType3.AutoSize = true;
+            this.statisticsType3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsType3.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsType3.ForeColor = System.Drawing.Color.White;
+            this.statisticsType3.Location = new System.Drawing.Point(740, 312);
+            this.statisticsType3.Name = "statisticsType3";
+            this.statisticsType3.Size = new System.Drawing.Size(100, 17);
+            this.statisticsType3.TabIndex = 53;
+            this.statisticsType3.Text = "Administrativ";
+            this.statisticsType3.Visible = false;
+            // 
+            // statisticsType4
+            // 
+            this.statisticsType4.AutoSize = true;
+            this.statisticsType4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.statisticsType4.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsType4.ForeColor = System.Drawing.Color.White;
+            this.statisticsType4.Location = new System.Drawing.Point(798, 477);
+            this.statisticsType4.Name = "statisticsType4";
+            this.statisticsType4.Size = new System.Drawing.Size(65, 17);
+            this.statisticsType4.TabIndex = 54;
+            this.statisticsType4.Text = "Resurse";
+            this.statisticsType4.Visible = false;
+            // 
             // noPicture
             // 
             this.noPicture.Image = global::RomGeo.Properties.Resources.no;
@@ -353,16 +572,6 @@
             this.okPicture.TabStop = false;
             this.okPicture.Visible = false;
             // 
-            // footerImageSmall
-            // 
-            this.footerImageSmall.Image = global::RomGeo.Properties.Resources.bottom;
-            this.footerImageSmall.Location = new System.Drawing.Point(0, 550);
-            this.footerImageSmall.Name = "footerImageSmall";
-            this.footerImageSmall.Size = new System.Drawing.Size(980, 147);
-            this.footerImageSmall.TabIndex = 24;
-            this.footerImageSmall.TabStop = false;
-            this.footerImageSmall.Visible = false;
-            // 
             // headerImage
             // 
             this.headerImage.Image = global::RomGeo.Properties.Resources.logo2_150;
@@ -374,6 +583,16 @@
             this.headerImage.TabStop = false;
             this.headerImage.Visible = false;
             // 
+            // logoSmall
+            // 
+            this.logoSmall.Image = global::RomGeo.Properties.Resources.logo6;
+            this.logoSmall.Location = new System.Drawing.Point(0, 0);
+            this.logoSmall.Name = "logoSmall";
+            this.logoSmall.Size = new System.Drawing.Size(980, 100);
+            this.logoSmall.TabIndex = 15;
+            this.logoSmall.TabStop = false;
+            this.logoSmall.Visible = false;
+            // 
             // footerImage
             // 
             this.footerImage.Image = global::RomGeo.Properties.Resources.bottom;
@@ -384,15 +603,15 @@
             this.footerImage.TabStop = false;
             this.footerImage.Visible = false;
             // 
-            // logoSmall
+            // footerImageSmall
             // 
-            this.logoSmall.Image = global::RomGeo.Properties.Resources.logo6;
-            this.logoSmall.Location = new System.Drawing.Point(0, 0);
-            this.logoSmall.Name = "logoSmall";
-            this.logoSmall.Size = new System.Drawing.Size(980, 100);
-            this.logoSmall.TabIndex = 15;
-            this.logoSmall.TabStop = false;
-            this.logoSmall.Visible = false;
+            this.footerImageSmall.Image = global::RomGeo.Properties.Resources.bottom;
+            this.footerImageSmall.Location = new System.Drawing.Point(0, 550);
+            this.footerImageSmall.Name = "footerImageSmall";
+            this.footerImageSmall.Size = new System.Drawing.Size(980, 147);
+            this.footerImageSmall.TabIndex = 24;
+            this.footerImageSmall.TabStop = false;
+            this.footerImageSmall.Visible = false;
             // 
             // questionImage
             // 
@@ -404,6 +623,16 @@
             this.questionImage.TabStop = false;
             this.questionImage.Visible = false;
             // 
+            // footerStatistics
+            // 
+            this.footerStatistics.Image = global::RomGeo.Properties.Resources.footerstatistics;
+            this.footerStatistics.Location = new System.Drawing.Point(0, 257);
+            this.footerStatistics.Name = "footerStatistics";
+            this.footerStatistics.Size = new System.Drawing.Size(980, 400);
+            this.footerStatistics.TabIndex = 55;
+            this.footerStatistics.TabStop = false;
+            this.footerStatistics.Visible = false;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -411,34 +640,51 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 657);
+            this.Controls.Add(this.statisticsLabel);
+            this.Controls.Add(this.statisticsType4);
+            this.Controls.Add(this.statisticsType3);
+            this.Controls.Add(this.statisticsPercent4);
+            this.Controls.Add(this.statisticsPercent3);
+            this.Controls.Add(this.statisticsPercent2);
+            this.Controls.Add(this.statisticsType2);
+            this.Controls.Add(this.statisticsPercent1);
+            this.Controls.Add(this.statisticsType1);
+            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.statisticsNumber3);
+            this.Controls.Add(this.statisticsText3);
+            this.Controls.Add(this.statisticsNumber2);
+            this.Controls.Add(this.statisticsText2);
+            this.Controls.Add(this.statisticsNumber1);
+            this.Controls.Add(this.statisticsText1);
             this.Controls.Add(this.noPicture);
             this.Controls.Add(this.okPicture);
             this.Controls.Add(this.createAccountLabel);
-            this.Controls.Add(this.createAccountButton);
             this.Controls.Add(this.passConfLabel);
             this.Controls.Add(this.quizTitle);
-            this.Controls.Add(this.nextQuestionButton);
-            this.Controls.Add(this.footerImageSmall);
             this.Controls.Add(this.answerPicker4);
             this.Controls.Add(this.answerPicker3);
             this.Controls.Add(this.answerPicker2);
             this.Controls.Add(this.answerPicker1);
             this.Controls.Add(this.questionText);
-            this.Controls.Add(this.newQuizButton);
             this.Controls.Add(this.welcomeLabel);
             this.Controls.Add(this.headerImage);
-            this.Controls.Add(this.footerImage);
             this.Controls.Add(this.passLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.passBox);
-            this.Controls.Add(this.usernameBox);
             this.Controls.Add(this.createAccountLink);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.logoSmall);
             this.Controls.Add(this.statisticsButton);
-            this.Controls.Add(this.questionImage);
             this.Controls.Add(this.passConfBox);
+            this.Controls.Add(this.newQuizButton);
+            this.Controls.Add(this.usernameBox);
+            this.Controls.Add(this.createAccountButton);
+            this.Controls.Add(this.nextQuestionButton);
+            this.Controls.Add(this.footerImageSmall);
+            this.Controls.Add(this.questionImage);
+            this.Controls.Add(this.footerStatistics);
+            this.Controls.Add(this.footerImage);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -449,11 +695,12 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.noPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.okPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.headerImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,6 +736,23 @@
         public System.Windows.Forms.Label createAccountLabel;
         public System.Windows.Forms.PictureBox okPicture;
         public System.Windows.Forms.PictureBox noPicture;
+        private System.Windows.Forms.Label statisticsLabel;
+        private System.Windows.Forms.Label statisticsText1;
+        private System.Windows.Forms.Label statisticsNumber1;
+        private System.Windows.Forms.Label statisticsText2;
+        private System.Windows.Forms.Label statisticsNumber2;
+        private System.Windows.Forms.Label statisticsText3;
+        private System.Windows.Forms.Label statisticsNumber3;
+        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label statisticsType1;
+        private System.Windows.Forms.Label statisticsPercent1;
+        private System.Windows.Forms.Label statisticsType2;
+        private System.Windows.Forms.Label statisticsPercent2;
+        private System.Windows.Forms.Label statisticsPercent3;
+        private System.Windows.Forms.Label statisticsPercent4;
+        private System.Windows.Forms.Label statisticsType3;
+        private System.Windows.Forms.Label statisticsType4;
+        private System.Windows.Forms.PictureBox footerStatistics;
 
     }
 }

@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseAbstractionLayer\DAL.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="QuizObjects\Answers.cs" />
     <Compile Include="QuizObjects\GraphicQuestion.cs" />
     <Compile Include="MainForm.cs">
@@ -83,11 +89,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -100,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\opensans-light-webfont.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans-Regular.ttf" />
     <None Include="Resources\Images\Interface\header.png" />
     <None Include="Resources\Images\Interface\logo.png" />
     <None Include="Resources\Images\Interface\footer.png" />
@@ -110,10 +112,13 @@
     <Folder Include="Resources\Sounds\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ok.png" />
+    <None Include="Resources\Images\Interface\ok.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\no.png" />
+    <None Include="Resources\Images\Interface\no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Interface\footerstatistics.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
