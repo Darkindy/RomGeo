@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Data;
 using System.Security.Cryptography;
+using System.IO;
 
 using RomGeo.QuizObjects;
 using RomGeo.Utils;
@@ -284,6 +286,48 @@ namespace RomGeo.DatabaseAbstractionLayer
                         command.Parameters.AddWithValue("@user", user);
                         command.Parameters.AddWithValue("@idQ", question.Id);
                         if (command.ExecuteNonQuery() > 0) Debug.Log("Question " + question.Id + " marked as correct");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+
+                // Close connection
+                CloseConnection();
+            }
+        }
+
+
+        // Added for question uploader (admin)
+        public static void UploadQuestion(Question question, String fileName)
+        {
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("UploadQuestion", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                        BinaryReader reader = new BinaryReader(fs);
+                        byte[] imgData = reader.ReadBytes((int)fs.Length);
+
+                        MySqlParameter mParm = new MySqlParameter("@data", MySqlDbType.LongBlob);
+                        mParm.Size = imgData.Length;
+                        mParm.Value = imgData;
+
+                        command.Parameters.Add(mParm);
+
+                        command.Parameters.AddWithValue("@text", question.Text);
+                        command.Parameters.AddWithValue("@answer1", question.Answers[1]);
+                        command.Parameters.AddWithValue("@answer2", question.Answers[2]);
+                        command.Parameters.AddWithValue("@answer3", question.Answers[3]);
+                        command.Parameters.AddWithValue("@answer4", question.Answers[4]);
+                        command.Parameters.AddWithValue("@domain", "domeniu");
+                        command.Parameters.AddWithValue("@graphic", 1); 
+
+                        if (command.ExecuteNonQuery() > 0) Debug.Log("Question uploaded!");
                     }
                 }
                 catch (MySqlException ex)
