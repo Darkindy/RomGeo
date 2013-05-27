@@ -90,11 +90,19 @@ namespace RomGeo
             }
 
             Question question = new Question(0, text, domain, 0, answers);
-
-            if (isGraphic)
-                DatabaseAbstractionLayer.DAL.UploadQuestion(question, isGraphic, file);
-            else DatabaseAbstractionLayer.DAL.UploadQuestion(question);
-            this.Close();
+            if (!String.IsNullOrEmpty(richTextBox1.Text) &&
+                !String.IsNullOrEmpty(textBox1.Text) &&
+                !String.IsNullOrEmpty(textBox2.Text) &&
+                !String.IsNullOrEmpty(textBox3.Text) &&
+                !String.IsNullOrEmpty(textBox4.Text))
+            {
+                if (isGraphic)
+                    DatabaseAbstractionLayer.DAL.UploadQuestion(question, isGraphic, file);
+                else DatabaseAbstractionLayer.DAL.UploadQuestion(question);
+                MessageBox.Show("Intrebare adaugata!");
+                this.Close();
+            }
+            else MessageBox.Show("Toate campurile trebuie completate!");
         }
     }
 }
