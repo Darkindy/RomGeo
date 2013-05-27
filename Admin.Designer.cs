@@ -302,7 +302,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.filePickButton);
             this.Name = "Admin";
-            this.Text = "Admin";
+            this.Text = "Admin Panel - Add Question";
             this.ResumeLayout(false);
             this.PerformLayout();
 

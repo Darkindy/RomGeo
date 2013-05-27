@@ -360,24 +360,31 @@ namespace RomGeo.DatabaseAbstractionLayer
 
 
         // Added for question uploader (admin)
-        public static void UploadQuestion(Question question, String fileName)
+        public static void UploadQuestion(Question question, bool isGraphic=false, String fileName=null)
         {
             if (OpenConnection() == true)
             {
-                // Create command and assign the query and connection from the constructor
                 try
                 {
                     using (var command = new MySqlCommand("UploadQuestion", connection) { CommandType = CommandType.StoredProcedure })
                     {
-                        FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                        BinaryReader reader = new BinaryReader(fs);
-                        byte[] imgData = reader.ReadBytes((int)fs.Length);
+                        if (fileName != null && fileName == "openFileDialog1")
+                        {
+                            Debug.Log(fileName);
+                            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            BinaryReader reader = new BinaryReader(fs);
+                            byte[] imgData = reader.ReadBytes((int)fs.Length);
 
-                        MySqlParameter mParm = new MySqlParameter("@data", MySqlDbType.LongBlob);
-                        mParm.Size = imgData.Length;
-                        mParm.Value = imgData;
+                            MySqlParameter mParm = new MySqlParameter("@data", MySqlDbType.LongBlob);
+                            mParm.Size = imgData.Length;
+                            mParm.Value = imgData;
 
-                        command.Parameters.Add(mParm);
+                            command.Parameters.Add(mParm);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@data", null);
+                        }
 
                         command.Parameters.AddWithValue("@text", question.Text);
                         command.Parameters.AddWithValue("@answer1", question.Answers[1]);
@@ -386,7 +393,7 @@ namespace RomGeo.DatabaseAbstractionLayer
                         command.Parameters.AddWithValue("@answer4", question.Answers[4]);
                         command.Parameters.AddWithValue("@correctAnswer", question.CorrectAnswer);
                         command.Parameters.AddWithValue("@domain", Utils.Converters.DomainToString(question.Domain));
-                        command.Parameters.AddWithValue("@graphic", 1); 
+                        command.Parameters.AddWithValue("@graphic",isGraphic?1:0); 
 
                         if (command.ExecuteNonQuery() > 0) Debug.Log("Question uploaded!");
                     }

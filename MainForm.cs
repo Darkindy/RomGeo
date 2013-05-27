@@ -220,6 +220,7 @@ namespace RomGeo
                 case AppState.Start:
                     if (previousState != currentState)
                     {
+                        settingsPic.Visible = true;
                         headerImage.Visible = true;
                         usernameLabel.Visible = true;
                         usernameBox.Visible = true;
@@ -676,6 +677,11 @@ namespace RomGeo
             }
 
             GetNextScreen();
+        }
+
+        private void settingsPic_Click(object sender, EventArgs e)
+        {
+            new Admin().Visible = true;
         }
     }
 }

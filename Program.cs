@@ -16,7 +16,6 @@ namespace RomGeo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new Admin().Visible = true;
             Application.Run(MainForm.Instance);
         }
     }

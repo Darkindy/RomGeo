@@ -67,17 +67,6 @@
             this.statisticsType3 = new System.Windows.Forms.Label();
             this.statisticsType4 = new System.Windows.Forms.Label();
             this.quizMessageLabel = new System.Windows.Forms.Label();
-            this.warningQuestion = new System.Windows.Forms.PictureBox();
-            this.okQuestion = new System.Windows.Forms.PictureBox();
-            this.noQuestion = new System.Windows.Forms.PictureBox();
-            this.noPicture = new System.Windows.Forms.PictureBox();
-            this.okPicture = new System.Windows.Forms.PictureBox();
-            this.headerImage = new System.Windows.Forms.PictureBox();
-            this.logoSmall = new System.Windows.Forms.PictureBox();
-            this.footerImageSmall = new System.Windows.Forms.PictureBox();
-            this.questionImage = new System.Windows.Forms.PictureBox();
-            this.footerStatistics = new System.Windows.Forms.PictureBox();
-            this.footerImage = new System.Windows.Forms.PictureBox();
             this.endingBackButton = new System.Windows.Forms.Button();
             this.endingTextLabel1 = new System.Windows.Forms.Label();
             this.endingNumber1 = new System.Windows.Forms.Label();
@@ -89,6 +78,18 @@
             this.endingNumber3 = new System.Windows.Forms.Label();
             this.endingNumber4 = new System.Windows.Forms.Label();
             this.endingNumber5 = new System.Windows.Forms.Label();
+            this.warningQuestion = new System.Windows.Forms.PictureBox();
+            this.okQuestion = new System.Windows.Forms.PictureBox();
+            this.noQuestion = new System.Windows.Forms.PictureBox();
+            this.noPicture = new System.Windows.Forms.PictureBox();
+            this.okPicture = new System.Windows.Forms.PictureBox();
+            this.headerImage = new System.Windows.Forms.PictureBox();
+            this.logoSmall = new System.Windows.Forms.PictureBox();
+            this.footerImageSmall = new System.Windows.Forms.PictureBox();
+            this.questionImage = new System.Windows.Forms.PictureBox();
+            this.footerImage = new System.Windows.Forms.PictureBox();
+            this.footerStatistics = new System.Windows.Forms.PictureBox();
+            this.settingsPic = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.warningQuestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.okQuestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noQuestion)).BeginInit();
@@ -98,8 +99,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPic)).BeginInit();
             this.SuspendLayout();
             // 
             // loginButton
@@ -581,118 +583,6 @@
             this.quizMessageLabel.Text = "InQuiz message label";
             this.quizMessageLabel.Visible = false;
             // 
-            // warningQuestion
-            // 
-            this.warningQuestion.Image = global::RomGeo.Properties.Resources.warning;
-            this.warningQuestion.Location = new System.Drawing.Point(70, 520);
-            this.warningQuestion.Name = "warningQuestion";
-            this.warningQuestion.Size = new System.Drawing.Size(32, 32);
-            this.warningQuestion.TabIndex = 59;
-            this.warningQuestion.TabStop = false;
-            this.warningQuestion.Visible = false;
-            // 
-            // okQuestion
-            // 
-            this.okQuestion.Image = global::RomGeo.Properties.Resources.ok;
-            this.okQuestion.Location = new System.Drawing.Point(70, 520);
-            this.okQuestion.Name = "okQuestion";
-            this.okQuestion.Size = new System.Drawing.Size(32, 32);
-            this.okQuestion.TabIndex = 58;
-            this.okQuestion.TabStop = false;
-            this.okQuestion.Visible = false;
-            // 
-            // noQuestion
-            // 
-            this.noQuestion.Image = global::RomGeo.Properties.Resources.no;
-            this.noQuestion.Location = new System.Drawing.Point(70, 520);
-            this.noQuestion.Name = "noQuestion";
-            this.noQuestion.Size = new System.Drawing.Size(32, 32);
-            this.noQuestion.TabIndex = 57;
-            this.noQuestion.TabStop = false;
-            this.noQuestion.Visible = false;
-            // 
-            // noPicture
-            // 
-            this.noPicture.Image = global::RomGeo.Properties.Resources.no;
-            this.noPicture.Location = new System.Drawing.Point(168, 149);
-            this.noPicture.Name = "noPicture";
-            this.noPicture.Size = new System.Drawing.Size(32, 32);
-            this.noPicture.TabIndex = 32;
-            this.noPicture.TabStop = false;
-            this.noPicture.Visible = false;
-            // 
-            // okPicture
-            // 
-            this.okPicture.Image = global::RomGeo.Properties.Resources.ok;
-            this.okPicture.Location = new System.Drawing.Point(222, 149);
-            this.okPicture.Name = "okPicture";
-            this.okPicture.Size = new System.Drawing.Size(32, 32);
-            this.okPicture.TabIndex = 31;
-            this.okPicture.TabStop = false;
-            this.okPicture.Visible = false;
-            // 
-            // headerImage
-            // 
-            this.headerImage.Image = global::RomGeo.Properties.Resources.logo2_150;
-            this.headerImage.InitialImage = null;
-            this.headerImage.Location = new System.Drawing.Point(410, 0);
-            this.headerImage.Name = "headerImage";
-            this.headerImage.Size = new System.Drawing.Size(189, 150);
-            this.headerImage.TabIndex = 1;
-            this.headerImage.TabStop = false;
-            this.headerImage.Visible = false;
-            // 
-            // logoSmall
-            // 
-            this.logoSmall.Image = global::RomGeo.Properties.Resources.logo6;
-            this.logoSmall.Location = new System.Drawing.Point(0, 0);
-            this.logoSmall.Name = "logoSmall";
-            this.logoSmall.Size = new System.Drawing.Size(980, 100);
-            this.logoSmall.TabIndex = 15;
-            this.logoSmall.TabStop = false;
-            this.logoSmall.Visible = false;
-            // 
-            // footerImageSmall
-            // 
-            this.footerImageSmall.Image = global::RomGeo.Properties.Resources.bottom;
-            this.footerImageSmall.Location = new System.Drawing.Point(0, 550);
-            this.footerImageSmall.Name = "footerImageSmall";
-            this.footerImageSmall.Size = new System.Drawing.Size(980, 147);
-            this.footerImageSmall.TabIndex = 24;
-            this.footerImageSmall.TabStop = false;
-            this.footerImageSmall.Visible = false;
-            // 
-            // questionImage
-            // 
-            this.questionImage.Image = global::RomGeo.Properties.Resources.cer;
-            this.questionImage.Location = new System.Drawing.Point(450, 150);
-            this.questionImage.Name = "questionImage";
-            this.questionImage.Size = new System.Drawing.Size(500, 330);
-            this.questionImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.questionImage.TabIndex = 18;
-            this.questionImage.TabStop = false;
-            this.questionImage.Visible = false;
-            // 
-            // footerStatistics
-            // 
-            this.footerStatistics.Image = global::RomGeo.Properties.Resources.footerstatistics;
-            this.footerStatistics.Location = new System.Drawing.Point(0, 257);
-            this.footerStatistics.Name = "footerStatistics";
-            this.footerStatistics.Size = new System.Drawing.Size(980, 400);
-            this.footerStatistics.TabIndex = 55;
-            this.footerStatistics.TabStop = false;
-            this.footerStatistics.Visible = false;
-            // 
-            // footerImage
-            // 
-            this.footerImage.Image = global::RomGeo.Properties.Resources.bottom;
-            this.footerImage.Location = new System.Drawing.Point(0, 510);
-            this.footerImage.Name = "footerImage";
-            this.footerImage.Size = new System.Drawing.Size(980, 147);
-            this.footerImage.TabIndex = 8;
-            this.footerImage.TabStop = false;
-            this.footerImage.Visible = false;
-            // 
             // endingBackButton
             // 
             this.endingBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
@@ -819,6 +709,130 @@
             this.endingNumber5.Text = "100";
             this.endingNumber5.Visible = false;
             // 
+            // warningQuestion
+            // 
+            this.warningQuestion.Image = global::RomGeo.Properties.Resources.warning;
+            this.warningQuestion.Location = new System.Drawing.Point(70, 520);
+            this.warningQuestion.Name = "warningQuestion";
+            this.warningQuestion.Size = new System.Drawing.Size(32, 32);
+            this.warningQuestion.TabIndex = 59;
+            this.warningQuestion.TabStop = false;
+            this.warningQuestion.Visible = false;
+            // 
+            // okQuestion
+            // 
+            this.okQuestion.Image = global::RomGeo.Properties.Resources.ok;
+            this.okQuestion.Location = new System.Drawing.Point(70, 520);
+            this.okQuestion.Name = "okQuestion";
+            this.okQuestion.Size = new System.Drawing.Size(32, 32);
+            this.okQuestion.TabIndex = 58;
+            this.okQuestion.TabStop = false;
+            this.okQuestion.Visible = false;
+            // 
+            // noQuestion
+            // 
+            this.noQuestion.Image = global::RomGeo.Properties.Resources.no;
+            this.noQuestion.Location = new System.Drawing.Point(70, 520);
+            this.noQuestion.Name = "noQuestion";
+            this.noQuestion.Size = new System.Drawing.Size(32, 32);
+            this.noQuestion.TabIndex = 57;
+            this.noQuestion.TabStop = false;
+            this.noQuestion.Visible = false;
+            // 
+            // noPicture
+            // 
+            this.noPicture.Image = global::RomGeo.Properties.Resources.no;
+            this.noPicture.Location = new System.Drawing.Point(168, 149);
+            this.noPicture.Name = "noPicture";
+            this.noPicture.Size = new System.Drawing.Size(32, 32);
+            this.noPicture.TabIndex = 32;
+            this.noPicture.TabStop = false;
+            this.noPicture.Visible = false;
+            // 
+            // okPicture
+            // 
+            this.okPicture.Image = global::RomGeo.Properties.Resources.ok;
+            this.okPicture.Location = new System.Drawing.Point(222, 149);
+            this.okPicture.Name = "okPicture";
+            this.okPicture.Size = new System.Drawing.Size(32, 32);
+            this.okPicture.TabIndex = 31;
+            this.okPicture.TabStop = false;
+            this.okPicture.Visible = false;
+            // 
+            // headerImage
+            // 
+            this.headerImage.Image = global::RomGeo.Properties.Resources.logo2_150;
+            this.headerImage.InitialImage = null;
+            this.headerImage.Location = new System.Drawing.Point(410, 0);
+            this.headerImage.Name = "headerImage";
+            this.headerImage.Size = new System.Drawing.Size(189, 150);
+            this.headerImage.TabIndex = 1;
+            this.headerImage.TabStop = false;
+            this.headerImage.Visible = false;
+            // 
+            // logoSmall
+            // 
+            this.logoSmall.Image = global::RomGeo.Properties.Resources.logo6;
+            this.logoSmall.Location = new System.Drawing.Point(0, 0);
+            this.logoSmall.Name = "logoSmall";
+            this.logoSmall.Size = new System.Drawing.Size(980, 100);
+            this.logoSmall.TabIndex = 15;
+            this.logoSmall.TabStop = false;
+            this.logoSmall.Visible = false;
+            // 
+            // footerImageSmall
+            // 
+            this.footerImageSmall.Image = global::RomGeo.Properties.Resources.bottom;
+            this.footerImageSmall.Location = new System.Drawing.Point(0, 550);
+            this.footerImageSmall.Name = "footerImageSmall";
+            this.footerImageSmall.Size = new System.Drawing.Size(980, 147);
+            this.footerImageSmall.TabIndex = 24;
+            this.footerImageSmall.TabStop = false;
+            this.footerImageSmall.Visible = false;
+            // 
+            // questionImage
+            // 
+            this.questionImage.Image = global::RomGeo.Properties.Resources.cer;
+            this.questionImage.Location = new System.Drawing.Point(450, 150);
+            this.questionImage.Name = "questionImage";
+            this.questionImage.Size = new System.Drawing.Size(500, 330);
+            this.questionImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionImage.TabIndex = 18;
+            this.questionImage.TabStop = false;
+            this.questionImage.Visible = false;
+            // 
+            // footerImage
+            // 
+            this.footerImage.Image = global::RomGeo.Properties.Resources.bottom;
+            this.footerImage.Location = new System.Drawing.Point(0, 510);
+            this.footerImage.Name = "footerImage";
+            this.footerImage.Size = new System.Drawing.Size(980, 147);
+            this.footerImage.TabIndex = 8;
+            this.footerImage.TabStop = false;
+            this.footerImage.Visible = false;
+            // 
+            // footerStatistics
+            // 
+            this.footerStatistics.Image = global::RomGeo.Properties.Resources.footerstatistics;
+            this.footerStatistics.Location = new System.Drawing.Point(0, 257);
+            this.footerStatistics.Name = "footerStatistics";
+            this.footerStatistics.Size = new System.Drawing.Size(980, 400);
+            this.footerStatistics.TabIndex = 55;
+            this.footerStatistics.TabStop = false;
+            this.footerStatistics.Visible = false;
+            // 
+            // settingsPic
+            // 
+            this.settingsPic.BackgroundImage = global::RomGeo.Properties.Resources.Settings_icon;
+            this.settingsPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.settingsPic.Location = new System.Drawing.Point(923, 5);
+            this.settingsPic.Name = "settingsPic";
+            this.settingsPic.Size = new System.Drawing.Size(52, 50);
+            this.settingsPic.TabIndex = 71;
+            this.settingsPic.TabStop = false;
+            this.settingsPic.Visible = false;
+            this.settingsPic.Click += new System.EventHandler(this.settingsPic_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -826,6 +840,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 657);
+            this.Controls.Add(this.settingsPic);
             this.Controls.Add(this.endingNumber5);
             this.Controls.Add(this.endingNumber4);
             this.Controls.Add(this.endingNumber3);
@@ -903,8 +918,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.logoSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerImageSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.footerStatistics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -972,6 +988,7 @@
         private System.Windows.Forms.Label endingNumber3;
         private System.Windows.Forms.Label endingNumber4;
         private System.Windows.Forms.Label endingNumber5;
+        private System.Windows.Forms.PictureBox settingsPic;
 
     }
 }

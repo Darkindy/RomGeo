@@ -18,6 +18,7 @@ namespace RomGeo
         public Admin()
         {
             InitializeComponent();
+            comboBox1.SelectedIndex = 0;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -43,6 +44,7 @@ namespace RomGeo
             String file = openFileDialog1.FileName;
             String text = richTextBox1.Text;
             String domainname = null;
+            bool isGraphic = checkBox1.Checked;
             Domain domain = 0;
             Answers answers = new Answers();
             answers[1] = textBox1.Text;
@@ -87,14 +89,12 @@ namespace RomGeo
                     break;
             }
 
-
             Question question = new Question(0, text, domain, 0, answers);
 
-
-
-            DatabaseAbstractionLayer.DAL.UploadQuestion(question, file);
-            //Do whatever you want
-            //openFileDialog1.FileName .....
+            if (isGraphic)
+                DatabaseAbstractionLayer.DAL.UploadQuestion(question, isGraphic, file);
+            else DatabaseAbstractionLayer.DAL.UploadQuestion(question);
+            this.Close();
         }
     }
 }
