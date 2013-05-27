@@ -324,7 +324,8 @@ namespace RomGeo.DatabaseAbstractionLayer
                         command.Parameters.AddWithValue("@answer2", question.Answers[2]);
                         command.Parameters.AddWithValue("@answer3", question.Answers[3]);
                         command.Parameters.AddWithValue("@answer4", question.Answers[4]);
-                        command.Parameters.AddWithValue("@domain", "domeniu");
+                        command.Parameters.AddWithValue("@correctAnswer", question.CorrectAnswer);
+                        command.Parameters.AddWithValue("@domain", Utils.Coverters.DomainToString(question.Domain));
                         command.Parameters.AddWithValue("@graphic", 1); 
 
                         if (command.ExecuteNonQuery() > 0) Debug.Log("Question uploaded!");

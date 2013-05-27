@@ -50,6 +50,8 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -249,11 +251,35 @@
             this.radioButton4.Text = "res";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Answer 1",
+            "Answer 2",
+            "Answer 3",
+            "Answer 4"});
+            this.comboBox1.Location = new System.Drawing.Point(370, 223);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(69, 21);
+            this.comboBox1.TabIndex = 22;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(285, 226);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(79, 13);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Correct Answer";
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 361);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
@@ -306,5 +332,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label9;
     }
 }

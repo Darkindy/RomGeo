@@ -50,6 +50,21 @@ namespace RomGeo
             answers[3] = textBox3.Text;
             answers[4] = textBox4.Text;
 
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0: answers.CorrectAnswer = textBox1.Text;
+                    break;
+                case 1: answers.CorrectAnswer = textBox2.Text;
+                    break;
+                case 2: answers.CorrectAnswer = textBox3.Text;
+                    break;
+                case 3: answers.CorrectAnswer = textBox4.Text;
+                    break;
+                default:
+                    answers.CorrectAnswer = textBox1.Text;
+                    break;
+            }
+
             foreach (Control c in this.Controls)
                 if (c is RadioButton) if (((RadioButton)c).Checked == true) domainname = ((RadioButton)c).Text;
 
@@ -74,6 +89,8 @@ namespace RomGeo
 
 
             Question question = new Question(0, text, domain, 0, true, answers);
+
+
 
             DatabaseAbstractionLayer.DAL.UploadQuestion(question, file);
             //Do whatever you want
