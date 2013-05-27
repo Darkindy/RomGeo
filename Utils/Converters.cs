@@ -4,11 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RomGeo.QuizObjects;
+using System.IO;
+using System.Drawing;
 
 namespace RomGeo.Utils
 {
-    public class Coverters
+    public class Converters
     {
+        public static Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            if (byteArrayIn == null) return null;
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+
         public static String DomainToString(Domain domain)
         {
             switch (domain)

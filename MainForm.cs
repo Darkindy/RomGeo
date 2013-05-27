@@ -113,6 +113,8 @@ namespace RomGeo
                 if (question is GraphicQuestion)
                 {
                     // do some image data handling. NYI
+                    questionImage.Image = ((GraphicQuestion)question).Image;
+                    questionImage.Visible = true;
                 }
                 else
                 {

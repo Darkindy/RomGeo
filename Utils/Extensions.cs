@@ -18,7 +18,7 @@ namespace RomGeo.Utils
             // Will do some parsing here (too lazy right now)
             String aux = str.GetString(index);
 
-            return Utils.Coverters.StringToDomain(aux);
+            return Utils.Converters.StringToDomain(aux);
         }
 
         // MD5 Hash object to string conversion

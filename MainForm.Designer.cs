@@ -668,6 +668,7 @@
             this.questionImage.Location = new System.Drawing.Point(450, 150);
             this.questionImage.Name = "questionImage";
             this.questionImage.Size = new System.Drawing.Size(500, 330);
+            this.questionImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.questionImage.TabIndex = 18;
             this.questionImage.TabStop = false;
             this.questionImage.Visible = false;

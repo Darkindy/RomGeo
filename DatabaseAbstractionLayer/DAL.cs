@@ -10,6 +10,7 @@ using System.Data.SqlTypes;
 using System.Data;
 using System.Security.Cryptography;
 using System.IO;
+using System.Drawing;
 
 using RomGeo.QuizObjects;
 using RomGeo.Utils;
@@ -84,6 +85,8 @@ namespace RomGeo.DatabaseAbstractionLayer
             string text = string.Empty;
             Domain domain = Domain.None;
             Answers answers = new Answers();
+            byte[] imageData;
+            Image image = null;
 
             // Open connection
             if (OpenConnection() == true)
@@ -101,14 +104,21 @@ namespace RomGeo.DatabaseAbstractionLayer
                             domain = myReader.GetDomain(2);
                             difficultyPercent = myReader.GetInt32(3);
                             isGraphic = myReader.GetBoolean(4);
-                            answers.CorrectAnswer = myReader.GetString(5);
+
+                            if (isGraphic)
+                                imageData = (byte[])myReader[5];
+                            else imageData = null;
+                            image = Utils.Converters.ByteArrayToImage(imageData);
+
+                            answers.CorrectAnswer = myReader.GetString(6);
 
                             int i = 1;
                             while (i <= PersistentData.MAX_ANSWERS)
                             {
-                                answers[i] = myReader.GetString(5 + i);
+                                answers[i] = myReader.GetString(6 + i);
                                 i++;
                             }
+
                         }
                     }
                 }
@@ -122,7 +132,11 @@ namespace RomGeo.DatabaseAbstractionLayer
             }
             else Debug.ExitWithErrorMessage("Connection failed to open using DAL method.");
             Debug.Log("GET Q: " + id + text + domain + difficultyPercent + isGraphic + answers);
-            return new Question(id, text, domain, difficultyPercent, isGraphic, answers);
+            if (!isGraphic)
+                return new Question(id, text, domain, difficultyPercent, answers);
+            else
+                return new GraphicQuestion(id, text, image, domain, difficultyPercent, answers);
+
         }
 
         public static bool ValidateUser(string user, string password)
@@ -371,7 +385,7 @@ namespace RomGeo.DatabaseAbstractionLayer
                         command.Parameters.AddWithValue("@answer3", question.Answers[3]);
                         command.Parameters.AddWithValue("@answer4", question.Answers[4]);
                         command.Parameters.AddWithValue("@correctAnswer", question.CorrectAnswer);
-                        command.Parameters.AddWithValue("@domain", Utils.Coverters.DomainToString(question.Domain));
+                        command.Parameters.AddWithValue("@domain", Utils.Converters.DomainToString(question.Domain));
                         command.Parameters.AddWithValue("@graphic", 1); 
 
                         if (command.ExecuteNonQuery() > 0) Debug.Log("Question uploaded!");

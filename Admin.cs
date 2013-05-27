@@ -88,7 +88,7 @@ namespace RomGeo
             }
 
 
-            Question question = new Question(0, text, domain, 0, true, answers);
+            Question question = new Question(0, text, domain, 0, answers);
 
 
 
