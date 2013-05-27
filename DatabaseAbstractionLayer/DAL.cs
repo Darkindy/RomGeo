@@ -298,6 +298,52 @@ namespace RomGeo.DatabaseAbstractionLayer
             }
         }
 
+        // Statistics get
+
+        public static Statistics GetStatistics(User user)
+        {
+            int total=0, correct=0, percent=0, adminpercent=0, hidropercent=0, relpercent=0, respercent=0;
+
+
+            // Open connection
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                    using (var command = new MySqlCommand("GetStatistics", connection) { CommandType = CommandType.StoredProcedure })
+                    {
+                        command.Parameters.AddWithValue("@user",user.ToString());
+
+                        MySqlDataReader myReader = command.ExecuteReader();
+                        if (myReader.Read())
+                        {
+                            total = myReader.GetInt32(0);
+                            correct = myReader.GetInt32(1);
+                            percent = correct / (total>0?total:1);
+                            relpercent = myReader.GetInt32(2);
+                            hidropercent = myReader.GetInt32(3);
+                            adminpercent = myReader.GetInt32(4);
+                            respercent = myReader.GetInt32(5);
+
+                            Debug.Log(total + " " + correct + " " + percent + " " + relpercent + " " + adminpercent + " " + hidropercent + " " + respercent);
+                        }
+                        else Debug.Log("are probleme!");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+
+                // Close connection
+                CloseConnection();
+                return new Statistics(total, correct, relpercent, hidropercent, adminpercent, respercent);
+            }
+            else Debug.ExitWithErrorMessage("Connection failed to open using DAL method.");
+            return null;
+        }
+
 
         // Added for question uploader (admin)
         public static void UploadQuestion(Question question, String fileName)

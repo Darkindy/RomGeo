@@ -24,5 +24,23 @@ namespace RomGeo.Utils
             }
             return "error";
         }
+
+
+        public static Domain StringToDomain(String domain)
+        {
+            switch (domain)
+            {
+                case "admin":
+                    return Domain.Administrativ;
+                case "hidro":
+                    return Domain.Hidrografie;
+                case "rel":
+                    return Domain.Relief;
+                case "res":
+                    return Domain.Resurse;
+            }
+            return Domain.None;
+        }
+
     }
 }

@@ -67,6 +67,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="QuizObjects\Answers.cs" />
+    <Compile Include="QuizObjects\Statistics.cs" />
     <Compile Include="QuizObjects\GraphicQuestion.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

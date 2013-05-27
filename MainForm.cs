@@ -308,6 +308,17 @@ namespace RomGeo
                     {
                         headerImage.Visible = true;
 
+                        Statistics stats = DAL.GetStatistics(PersistentData.user);
+
+                        statisticsNumber1.Text = stats.totalqueried.ToString();
+                        statisticsNumber2.Text = stats.totalcorrect.ToString();
+                        statisticsNumber3.Text = stats.percentcorrect.ToString() + "%";
+                        statisticsPercent1.Text = stats.percentrel.ToString() +"%";
+                        statisticsPercent2.Text = stats.percenthidro.ToString() +"%";
+                        statisticsPercent3.Text = stats.percentadmin.ToString() +"%";
+                        statisticsPercent4.Text = stats.percentres.ToString() +"%";
+
+
                         statisticsLabel.Text = "Statistici utilizator " + PersistentData.user.ToString();
                         statisticsLabel.Left = (this.Width - statisticsLabel.Width) / 2;
                         statisticsLabel.Visible = true;                        
