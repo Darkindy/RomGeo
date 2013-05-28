@@ -18,19 +18,17 @@ namespace RomGeo.QuizObjects
 
     public class Question
     {
-        private int id;
-        private int difficulty;
-        private bool graphic;
-        private string text;
-        private Domain domain;
-        private Answers answers;
+        protected int id;
+        protected int difficulty;
+        protected string text;
+        protected Domain domain;
+        protected Answers answers;
 
-        public Question(int id = 0, string text = null, Domain domain = 0, int difficulty = 0, bool graphic = false, Answers answers = null)
+        public Question(int id = 0, string text = null, Domain domain = 0, int difficulty = 0, Answers answers = null)
         {
             this.id = id;
             this.text = text;
             this.domain = domain;
-            this.graphic = graphic;
             this.answers = answers;
             this.difficulty = difficulty;
         }

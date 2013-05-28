@@ -113,6 +113,8 @@ namespace RomGeo
                 if (question is GraphicQuestion)
                 {
                     // do some image data handling. NYI
+                    questionImage.Image = ((GraphicQuestion)question).Image;
+                    questionImage.Visible = true;
                 }
                 else
                 {
@@ -218,6 +220,7 @@ namespace RomGeo
                 case AppState.Start:
                     if (previousState != currentState)
                     {
+                        settingsPic.Visible = true;
                         headerImage.Visible = true;
                         usernameLabel.Visible = true;
                         usernameBox.Visible = true;
@@ -240,6 +243,7 @@ namespace RomGeo
                         statisticsButton.Visible = true;
                         exitButton.Visible = true;
                         footerImage.Visible = true;
+                        PersistentData.questionList = DAL.GetQuestions();
                     }
                     break;
                 case AppState.InQuiz:
@@ -260,12 +264,15 @@ namespace RomGeo
                     if (PersistentData.currentQuestionIndex == 30)
                         nextQuestionButton.Text = "Finalizare";
 
-                    PersistentData.currentQuestion = DAL.GetQuestion();
+                    PersistentData.currentQuestion = PersistentData.questionList[PersistentData.currentQuestionIndex];
+                    /*
                     while (CheckQuestionIdDuplicate(PersistentData.currentQuestion.Id))
                     {
                         PersistentData.currentQuestion = DAL.GetQuestion();
                     }
+                    
                     PersistentData.quizQuestions[PersistentData.currentQuestionIndex-1] = PersistentData.currentQuestion.Id;
+                    */
                     ShowQuestion(PersistentData.currentQuestion);
                     DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
                     switch (PersistentData.currentQuestion.Domain)
@@ -307,6 +314,17 @@ namespace RomGeo
                     if (previousState != currentState)
                     {
                         headerImage.Visible = true;
+
+                        Statistics stats = DAL.GetStatistics(PersistentData.user);
+
+                        statisticsNumber1.Text = stats.totalqueried.ToString();
+                        statisticsNumber2.Text = stats.totalcorrect.ToString();
+                        statisticsNumber3.Text = stats.percentcorrect.ToString() + "%";
+                        statisticsPercent1.Text = stats.percentrel.ToString() +"%";
+                        statisticsPercent2.Text = stats.percenthidro.ToString() +"%";
+                        statisticsPercent3.Text = stats.percentadmin.ToString() +"%";
+                        statisticsPercent4.Text = stats.percentres.ToString() +"%";
+
 
                         statisticsLabel.Text = "Statistici utilizator " + PersistentData.user.ToString();
                         statisticsLabel.Left = (this.Width - statisticsLabel.Width) / 2;
@@ -663,6 +681,11 @@ namespace RomGeo
             }
 
             GetNextScreen();
+        }
+
+        private void settingsPic_Click(object sender, EventArgs e)
+        {
+            new Admin().Visible = true;
         }
     }
 }

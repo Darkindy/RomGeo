@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using RomGeo.Utils;
 using RomGeo.QuizObjects;
 
 namespace RomGeo
@@ -11,6 +12,7 @@ namespace RomGeo
     public static class PersistentData
     {
         public static User user;
+        public static OneBasedArray<Question> questionList;
         public static Question currentQuestion;
         public static int currentQuestionIndex = 1;
         public static int correctAnswerCount = 0;

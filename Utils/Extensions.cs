@@ -15,11 +15,10 @@ namespace RomGeo.Utils
         // Quiz domain parser from string
         public static Domain GetDomain(this MySqlDataReader str, int index)
         {
-            Domain result = 0;
             // Will do some parsing here (too lazy right now)
+            String aux = str.GetString(index);
 
-
-            return result;
+            return Utils.Converters.StringToDomain(aux);
         }
 
         // MD5 Hash object to string conversion
