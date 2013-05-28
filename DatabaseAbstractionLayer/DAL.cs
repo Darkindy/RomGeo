@@ -435,7 +435,7 @@ namespace RomGeo.DatabaseAbstractionLayer
                 {
                     using (var command = new MySqlCommand("UploadQuestion", connection) { CommandType = CommandType.StoredProcedure })
                     {
-                        if (fileName != null && fileName == "openFileDialog1")
+                        if (fileName != null && fileName != "openFileDialog1")
                         {
                             Debug.Log(fileName);
                             FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
