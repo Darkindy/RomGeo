@@ -242,6 +242,7 @@
             this.questionText.AutoSize = true;
             this.questionText.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questionText.Location = new System.Drawing.Point(105, 120);
+            this.questionText.MaximumSize = new System.Drawing.Size(800, 100);
             this.questionText.Name = "questionText";
             this.questionText.Size = new System.Drawing.Size(15, 18);
             this.questionText.TabIndex = 16;
