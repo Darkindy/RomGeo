@@ -90,6 +90,8 @@
             this.footerImage = new System.Windows.Forms.PictureBox();
             this.footerStatistics = new System.Windows.Forms.PictureBox();
             this.settingsPic = new System.Windows.Forms.PictureBox();
+            this.logoutButton = new System.Windows.Forms.Button();
+            this.finnishquizButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.warningQuestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.okQuestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noQuestion)).BeginInit();
@@ -227,7 +229,7 @@
             this.exitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.White;
-            this.exitButton.Location = new System.Drawing.Point(400, 370);
+            this.exitButton.Location = new System.Drawing.Point(400, 440);
             this.exitButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(200, 50);
@@ -834,6 +836,38 @@
             this.settingsPic.Visible = false;
             this.settingsPic.Click += new System.EventHandler(this.settingsPic_Click);
             // 
+            // logoutButton
+            // 
+            this.logoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.logoutButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.logoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logoutButton.ForeColor = System.Drawing.Color.White;
+            this.logoutButton.Location = new System.Drawing.Point(400, 370);
+            this.logoutButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(200, 50);
+            this.logoutButton.TabIndex = 72;
+            this.logoutButton.Text = "Deconectare";
+            this.logoutButton.UseVisualStyleBackColor = false;
+            this.logoutButton.Visible = false;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            // 
+            // finnishquizButton
+            // 
+            this.finnishquizButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(158)))));
+            this.finnishquizButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(27)))), ((int)(((byte)(60)))));
+            this.finnishquizButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finnishquizButton.ForeColor = System.Drawing.Color.White;
+            this.finnishquizButton.Location = new System.Drawing.Point(770, 7);
+            this.finnishquizButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.finnishquizButton.Name = "finnishquizButton";
+            this.finnishquizButton.Size = new System.Drawing.Size(180, 40);
+            this.finnishquizButton.TabIndex = 73;
+            this.finnishquizButton.Text = "Finalizare chestionar";
+            this.finnishquizButton.UseVisualStyleBackColor = false;
+            this.finnishquizButton.Visible = false;
+            this.finnishquizButton.Click += new System.EventHandler(this.finnishquizButton_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -841,6 +875,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 657);
+            this.Controls.Add(this.finnishquizButton);
+            this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.settingsPic);
             this.Controls.Add(this.endingNumber5);
             this.Controls.Add(this.endingNumber4);
@@ -852,7 +888,6 @@
             this.Controls.Add(this.endingTextLabel2);
             this.Controls.Add(this.endingNumber1);
             this.Controls.Add(this.endingTextLabel1);
-            this.Controls.Add(this.statisticsBackButton);
             this.Controls.Add(this.nextQuestionButton);
             this.Controls.Add(this.warningQuestion);
             this.Controls.Add(this.okQuestion);
@@ -867,16 +902,11 @@
             this.Controls.Add(this.statisticsType2);
             this.Controls.Add(this.statisticsPercent1);
             this.Controls.Add(this.statisticsType1);
-            this.Controls.Add(this.statisticsNumber3);
-            this.Controls.Add(this.statisticsText3);
-            this.Controls.Add(this.statisticsNumber2);
-            this.Controls.Add(this.statisticsText2);
             this.Controls.Add(this.statisticsNumber1);
             this.Controls.Add(this.statisticsText1);
             this.Controls.Add(this.noPicture);
             this.Controls.Add(this.okPicture);
             this.Controls.Add(this.createAccountLabel);
-            this.Controls.Add(this.passConfLabel);
             this.Controls.Add(this.quizTitle);
             this.Controls.Add(this.answerPicker4);
             this.Controls.Add(this.answerPicker3);
@@ -887,9 +917,7 @@
             this.Controls.Add(this.headerImage);
             this.Controls.Add(this.passLabel);
             this.Controls.Add(this.usernameLabel);
-            this.Controls.Add(this.passBox);
             this.Controls.Add(this.createAccountLink);
-            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.logoSmall);
             this.Controls.Add(this.statisticsButton);
@@ -902,6 +930,14 @@
             this.Controls.Add(this.createAccountButton);
             this.Controls.Add(this.footerStatistics);
             this.Controls.Add(this.endingBackButton);
+            this.Controls.Add(this.statisticsBackButton);
+            this.Controls.Add(this.statisticsNumber3);
+            this.Controls.Add(this.statisticsText3);
+            this.Controls.Add(this.statisticsNumber2);
+            this.Controls.Add(this.statisticsText2);
+            this.Controls.Add(this.passConfLabel);
+            this.Controls.Add(this.passBox);
+            this.Controls.Add(this.loginButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -990,6 +1026,8 @@
         private System.Windows.Forms.Label endingNumber4;
         private System.Windows.Forms.Label endingNumber5;
         private System.Windows.Forms.PictureBox settingsPic;
+        private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.Button finnishquizButton;
 
     }
 }

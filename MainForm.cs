@@ -186,6 +186,10 @@ namespace RomGeo
             statisticsBackButton.MouseLeave += new EventHandler(StatisticsBackButton_MouseLeave);
             endingBackButton.MouseEnter += new EventHandler(EndingBackButton_MouseEnter);
             endingBackButton.MouseLeave += new EventHandler(EndingBackButton_MouseLeave);
+            logoutButton.MouseEnter += new EventHandler(LogOutButton_MouseEnter);
+            logoutButton.MouseLeave += new EventHandler(LogOutButton_MouseLeave);
+            /*finnishquizButton.MouseEnter += new EventHandler(FinnishQuizButton_MouseEnter);
+            finnishquizButton.MouseLeave += new EventHandler(FinnishQuizButton_MouseLeave);*/
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -241,6 +245,7 @@ namespace RomGeo
 
                         newQuizButton.Visible = true;
                         statisticsButton.Visible = true;
+                        logoutButton.Visible = true;
                         exitButton.Visible = true;
                         footerImage.Visible = true;
                         PersistentData.questionList = DAL.GetQuestions();
@@ -258,6 +263,7 @@ namespace RomGeo
                         questionImage.Visible = true;
                         foreach (var ap in answerPickers) 
                             ap.Visible = true;
+                        finnishquizButton.Visible = true;
                         nextQuestionButton.Visible = true;
                         footerImageSmall.Visible = true;
                     }
@@ -365,7 +371,9 @@ namespace RomGeo
                         endingTextLabel4.Visible = true;
                         endingTextLabel5.Visible = true;
 
-                        endingNumber1.Text = PersistentData.correctAnswerCount + " / 30";
+                        int queried = PersistentData.ReliefQuestionCount + PersistentData.HidrografieQuestionCount + PersistentData.AdministrativQuestionCount + PersistentData.ResurseQuestionCount;
+
+                        endingNumber1.Text = PersistentData.correctAnswerCount + " / " + queried;
                         endingNumber2.Text = PersistentData.correctAnswerReliefCount + " / " + PersistentData.ReliefQuestionCount;
                         endingNumber3.Text = PersistentData.correctAnswerHidrografieCount + " / " + PersistentData.HidrografieQuestionCount;
                         endingNumber4.Text = PersistentData.correctAnswerAdministrativCount + " / " + PersistentData.AdministrativQuestionCount;
@@ -388,6 +396,7 @@ namespace RomGeo
         {
             if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
             {
+                Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 User currentUser = new User(usernameBox.Text, DAL.GetID(usernameBox.Text));
                 PersistentData.user = currentUser;
                 previousState = currentState;
@@ -663,6 +672,24 @@ namespace RomGeo
             this.endingBackButton.BackColor = Color.FromArgb(5, 142, 158);
         }
 
+        private void LogOutButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.logoutButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void LogOutButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.logoutButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+        
+        private void FinnishQuizButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.finnishquizButton.BackColor = Color.FromArgb(161, 27, 60);
+        }
+        private void FinnishQuizButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.finnishquizButton.BackColor = Color.FromArgb(5, 142, 158);
+        }
+
         public void Timer_Tick(object sender, EventArgs eArgs)
         {
             Clock.Stop();
@@ -686,6 +713,20 @@ namespace RomGeo
         private void settingsPic_Click(object sender, EventArgs e)
         {
             new Admin().Visible = true;
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            previousState = currentState;
+            currentState = AppState.Start;
+            GetNextScreen();
+        }
+
+        private void finnishquizButton_Click(object sender, EventArgs e)
+        {
+            previousState = currentState;
+            currentState = AppState.EndingScreen;
+            GetNextScreen();
         }
     }
 }
