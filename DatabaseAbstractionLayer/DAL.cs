@@ -77,6 +77,73 @@ namespace RomGeo.DatabaseAbstractionLayer
             }
         }
 
+
+        public static OneBasedArray<Question> GetQuestions()
+        {
+            OneBasedArray<Question> questionList = new OneBasedArray<Question>(30);
+            int id = 0;
+            int difficultyPercent = 0;
+            bool isGraphic = false;
+            string text = string.Empty;
+            Domain domain = Domain.None;
+            byte[] imageData;
+            Image image = null;
+
+            // Open connection
+            if (OpenConnection() == true)
+            {
+                // Create command and assign the query and connection from the constructor
+                try
+                {
+                        using (var command = new MySqlCommand("GetQuestions", connection) { CommandType = CommandType.StoredProcedure })
+                        {
+                            command.Parameters.AddWithValue("@user", PersistentData.user);
+                            int j = 1;
+
+                            MySqlDataReader myReader = command.ExecuteReader();
+                            while (myReader.Read())
+                            {
+                                id = myReader.GetInt32(0);
+                                text = myReader.GetString(1);
+                                domain = myReader.GetDomain(2);
+                                difficultyPercent = myReader.GetInt32(3);
+                                isGraphic = myReader.GetBoolean(4);
+
+                                if (isGraphic)
+                                    imageData = (byte[])myReader[5];
+                                else imageData = null;
+                                image = Utils.Converters.ByteArrayToImage(imageData);
+                                Answers answers = new Answers();
+                                answers.CorrectAnswer = myReader.GetString(6);
+
+                                int i = 1;
+                                while (i <= PersistentData.MAX_ANSWERS)
+                                {
+                                    answers[i] = myReader.GetString(6 + i);
+                                    i++;
+                                }
+
+                                if (!isGraphic)
+                                    questionList[j] = new Question(id, text, domain, difficultyPercent, answers);
+                                else
+                                    questionList[j] = new GraphicQuestion(id, text, image, domain, difficultyPercent, answers);
+                                j++;
+                            }
+                        }
+                    }
+                catch (MySqlException ex)
+                {
+                    Debug.ExitWithErrorMessage(ex.Message, ex.Number);
+                }
+
+                // Close connection
+                CloseConnection();
+            }
+            else Debug.ExitWithErrorMessage("Connection failed to open using DAL method.");
+            return questionList;
+        }
+
+
         public static Question GetQuestion()
         {
             int id = 0;
