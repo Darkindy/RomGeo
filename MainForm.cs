@@ -85,6 +85,8 @@ namespace RomGeo
             this.welcomeLabel.Font = new Font(ff, 12, fontStyle_regular);
             this.newQuizButton.Font = new Font(ff, 10, fontStyle_regular);
             this.statisticsButton.Font = new Font(ff, 10, fontStyle_regular);
+            this.logoutButton.Font = new Font(ff, 10, fontStyle_regular);
+            this.finnishquizButton.Font = new Font(ff, 10, fontStyle_regular);
             this.exitButton.Font = new Font(ff, 10, fontStyle_regular);
             this.nextQuestionButton.Font = new Font(ff, 10, fontStyle_regular);
             this.passConfLabel.Font = new Font(ff, 12, fontStyle_regular);
@@ -188,8 +190,8 @@ namespace RomGeo
             endingBackButton.MouseLeave += new EventHandler(EndingBackButton_MouseLeave);
             logoutButton.MouseEnter += new EventHandler(LogOutButton_MouseEnter);
             logoutButton.MouseLeave += new EventHandler(LogOutButton_MouseLeave);
-            /*finnishquizButton.MouseEnter += new EventHandler(FinnishQuizButton_MouseEnter);
-            finnishquizButton.MouseLeave += new EventHandler(FinnishQuizButton_MouseLeave);*/
+            finnishquizButton.MouseEnter += new EventHandler(FinnishQuizButton_MouseEnter);
+            finnishquizButton.MouseLeave += new EventHandler(FinnishQuizButton_MouseLeave);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -280,27 +282,7 @@ namespace RomGeo
                     PersistentData.quizQuestions[PersistentData.currentQuestionIndex-1] = PersistentData.currentQuestion.Id;
                     */
                     ShowQuestion(PersistentData.currentQuestion);
-                    DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
-                    switch (PersistentData.currentQuestion.Domain)
-                    {
-                        case Domain.Relief:
-                            Debug.Log("relief");
-                            PersistentData.ReliefQuestionCount++;
-                            break;
-                        case Domain.Hidrografie:
-                            Debug.Log("hidro");
-                            PersistentData.HidrografieQuestionCount++;
-                            break;
-                        case Domain.Administrativ:
-                            Debug.Log("admin");
-                            PersistentData.AdministrativQuestionCount++;
-                            break;
-                        case Domain.Resurse:
-                            Debug.Log("resurse");
-                            PersistentData.ResurseQuestionCount++;
-                            break;
-
-                    }
+                    //finnishquizButton.Visible = true;
                     break;
                 case AppState.CreateAccount:
                     if (previousState != currentState)
@@ -396,7 +378,6 @@ namespace RomGeo
         {
             if (DAL.ValidateUser(usernameBox.Text, passBox.Text))
             {
-                Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 User currentUser = new User(usernameBox.Text, DAL.GetID(usernameBox.Text));
                 PersistentData.user = currentUser;
                 previousState = currentState;
@@ -434,6 +415,7 @@ namespace RomGeo
 
         private void endingBackButton_Click(object sender, EventArgs e)
         {
+            PersistentData.currentQuestionIndex = 1;
             PersistentData.correctAnswerCount = 0;
             PersistentData.correctAnswerReliefCount = 0;
             PersistentData.correctAnswerHidrografieCount = 0;
@@ -537,7 +519,7 @@ namespace RomGeo
         }
 
         private void NextQuestionButton_Click(object sender, EventArgs e)
-        {
+        {            
             // Check if answer is ready for submission
             bool ready = false;
             foreach (var ap in answerPickers) if (ap.Checked == true) { ready = true; break; }
@@ -546,7 +528,33 @@ namespace RomGeo
                 quizMessageLabel.Text = "Trebuie sa alegi un raspuns pentru a continua.";
                 quizMessageLabel.Visible = true;
                 warningQuestion.Visible = true;
+                //finnishquizButton.Visible = false;
                 return;
+            }
+            else
+            {
+                //Mark Queried
+                DAL.MarkQueried(PersistentData.user, PersistentData.currentQuestion);
+                switch (PersistentData.currentQuestion.Domain)
+                {
+                    case Domain.Relief:
+                        Debug.Log("relief");
+                        PersistentData.ReliefQuestionCount++;
+                        break;
+                    case Domain.Hidrografie:
+                        Debug.Log("hidro");
+                        PersistentData.HidrografieQuestionCount++;
+                        break;
+                    case Domain.Administrativ:
+                        Debug.Log("admin");
+                        PersistentData.AdministrativQuestionCount++;
+                        break;
+                    case Domain.Resurse:
+                        Debug.Log("resurse");
+                        PersistentData.ResurseQuestionCount++;
+                        break;
+
+                }
             }
             quizMessageLabel.Visible = false;
             warningQuestion.Visible = false;
