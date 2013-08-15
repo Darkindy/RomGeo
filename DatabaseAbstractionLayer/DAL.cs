@@ -28,10 +28,10 @@ namespace RomGeo.DatabaseAbstractionLayer
         // Constructor (static)
         static DAL()
         {
-            server = "86.120.252.100";
+            server = "localhost";
             database = "erg_db";
-            uid = "romgeo";
-            password = "romgeo";
+            uid = "root";
+            password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
